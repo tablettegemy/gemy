@@ -67,6 +67,9 @@
   </style>
 </head>
 <body>
+<div style="background-color:#e0f7fa; padding: 10px; text-align: center; font-size: 1.2em; font-weight: bold;">
+        Gemy, bien plus qu’une tablette : une présence au quotidien, une aide par la voix, une simplicité totale.
+    </div>
 <header>
 <h1>Gemy Companion</h1>
 <p>Votre compagnon intelligent, bienveillant et toujours disponible</p>
@@ -115,7 +118,6 @@
 <p>Chez Gemy, nous croyons que chacun a le droit de rester connecté, de se divertir et de se sentir entouré, peu importe son âge ou ses connaissances technologiques. Nous sommes là pour apporter cette tranquillité d'esprit, avec un service humain et un accompagnement clé en main.</p>
 <p><strong>Gemy, c'est la technologie au service du lien humain.</strong></p>
 </div>
-
 <div class="card">
 <h2>Mon Espace Client</h2>
 <form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST">
@@ -136,9 +138,9 @@
 <label for="rappel">Souhaitez-vous être rappelé ?</label><br/>
 <input id="rappel" name="Rappel" type="checkbox" value="Oui"/><br/><br/>
 <input class="button" type="submit" value="Envoyer"/>
-</form>
+<button style="margin-left: 10px; background-color: #2196F3; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer;" type="submit">Nous rappeler</button></form>
 </div>
-<div class="card contact">
+<div class="card contact" id="contact">
 <h2>Nous contacter</h2>
 <p><strong>Renaude Anthony</strong><br/>PDG de Gemy</p>
 <p><strong>Téléphone :</strong> 0634901537</p>
@@ -146,5 +148,27 @@
 <a class="button" href="mailto:gemyantho@gmail.com">Nous contacter</a>
 </div>
 </div>
+<style>
+#acheter-maintenant {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 999;
+}
+@media (max-width: 768px) {
+  #acheter-maintenant {
+    width: auto;
+    font-size: 15px;
+  }
+}
+</style>
+<button id="acheter-maintenant" onclick="document.getElementById('offre').scrollIntoView({behavior:'smooth'})">Acheter maintenant</button>
 </body>
 </html>
