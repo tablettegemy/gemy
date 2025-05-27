@@ -98,7 +98,7 @@
 <p>Avec un abonnement mensuel, vous bénéficiez d’une assistance personnalisée : 
       je peux prendre le contrôle à distance de votre tablette pour ajouter des contacts, configurer l’interface ou vous aider.</p>
 </div>
-<div class="card">
+<div class="card" id="offre">
 <h2>Offre spéciale</h2>
 <p><strong>Tablette Android + configuration complète Gemy :</strong> 299 €</p>
 <p><strong>Abonnement assistance à distance :</strong> 9,90 €/mois</p>
@@ -138,7 +138,20 @@
 <label for="rappel">Souhaitez-vous être rappelé ?</label><br/>
 <input id="rappel" name="Rappel" type="checkbox" value="Oui"/><br/><br/>
 <input class="button" type="submit" value="Envoyer"/>
-<button style="margin-left: 10px; background-color: #2196F3; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer;" type="submit">Nous rappeler</button></form>
+<h3 style="margin-top:20px;">Informations pour commander</h3>
+<label for="adresse">Adresse de livraison :</label><br/>
+<textarea cols="50" id="adresse" name="Adresse" required="" rows="3"></textarea><br/><br/>
+<label for="produit">Choix du produit :</label><br/>
+<select id="produit" name="Produit" required="">
+<option value="Tablette seule - 299 €">Tablette seule - 299 €</option>
+<option value="Pack clé en main avec installation - 450 €">Pack clé en main avec installation - 450 €</option>
+<option value="Abonnement assistance à distance - 9,90 €/mois">Abonnement assistance à distance - 9,90 €/mois</option></select><br/><br/>
+<label for="mode">Mode de règlement :</label><br/>
+<select id="mode" name="Paiement" required="">
+<option value="Paiement à la livraison (espèces ou chèque)">Paiement à la livraison (espèces ou chèque)</option>
+<option value="Demande de lien de paiement en ligne">Demande de lien de paiement en ligne</option>
+</select><br/><br/>
+<button style="margin-left: 10px; background-color: #2196F3; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer;" type="submit">Mon panier</button></form>
 </div>
 <div class="card contact" id="contact">
 <h2>Nous contacter</h2>
