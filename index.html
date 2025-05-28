@@ -1,81 +1,237 @@
-
 <!DOCTYPE html>
 
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Gemy Companion</title>
+<title>Gemy - Votre Compagnon Connecté | Tablette Simplifiée avec Gemini et Support à Domicile</title>
+<meta content="Découvrez Gemy, la solution clé en main pour rompre l'isolement. Tablette simplifiée avec l'assistant Gemini, formation personnalisée et support à domicile pour tous." name="description"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
 <style>
+    /* Styles généraux du corps de la page */
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #f2f7fb;
-      color: #222;
+      background: #f2f7fb; /* Couleur de fond douce */
+      color: #222; /* Couleur de texte sombre pour la lisibilité */
+      line-height: 1.6; /* Amélioration de l'espacement des lignes pour la lecture */
     }
+
+    /* Styles de l'en-tête (bandeau supérieur) */
     header {
-      background: linear-gradient(to right, #0077cc, #005fa3);
+      background: linear-gradient(to right, #0077cc, #005fa3); /* Dégradé de bleu */
       color: white;
-      padding: 3rem 2rem;
+      padding: 3rem 2rem; /* Espacement interne */
       text-align: center;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem; /* Taille de titre légèrement plus grande pour l'impact */
       margin-bottom: 0.5rem;
     }
+
+    /* Conteneur principal du contenu */
     .container {
-      max-width: 960px;
-      margin: auto;
-      padding: 2rem;
+      max-width: 960px; /* Largeur maximale pour le contenu */
+      margin: auto; /* Centrage automatique */
+      padding: 2rem; /* Espacement interne */
     }
+
+    /* Styles des "cartes" (sections de contenu) */
     .card {
       background: white;
-      border-radius: 12px;
+      border-radius: 12px; /* Bords arrondis */
       padding: 1.5rem 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2rem; /* Espacement entre les cartes */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); /* Ombre douce */
+      transition: transform 0.3s ease-in-out; /* Animation au survol */
     }
+    .card:hover {
+        transform: translateY(-5px); /* Effet de soulèvement au survol */
+    }
+
+    /* Styles des titres de section */
     h2, h3 {
-      color: #005fa3;
+      color: #005fa3; /* Couleur bleue pour les titres */
+      margin-bottom: 1rem; /* Espacement sous les titres */
     }
+
+    /* Styles des listes à puces */
     ul {
       padding-left: 1.2rem;
     }
     ul li {
       margin-bottom: 0.5rem;
     }
+
+    /* Styles de la carte de contact (section spécifique) */
     .contact {
       text-align: center;
-      background: #e9f3ff;
+      background: #e9f3ff; /* Fond bleu très clair */
       padding: 2rem;
       border-radius: 12px;
     }
+
+    /* Styles des boutons généraux (bleus) */
     .button {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.8rem 1.5rem;
-      background-color: #0077cc;
+      background-color: #0077cc; /* Couleur bleue */
+      color: white;
+      text-decoration: none; /* Pas de soulignement */
+      border-radius: 6px;
+      font-weight: 600; /* Texte en gras */
+      border: none; /* Pas de bordure */
+      cursor: pointer; /* Curseur en forme de main au survol */
+      transition: background-color 0.3s ease; /* Animation au survol */
+    }
+    .button:hover {
+      background-color: #005fa3; /* Couleur plus foncée au survol */
+    }
+
+    /* Styles des boutons verts (pour l'achat/commande) */
+    .button-green {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #4CAF50; /* Couleur verte */
       color: white;
       text-decoration: none;
       border-radius: 6px;
       font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* Animation au survol */
     }
-    .button:hover {
-      background-color: #005fa3;
+    .button-green:hover {
+      background-color: #45a049; /* Couleur plus foncée au survol */
     }
-  </style>
+
+    /* Styles des champs de formulaire */
+    form label {
+        display: block; /* Chaque label sur une nouvelle ligne */
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #005fa3; /* Couleur bleue pour les labels */
+    }
+    form input[type="text"],
+    form textarea,
+    form select {
+        width: 100%; /* Largeur pleine */
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc; /* Bordure grise */
+        border-radius: 6px;
+        box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+    }
+    form input[type="checkbox"] {
+        margin-right: 0.5rem;
+    }
+
+    /* Styles du pied de page (footer) */
+    footer {
+        text-align: center;
+        padding: 2rem;
+        background: #005fa3; /* Fond bleu foncé */
+        color: white;
+        font-size: 0.9rem;
+        border-top-left-radius: 12px; /* Bords arrondis en haut */
+        border-top-right-radius: 12px;
+        margin-top: 2rem;
+    }
+    footer a {
+        color: white;
+        text-decoration: none;
+        margin: 0 0.5rem;
+    }
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* Styles pour les listes d'icônes (dans "Qui sommes-nous?") */
+    .icon-list {
+        display: flex;
+        flex-wrap: wrap; /* Permet le passage à la ligne sur petits écrans */
+        justify-content: space-around; /* Répartition égale de l'espace */
+        gap: 1.5rem; /* Espacement entre les éléments */
+        margin-top: 1.5rem;
+    }
+    .icon-item {
+        text-align: center;
+        flex: 1 1 30%; /* Permet 3 colonnes sur grand écran (environ 30% de la largeur) */
+        min-width: 120px; /* Largeur minimale pour chaque icône */
+        max-width: 180px; /* Largeur maximale pour chaque icône */
+    }
+    .icon-item i {
+        font-size: 3rem; /* Taille des icônes */
+        color: #0077cc; /* Couleur des icônes */
+        margin-bottom: 0.5rem;
+    }
+    .icon-item p {
+        font-weight: 600;
+        color: #005fa3;
+        margin: 0;
+    }
+
+    /* Styles spécifiques pour les boîtes d'offres */
+    .offer-box {
+        background: #e9f3ff; /* Fond bleu très clair */
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        border: 1px solid #cce0ff; /* Bordure subtile */
+    }
+    .offer-box h3 {
+        color: #005fa3;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    .offer-box strong {
+        color: #4CAF50; /* Prix en vert pour les mettre en évidence */
+    }
+
+    /* Media Queries pour la responsivité (adaptation aux petits écrans) */
+    @media (max-width: 768px) {
+        .container {
+            padding: 1rem; /* Moins de padding sur mobile */
+        }
+        header {
+            padding: 2rem 1rem;
+        }
+        header h1 {
+            font-size: 2rem; /* Réduction de la taille du titre principal sur mobile */
+        }
+        .card {
+            padding: 1rem;
+        }
+        .icon-item {
+            flex: 1 1 45%; /* 2 colonnes sur mobile pour les icônes */
+        }
+        .icon-item i {
+            font-size: 2.5rem; /* Réduction de la taille des icônes sur mobile */
+        }
+        /* Ajustement pour la photo dans "Qui sommes-nous" sur mobile : empilement */
+        .card > div {
+            flex-direction: column; /* Les éléments Flexbox s'empilent verticalement */
+            text-align: center;
+        }
+        .card > div img {
+            margin-bottom: 1rem; /* Espacement sous la photo */
+        }
+    }
+</style>
 </head>
 <body>
 <div style="background-color:#e0f7fa; padding: 10px; text-align: center; font-size: 1.2em; font-weight: bold;">
-        Gemy, bien plus qu’une tablette : une présence au quotidien, une aide par la voix, une simplicité totale.
-    </div>
+    Gemy, bien plus qu’une tablette : une présence au quotidien, une aide par la voix, une simplicité totale.
+</div>
 <header>
 <h1>Gemy Companion</h1>
 <p>Votre compagnon intelligent, bienveillant et toujours disponible</p>
 </header>
 <div class="container">
-<img alt="Tablette Gemy" src="gemy.JPG" style="width:100%;max-width:600px;display:block;margin:auto;border-radius:12px;margin-bottom:2rem;"/>
+<img alt="Tablette Gemy, un compagnon connecté à portée de main" src="gemy.JPG" style="width:100%;max-width:600px;display:block;margin:auto;border-radius:12px;margin-bottom:2rem;"/>
 <div class="card">
 <h2>Qu'est-ce que Gemy Companion ?</h2>
 <p>Gemy Companion est bien plus qu’une tablette. C’est un véritable compagnon fidèle, toujours disponible, à l’écoute, sans jugement. Grâce à son intelligence artificielle bienveillante, il rompt la solitude et apporte une présence de chaque instant.</p>
@@ -95,90 +251,138 @@
 </div>
 <div class="card">
 <h2>Assistance à distance</h2>
-<p>Avec un abonnement mensuel, vous bénéficiez d’une assistance personnalisée : 
-      je peux prendre le contrôle à distance de votre tablette pour ajouter des contacts, configurer l’interface ou vous aider.</p>
+<p>Avec un abonnement mensuel, vous bénéficiez d’une assistance personnalisée :
+    je peux prendre le contrôle à distance de votre tablette pour ajouter des contacts, configurer l’interface ou vous aider.</p>
 </div>
 <div class="card" id="offre">
-<h2>Offre spéciale</h2>
-<p><strong>Tablette Android + configuration complète Gemy :</strong> 299 €</p>
-<p><strong>Abonnement assistance à distance :</strong> 9,90 €/mois</p>
-<p><strong>Forfait clé en main avec installation et formation :</strong> 450 €</p>
+<h2>Nos Offres Gemy</h2>
+<div class="offer-box">
+<h3>Option 1 : Tablette Gemy prête à l'emploi</h3>
+<p><strong>Prix : 299 €</strong></p>
+<p>Inclut la tablette Android et sa configuration logicielle complète Gemy. Idéal si vous avez de l'aide pour l'installation à domicile.</p>
+</div>
+<div class="offer-box">
+<h3>Option 2 : Forfait Gemy Clé en main (Recommandé)</h3>
+<p><strong>Prix : 450 €</strong></p>
+<p>Inclut la tablette Android, sa configuration Gemy complète, l'installation, mise en service et formation personnalisée.</p>
+</div>
+<div class="offer-box">
+<h3>Abonnement Assistance à distance</h3>
+<p><strong>Prix : 9,90 €/mois</strong></p>
+<p>Bénéficiez d'une assistance personnalisée et d'une prise de contrôle à distance pour toutes vos questions et besoins, après l'achat initial.</p>
+</div>
 </div>
 <div class="card">
 <h2>Qui sommes-nous ?</h2>
-<p>Chez Gemy, notre histoire est avant tout une histoire de cœur et de conviction. L'idée de Gemy est née d'un constat simple et personnel : voir des proches, notamment des membres de ma propre famille, se sentir parfois isolés ou dépassés par le monde numérique.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem;">
+<img alt="Photo d'Anthony, créateur de Gemy" src="anthony.jpg" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex-shrink: 0; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"/>
+<p style="flex-grow: 1; margin: 0;">Chez Gemy, notre histoire est avant tout une histoire de cœur et de conviction. L'idée de Gemy est née d'un constat simple et personnel : voir des proches, notamment des membres de ma propre famille, se sentir parfois isolés ou dépassés par le monde numérique.</p>
+</div>
 <p>J'ai observé à quel point la technologie, pourtant conçue pour connecter, pouvait devenir une source de frustration ou d'exclusion pour ceux qui n'ont pas grandi avec internet et les smartphones. J'ai vu le besoin criant d'une solution qui ne soit pas juste un outil, mais un véritable compagnon, facile à utiliser, et qui apporte de la joie et du lien.</p>
 <p>C'est pourquoi j'ai créé Gemy. Mon objectif est d'offrir une passerelle simple et intuitive vers le monde connecté, pour toutes les personnes qui se sentent seules ou qui ne sont pas à l'aise avec les nouvelles technologies.</p>
 <p><strong>Notre mission est claire :</strong></p>
-<ul>
-<li>Rompre l'isolement : En facilitant les appels vidéo avec les proches, l'accès à la radio, aux jeux, et aux informations.</li>
-<li>Simplifier l'accès à la technologie : En proposant une tablette prête à l'emploi, configurée sur mesure, où tout est accessible par la voix, sans aucun stress.</li>
-<li>Offrir un compagnon unique : Avec Gemini au cœur de l'expérience, Gemy est bien plus qu'une tablette. C'est un assistant toujours disponible, un confident qui écoute sans jugement, et un ami qui vous accompagne au quotidien, en toute confidentialité.</li>
-</ul>
-<p>Chez Gemy, nous croyons que chacun a le droit de rester connecté, de se divertir et de se sentir entouré, peu importe son âge ou ses connaissances technologiques. Nous sommes là pour apporter cette tranquillité d'esprit, avec un service humain et un accompagnement clé en main.</p>
+<div class="icon-list">
+<div class="icon-item">
+<i class="fas fa-heart"></i> <p>Rompre l'isolement</p>
+</div>
+<div class="icon-item">
+<i class="fas fa-magic"></i> <p>Simplifier l'accès à la technologie</p>
+</div>
+<div class="icon-item">
+<i class="fas fa-robot"></i> <p>Offrir un compagnon unique</p>
+</div>
+</div>
+<p style="margin-top: 1.5rem;">Chez Gemy, nous croyons que chacun a le droit de rester connecté, de se divertir et de se sentir entouré, peu importe son âge ou ses connaissances technologiques. Nous sommes là pour apporter cette tranquillité d'esprit, avec un service humain et un accompagnement clé en main.</p>
 <p><strong>Gemy, c'est la technologie au service du lien humain.</strong></p>
 </div>
 <div class="card">
-<h2>Mon Espace Client</h2>
-<form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST">
-<label for="name">Nom :</label><br/>
-<input id="name" name="Nom" required="" type="text"/><br/><br/>
-<label for="id_tablette">ID Tablette (si connu) :</label><br/>
-<input id="id_tablette" name="ID Tablette" type="text"/><br/><br/>
-<label for="demande">Type de demande :</label><br/>
-<select id="demande" name="Demande">
+<h2>Demande de Support / Assistance</h2>
+<!-- IMPORTANT : REMPLACEZ "YOUR_FORMSPREE_OR_NETLIFY_FORM_ENDPOINT_SUPPORT" par l'URL de votre service de formulaire (ex: Formspree.io).
+         Ce formulaire enverra les données à cette URL. Sans cela, le formulaire ne fonctionnera pas. -->
+<form action="YOUR_FORMSPREE_OR_NETLIFY_FORM_ENDPOINT_SUPPORT" method="POST">
+<label for="name_support">Nom :</label><br/>
+<input aria-label="Nom" id="name_support" name="Nom" required="" type="text"/><br/><br/>
+<label for="id_tablette_support">ID Tablette (si connu) :</label><br/>
+<input aria-label="ID Tablette" id="id_tablette_support" name="ID Tablette" type="text"/><br/><br/>
+<label for="demande_support">Type de demande :</label><br/>
+<select aria-label="Type de demande" id="demande_support" name="Demande">
 <option value="Assistance technique">Assistance technique</option>
 <option value="Ajout contact ou application">Ajout contact ou application</option>
 <option value="Problème vocal">Problème vocal</option>
 <option value="Renouvellement abonnement">Renouvellement abonnement</option>
 <option value="Autre">Autre</option>
 </select><br/><br/>
-<label for="message">Message :</label><br/>
-<textarea cols="50" id="message" name="Message" required="" rows="4"></textarea><br/><br/>
-<label for="rappel">Souhaitez-vous être rappelé ?</label><br/>
-<input id="rappel" name="Rappel" type="checkbox" value="Oui"/><br/><br/>
-<input class="button" type="submit" value="Envoyer"/>
-<h3 style="margin-top:20px;">Informations pour commander</h3>
-<label for="adresse">Adresse de livraison :</label><br/>
-<textarea cols="50" id="adresse" name="Adresse" required="" rows="3"></textarea><br/><br/>
-<label for="produit">Choix du produit :</label><br/>
-<select id="produit" name="Produit" required="">
+<label for="message_support">Message :</label><br/>
+<textarea aria-label="Message" cols="50" id="message_support" name="Message" required="" rows="4"></textarea><br/><br/>
+<label for="rappel_support">Souhaitez-vous être rappelé ?</label><br/>
+<input aria-label="Souhaitez-vous être rappelé ?" id="rappel_support" name="Rappel" type="checkbox" value="Oui"/><br/><br/>
+<input class="button" type="submit" value="Envoyer la demande"/>
+</form>
+</div>
+<div class="card">
+<h2>Commander Gemy</h2>
+<!-- IMPORTANT : REMPLACEZ "YOUR_FORMSPREE_OR_NETLIFY_FORM_ENDPOINT_ORDER" par l'URL de votre service de formulaire (ex: Formspree.io).
+         Ce formulaire enverra les données à cette URL. Sans cela, le formulaire ne fonctionnera pas. -->
+<form action="YOUR_FORMSPREE_OR_NETLIFY_FORM_ENDPOINT_ORDER" method="POST">
+<label for="name_order">Nom :</label><br/>
+<input aria-label="Nom" id="name_order" name="Nom" required="" type="text"/><br/><br/>
+<label for="adresse_order">Adresse de livraison :</label><br/>
+<textarea aria-label="Adresse de livraison" cols="50" id="adresse_order" name="Adresse" required="" rows="3"></textarea><br/><br/>
+<label for="produit_order">Choix du produit :</label><br/>
+<select aria-label="Choix du produit" id="produit_order" name="Produit" required="">
 <option value="Tablette seule - 299 €">Tablette seule - 299 €</option>
 <option value="Pack clé en main avec installation - 450 €">Pack clé en main avec installation - 450 €</option>
-<option value="Abonnement assistance à distance - 9,90 €/mois">Abonnement assistance à distance - 9,90 €/mois</option></select><br/><br/>
-<label for="mode">Mode de règlement :</label><br/>
-<select id="mode" name="Paiement" required="">
+<option value="Abonnement assistance à distance - 9,90 €/mois">Abonnement assistance à distance - 9,90 €/mois</option>
+</select><br/><br/>
+<label for="mode_order">Mode de règlement :</label><br/>
+<select aria-label="Mode de règlement" id="mode_order" name="Paiement" required="">
 <option value="Paiement à la livraison (espèces ou chèque)">Paiement à la livraison (espèces ou chèque)</option>
 <option value="Demande de lien de paiement en ligne">Demande de lien de paiement en ligne</option>
 </select><br/><br/>
-<button style="margin-left: 10px; background-color: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer;" type="submit">Mon panier</button></form>
+<input class="button-green" type="submit" value="Commander"/>
+</form>
 </div>
 <div class="card contact" id="contact">
 <h2>Nous contacter</h2>
 <p><strong>Renaude Anthony</strong><br/>PDG de Gemy</p>
 <p><strong>Téléphone :</strong> 0634901537</p>
 <p><strong>Email :</strong> gemyantho@gmail.com</p>
-<a class="button" href="mailto:gemyantho@gmail.com">Nous contacter</a>
+<a class="button" href="mailto:gemyantho@gmail.com">Nous contacter par email</a>
 </div>
 </div>
+<footer>
+<p>© 2025 Gemy. Tous droits réservés.</p>
+<p>
+<a aria-label="Politique de confidentialité" href="#">Politique de confidentialité</a> |
+        <a aria-label="Conditions Générales de Vente" href="#">Conditions Générales de Vente (CGV)</a>
+</p>
+</footer>
 <style>
+/* Styles du bouton flottant */
 #acheter-maintenant {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #4CAF50;
+  position: fixed; /* Reste fixe à l'écran */
+  bottom: 20px; /* 20px du bas */
+  right: 20px; /* 20px de la droite */
+  background: #4CAF50; /* Couleur verte */
   color: white;
   padding: 14px 20px;
   font-size: 16px;
   border: none;
-  border-radius: 50px;
+  border-radius: 50px; /* Forme arrondie */
   cursor: pointer;
-  z-index: 999;
+  z-index: 999; /* S'assure qu'il est au-dessus des autres éléments */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour le faire ressortir */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Animations au survol */
 }
+#acheter-maintenant:hover {
+    background-color: #45a049; /* Vert plus foncé au survol */
+    transform: translateY(-2px); /* Léger soulèvement au survol */
+}
+/* Adaptation du bouton flottant pour les petits écrans */
 @media (max-width: 768px) {
   #acheter-maintenant {
-    width: auto;
-    font-size: 15px;
+    width: auto; /* Largeur automatique */
+    font-size: 15px; /* Taille de police légèrement réduite */
   }
 }
 </style>
