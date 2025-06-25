@@ -150,41 +150,71 @@
     <a href="faq.html" class="button">Foire Aux Questions (FAQ)</a>
 </div>
 <div class="card">
-<h2>Mon Espace Client</h2>
-<form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST">
-<label for="name">Nom :</label><br/>
-<input id="name" name="Nom" required="" type="text"/><br/><br/>
-<label for="id_tablette">ID Tablette (si connu) :</label><br/>
-<input id="id_tablette" name="ID Tablette" type="text"/><br/><br/>
-<label for="demande">Type de demande :</label><br/>
-<select id="demande" name="Demande">
-<option value="Assistance technique">Assistance technique</option>
-<option value="Ajout contact ou application">Ajout contact ou application</option>
-<option value="Problème vocal">Problème vocal</option>
-<option value="Renouvellement abonnement">Renouvellement abonnement</option>
-<option value="Autre">Autre</option>
-</select><br/><br/>
-<label for="message">Message :</label><br/>
-<textarea cols="50" id="message" name="Message" required="" rows="4"></textarea><br/><br/>
-<label for="rappel">Souhaitez-vous être rappelé ?</label><br/>
-<input id="rappel" name="Rappel" type="checkbox" value="Oui"/><br/><br/>
-<input class="button" type="submit" value="Envoyer"/>
-<h3 style="margin-top:20px;">Informations pour commander</h3>
-<label for="adresse">Adresse de livraison :</label><br/>
-<textarea cols="50" id="adresse" name="Adresse" required="" rows="3"></textarea><br/><br/>
-<label for="produit">Choix du produit :</label><br/>
-<select id="produit" name="Produit" required="">
-<option value="Tablette seule - 399 €">Tablette seule - 399 €</option>
-<option value="Option Etui avec clavier AZERTY - 50 €">Option Etui avec clavier AZERTY - 50 €</option>
-<option value="Abonnement assistance à distance - 9,90 €/mois">Abonnement assistance à distance - 9,90 €/mois</option></select><br/><br/>
-<label for="mode">Mode de règlement :</label><br/>
-<select id="mode" name="Paiement" required="">
-<option value="Paiement à la livraison (espèces ou chèque)">Paiement à la livraison (espèces ou chèque)</option>
-<option value="Demande de lien de paiement en ligne">Demande de lien de paiement en ligne</option>
-</select><br/><br/>
-<button style="margin-left: 10px; background-color: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer;" type="submit">Mon panier</button></form>
+    <h2 style="color: #005fa3;">Mon Espace Client</h2>
+
+    <h3 style="margin-top: 25px;">Demande d'Assistance ou Informations</h3>
+    <p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
+    <form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST" id="form-assistance">
+        <label for="nom-assistance">Votre Nom :</label><br/>
+        <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont"/><br/><br/>
+
+        <label for="id-tablette-assistance">ID Tablette (si connu) :</label><br/>
+        <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345"/><br/><br/>
+
+        <label for="type-demande">Type de demande :</label><br/>
+        <select id="type-demande" name="Type de demande" required>
+            <option value="">-- Sélectionnez un type --</option>
+            <option value="Assistance technique">Assistance technique</option>
+            <option value="Ajout contact ou application">Ajout contact ou application</option>
+            <option value="Problème vocal">Problème vocal</option>
+            <option value="Renouvellement abonnement">Renouvellement abonnement</option>
+            <option value="Autre">Autre</option>
+        </select><br/><br/>
+
+        <label for="message-assistance">Votre message (décrivez votre besoin) :</label><br/>
+        <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici."></textarea><br/><br/>
+
+        <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
+    </form>
+
+    <h3 style="margin-top: 40px;">Commander ma Tablette Gemy</h3>
+    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour passer commande. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+    <form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST" id="form-commande">
+        <label for="nom-commande">Votre Nom Complet :</label><br/>
+        <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
+
+        <label for="email-commande">Votre Email :</label><br/>
+        <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
+
+        <label for="telephone-commande">Votre Téléphone :</label><br/>
+        <input id="telephone-commande" name="Téléphone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
+
+        <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
+        <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
+
+        <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
+        <select id="produit-commande" name="Produit Commandé" required>
+            <option value="">-- Sélectionnez votre choix --</option>
+            <option value="Tablette seule - 399 €">Tablette seule - 399 €</option>
+            <option value="Tablette + Etui AZERTY - 449 €">Tablette + Étui avec clavier AZERTY - 449 €</option>
+        </select><br/><br/>
+
+        <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
+        <select id="abonnement-commande" name="Abonnement Assistance">
+            <option value="Non souscrit">Non souscrit</option>
+            <option value="Oui - 9,90 €/mois">Oui - 9,90 €/mois</option>
+        </select><br/><br/>
+
+        <input class="button" type="submit" value="Envoyer ma commande"/>
+    </form>
 </div>
+
 <div class="card contact" id="contact">
+    <h2>Nous contacter directement</h2>
+    <p><strong>Renaude Anthony</strong><br/>PDG de Gemy</p>
+    <p><strong>Téléphone :</strong> 0634901537</p>
+    <p><strong>Email :</strong> <a href="mailto:gemyantho@gmail.com" style="color: #005fa3; text-decoration: none;">gemyantho@gmail.com</a></p>
+</div>
 <h2>Nous contacter</h2>
 <p><strong>Renaude Anthony</strong><br/>PDG de Gemy</p>
 <p><strong>Téléphone :</strong> 0634901537</p>
