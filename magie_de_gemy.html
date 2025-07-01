@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>La Magie de Gemy - Votre Tablette Clé en Main</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Variables pour les couleurs et polices globales (reprises de votre style principal) --- */
+        :root {
+            --primary-accent: #00bcd4; /* Cyan clair */
+            --secondary-accent: #2196f3; /* Bleu plus profond */
+            --primary-blue: #0077cc; /* Bleu standard */
+            --dark-blue: #005fa3; /* Bleu foncé pour les titres et boutons */
+            --light-bg-body: #f2f7fb; /* Fond du body */
+            --card-bg: #ffffff; /* Fond des cartes */
+            --text-dark: #222; /* Couleur texte principal */
+            --text-light: #ffffff; /* Texte blanc */
+            
+            --heading-font: 'Poppins', sans-serif; 
+            --body-font: 'Montserrat', sans-serif; 
+            --inter-font: 'Inter', sans-serif; 
+        }
+
+        /* --- Styles de base du body (cohérents avec la page d'accueil) --- */
+        body {
+            margin: 0;
+            font-family: var(--body-font); /* Utilisation de Montserrat pour le texte principal */
+            background: var(--light-bg-body);
+            color: var(--text-dark);
+            line-height: 1.7; /* Légèrement augmenté pour la lisibilité */
+            scroll-behavior: smooth;
+            padding-top: 20px; /* Espace en haut pour le confort visuel */
+        }
+
+        /* --- Bandeau d'information en haut (cohérent avec la page d'accueil) --- */
+        .info-bar {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            padding: 18px 25px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 700;
+            font-family: var(--heading-font);
+            letter-spacing: 0.8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+            position: relative;
+            margin-bottom: 30px; /* Ajout d'une marge pour séparer du contenu */
+        }
+
+        /* --- Conteneur principal de la page --- */
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 2rem;
+            background: var(--card-bg); /* Fond blanc comme les cartes */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+        }
+
+        /* --- Titres de la page --- */
+        h1 {
+            font-family: var(--heading-font);
+            font-size: 3.2rem;
+            color: var(--primary-blue); /* Bleu principal pour un look accueillant */
+            text-align: center;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-family: var(--heading-font);
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--primary-accent); /* Soulignement pour les sections */
+            padding-bottom: 0.5rem;
+        }
+
+        /* --- Paragraphes --- */
+        p {
+            margin-bottom: 1.2em;
+            font-size: 1.1em;
+            color: var(--text-dark);
+        }
+
+        /* --- Liste à puces améliorée --- */
+        ul {
+            list-style: none; /* Supprime les puces par défaut */
+            padding-left: 0;
+        }
+        ul li {
+            margin-bottom: 1em;
+            font-size: 1.1em;
+            color: var(--text-dark);
+            position: relative;
+            padding-left: 30px; /* Espace pour l'icône */
+        }
+        ul li::before {
+            content: "\f058"; /* Icône de coche Font Awesome (check-circle) */
+            font-family: "Font Awesome 5 Free"; /* Assurez-vous que Font Awesome 5 Free est utilisé */
+            font-weight: 900; /* Important pour que l'icône s'affiche */
+            color: var(--primary-accent); /* Couleur de l'icône */
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* --- Bouton de retour --- */
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 15px 30px;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            display: block; /* Pour centrer le bouton */
+            max-width: 300px;
+        }
+        .back-button:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* --- Media Queries pour la responsivité --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            p {
+                font-size: 1em;
+            }
+            ul li {
+                font-size: 1em;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            .info-bar {
+                font-size: 1.1em;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .info-bar {
+                font-size: 0.95em;
+                padding: 10px;
+            }
+            .back-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info-bar">
+        Gemy, bien plus qu’une tablette : une simplicité totale, une tablette clé en main qui simplifie votre quotidien.
+    </div>
+
+    <div class="container">
+        <h1>Découvrez la Magie de Gemy : Simplicité, Puissance, Sérénité</h1>
+        
+        <p>Avec Gemy, la complexité technologique devient un lointain souvenir. Nous avons conçu cette tablette pour vous offrir une expérience utilisateur inégalée, où la facilité d'utilisation est au cœur de chaque interaction. Finies l'angoisse de l'installation et les heures perdues à configurer !</p>
+
+        <h2>Une Mise en Route Instantanée</h2>
+        <p>Dès que vous allumez votre Gemy, la magie opère. Il vous suffit de la connecter à votre réseau Wi-Fi, et voilà ! Tout est déjà prêt à l'emploi. Pas de téléchargements interminables, pas de configurations complexes. Nous avons pensé à tout pour que vous puissiez profiter de votre tablette immédiatement.</p>
+        
+        <h2>Votre Bureau Mobile Personnel</h2>
+        <p>Que vous ayez besoin de travailler ou de gérer vos documents personnels, Gemy est votre allié. Nous avons préinstallé des logiciels de bureautique complets qui vous permettent :</p>
+        <ul>
+            <li>D'ouvrir et de modifier vos fichiers Word, Excel, et PDF en toute simplicité.</li>
+            <li>De gérer vos boîtes mail grâce à une application intuitive, déjà configurée.</li>
+            <li>De rester organisé et productif, sans effort d'installation.</li>
+        </ul>
+
+        <h2>Divertissement et Bien-être à Portée de Main</h2>
+        <p>Gemy est aussi votre centre de divertissement et de bien-être personnel :</p>
+        <ul>
+            <li>Accédez à un espace TV avec 99 chaînes sélectionnées pour tous les goûts.</li>
+            <li>Écoutez vos stations de radio préférées, partout et à tout moment.</li>
+            <li>Plongez dans une sélection de jeux divertissants pour des moments de détente.</li>
+            <li>Explorez l'Espace Santé, conçu pour prendre soin de vous et vous informer.</li>
+        </ul>
+
+        <h2>L'Intelligence Artificielle à Votre Service</h2>
+        <p>Votre Gemy est équipée d'une intelligence artificielle déjà configurée, prête à vous assister. Que ce soit pour :</p>
+        <ul>
+            <li>Vous aider avec une tâche spécifique.</li>
+            <li>Répondre à vos questions.</li>
+            <li>Ou simplement échanger pour passer le temps.</li>
+        </ul>
+        <p>Gemy est bien plus qu'une tablette, c'est un véritable compagnon intelligent, bienveillant et toujours disponible.</p>
+
+        <h2>Une Solution Complète, Unique et Sans Stress</h2>
+        <p>Nous vous proposons une solution complète et clé en main, quelque chose que vous ne trouverez pas ailleurs. L'objectif est simple : vous apporter la tranquillité d'esprit, vous faire gagner un temps précieux et vous libérer de l'angoisse de l'installation et de la configuration.</p>
+        
+        <p>Et parce que votre sérénité est notre priorité, nous offrons une assistance à distance possible via AnyDesk, pour que vous ne soyez jamais seul face à un imprévu.</p>
+
+        <a href="https://gemyantho.github.io/gemy/" class="back-button">Retour à la page d'accueil Gemy</a>
+    </div>
+
+</body>
+</html>
