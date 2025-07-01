@@ -96,7 +96,8 @@
             justify-content: space-around;
             gap: 50px;
             text-align: left;
-            flex-direction: row-reverse; 
+            /* MODIFICATION ICI : Passe de row-reverse à row pour image à gauche, texte à droite par défaut */
+            flex-direction: row; 
         }
 
         .hero-text-area {
@@ -262,7 +263,8 @@
         /* --- Media Queries pour la responsivité (MODIFIÉES) --- */
         @media (max-width: 992px) {
             .hero-content {
-                flex-direction: column; 
+                /* SUPPRIME CETTE LIGNE - on ne veut plus de column */
+                /* flex-direction: column; */ 
                 text-align: center;
                 gap: 30px;
             }
@@ -278,19 +280,15 @@
                 font-size: 1.3rem;
             }
             .hero-text-area p {
-                font-size: 1.1em; /* Ajusté pour smartphones (conservé) */
-                margin-bottom: 20px; /* Ajusté pour smartphones (conservé) */
+                font-size: 1.1em; 
+                margin-bottom: 20px; 
             }
-            /* AJOUT ICI pour que l'image apparaisse en premier sur mobile */
-            .gemy-image-area {
-                order: 1; 
-            }
-            .hero-text-area {
-                order: 2; 
-            }
-            /* FIN DE L'AJOUT */
+            /* SUPPRIME CES LIGNES - elles ne sont plus nécessaires sans flex-direction: column; */
+            /* .gemy-image-area { order: 1; } */
+            /* .hero-text-area { order: 2; } */
+            
             .gemy-image-area img {
-                max-width: 350px; /* Plus petite sur tablettes (conservé) */
+                max-width: 350px; 
             }
             .hero-header {
                 min-height: 700px;
@@ -298,7 +296,7 @@
         }
         @media (max-width: 768px) {
             .info-bar {
-                font-size: 1.1em; /* Taille ajustée pour ce breakpoint (conservé) */
+                font-size: 1.1em; 
                 padding: 15px 20px;
             }
             .hero-header {
@@ -314,25 +312,21 @@
                 margin-bottom: 20px;
             }
             .hero-text-area p {
-                font-size: 1.05em; /* Ajusté pour smartphones (conservé) */
-                margin-bottom: 20px; /* Ajusté pour smartphones (conservé) */
+                font-size: 1.05em; 
+                margin-bottom: 20px; 
             }
             .hero-button {
                 padding: 15px 30px;
                 font-size: 1.1em;
             }
-            /* AJOUT ICI pour que l'image apparaisse en premier sur mobile */
-            .gemy-image-area {
-                order: 1; 
-            }
-            .hero-text-area {
-                order: 2; 
-            }
-            /* FIN DE L'AJOUT */
+            /* SUPPRIME CES LIGNES - elles ne sont plus nécessaires sans flex-direction: column; */
+            /* .gemy-image-area { order: 1; } */
+            /* .hero-text-area { order: 2; } */
+            
             .gemy-image-area img {
-                max-width: 300px; /* Encore plus petite sur smartphones (conservé) */
+                max-width: 300px; 
                 border-radius: 20px;
-                border: 4px solid rgba(255, 255, 255, 0.5); /* BORDURE BLANCHE (comme avant) */
+                border: 4px solid rgba(255, 255, 255, 0.5); 
             }
         }
         @media (max-width: 480px) {
@@ -347,27 +341,23 @@
                 font-size: 1em;
             }
             .hero-text-area p {
-                font-size: 1em; /* Ajusté pour petits smartphones (conservé) */
-                margin-bottom: 15px; /* Ajusté pour petits smartphones (conservé) */
+                font-size: 1em; 
+                margin-bottom: 15px; 
             }
             .hero-button {
                 padding: 12px 25px;
                 font-size: 0.95em;
             }
-            /* AJOUT ICI pour que l'image apparaisse en premier sur mobile */
-            .gemy-image-area {
-                order: 1; 
-            }
-            .hero-text-area {
-                order: 2; 
-            }
-            /* FIN DE L'AJOUT */
+            /* SUPPRIME CES LIGNES - elles ne sont plus nécessaires sans flex-direction: column; */
+            /* .gemy-image-area { order: 1; } */
+            /* .hero-text-area { order: 2; } */
+            
             .gemy-image-area img {
-                max-width: 70%; /* Image plus petite sur très petits écrans (conservé) */
+                max-width: 70%; 
                 border-radius: 15px;
             }
             .info-bar {
-                font-size: 0.95em; /* Ajustement pour les très petits écrans (conservé) */
+                font-size: 0.95em; 
                 padding: 10px 15px;
             }
         }
