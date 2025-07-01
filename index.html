@@ -28,7 +28,7 @@
       margin: 0;
       font-family: var(--body-font);
       background: var(--light-grey);
-      color: var(--text-dark); /* Utilisation de la variable pour le texte de base */
+      color: var(--text-dark);
       line-height: 1.6;
       scroll-behavior: smooth;
     }
@@ -46,25 +46,31 @@
         margin-bottom: 20px;
     }
 
-    /* --- Bandeau d'information en haut (Amélioré) --- */
+    /* --- Bandeau d'information en haut (Nouvelles couleurs) --- */
     .info-bar {
-        background: linear-gradient(90deg, #6dd5ed 0%, #2193b0 100%); /* Dégradé frais */
-        color: #ffffff; /* Texte blanc pur */
-        padding: 18px 25px; /* Plus d'espace */
+        /* Nouveau dégradé : du bleu doux au vert menthe */
+        background: linear-gradient(90deg, #89CFF0 0%, #7FFFD4 100%); /* Bleu ciel clair à Vert menthe */
+        color: #343a40; /* Texte sombre pour un contraste élégant sur ce fond clair */
+        padding: 18px 25px;
         text-align: center;
-        font-size: 1.3em; /* Taille de police augmentée */
-        font-weight: 700; /* Plus gras */
-        font-family: var(--heading-font); /* Nouvelle police plus impactante */
+        font-size: 1.3em;
+        font-weight: 700;
+        font-family: var(--heading-font);
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         position: relative;
         z-index: 100;
-        letter-spacing: 0.8px; /* Espacement des lettres pour la clarté */
-        line-height: 1.4; /* Hauteur de ligne pour éviter le chevauchement sur plusieurs lignes */
+        letter-spacing: 0.8px;
+        line-height: 1.4;
     }
 
-    /* --- En-tête (Hero Section) - Vraiment Moderne ! --- */
+    /* --- En-tête (Hero Section) - Image de fond plus visible et nouvelles couleurs ! --- */
     .hero-header {
-      background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%); /* Dégradé vert-bleu dynamique */
+      /* Dégradé semi-transparent par-dessus l'image de fond */
+      /* Les valeurs RGBA ont une opacité plus faible pour laisser transparaître l'image */
+      background-image: linear-gradient(135deg, rgba(60, 179, 113, 0.6) 0%, rgba(30, 144, 255, 0.6) 100%), url('gemy.jpeg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
       color: var(--text-light);
       padding: 100px 20px 0;
       text-align: center;
@@ -76,18 +82,17 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      /* Ajustement du clip-path pour éviter la coupure du bouton */
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); /* Ligne du bas moins "coupée" */
+      /* On s'assure que le clip-path est bien retiré pour éviter la coupure */
     }
 
-    /* Éléments de fond abstraits */
+    /* Éléments de fond abstraits (maintenus mais plus subtils avec l'image de fond) */
     .hero-header::before, .hero-header::after {
         content: '';
         position: absolute;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.1); /* Opacité très faible pour ne pas masquer l'image */
         border-radius: 50%;
-        filter: blur(40px);
-        opacity: 0.6;
+        filter: blur(30px); /* Flou légèrement réduit */
+        opacity: 0.4; /* Opacité générale réduite */
         z-index: 1;
     }
     .hero-header::before {
@@ -144,7 +149,7 @@
       max-width: 800px;
       margin: 0 auto 50px auto;
       opacity: 0.98;
-      font-weight: 400; /* Légèrement plus gras pour une meilleure lecture */
+      font-weight: 400;
       text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     }
 
@@ -152,7 +157,7 @@
     .hero-button {
         display: inline-block;
         padding: 20px 45px;
-        background-color: #FFD700;
+        background-color: #FFD700; /* Or vif */
         color: var(--text-dark);
         text-decoration: none;
         border-radius: 60px;
@@ -185,30 +190,6 @@
         box-shadow: 0 18px 40px rgba(0,0,0,0.5);
     }
 
-    /* Style pour l'image Gemy qui chevauche - Impact visuel fort */
-    .gemy-image-wrapper {
-        text-align: center;
-        margin-top: -120px;
-        position: relative;
-        z-index: 10;
-        padding-bottom: 60px;
-    }
-    .gemy-image-wrapper img {
-        width: 100%;
-        max-width: 700px;
-        height: auto;
-        display: block;
-        margin: auto;
-        border-radius: 30px;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
-        border: 8px solid var(--text-light);
-    }
-    .gemy-image-wrapper img:hover {
-        transform: scale(1.04) rotateZ(1.5deg);
-        box-shadow: 0 45px 90px rgba(0, 0, 0, 0.6);
-    }
-
     /* --- Styles du reste du contenu (pour assurer la cohérence) --- */
     .card {
       background: white;
@@ -218,25 +199,24 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       text-align: center;
     }
-    /* Amélioration de la police dans les blocs (h2, h3, p) */
     .card h2, .card h3 {
       color: var(--dark-blue);
-      font-weight: 700; /* Plus gras */
-      font-size: 2em; /* Taille plus grande pour les h2 */
+      font-weight: 700;
+      font-size: 2em;
     }
     .card p {
-      font-size: 1.1em; /* Taille de police augmentée pour le texte des cartes */
-      color: var(--text-dark); /* S'assure que le texte est bien noir/sombre */
-      line-height: 1.7; /* Améliore la lisibilité */
-      font-weight: 500; /* Légèrement plus gras pour la lisibilité */
+      font-size: 1.1em;
+      color: var(--text-dark);
+      line-height: 1.7;
+      font-weight: 500;
     }
     ul {
       padding-left: 1.5rem;
     }
     ul li {
       margin-bottom: 0.6rem;
-      font-size: 1.05em; /* Taille de police augmentée pour les listes */
-      color: var(--text-dark); /* S'assure que le texte des listes est bien noir/sombre */
+      font-size: 1.05em;
+      color: var(--text-dark);
     }
     .contact {
       text-align: center;
@@ -245,7 +225,7 @@
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     }
-    .button { /* Si vous avez d'autres boutons sur la page */
+    .button {
       display: inline-block;
       margin-top: 1.5rem;
       padding: 1rem 2rem;
@@ -262,7 +242,7 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
-    .section-title { /* Pour les titres de section génériques */
+    .section-title {
         font-size: 2.5em;
         font-weight: 700;
         color: var(--dark-blue);
@@ -270,7 +250,7 @@
         margin-bottom: 40px;
     }
 
-    /* --- Media Queries pour la responsivité (adapté à l'en-tête) --- */
+    /* --- Media Queries pour la responsivité --- */
     @media (max-width: 992px) {
         .hero-content h1 {
             font-size: 4.2rem;
@@ -278,12 +258,7 @@
         .hero-content p {
             font-size: 1.4rem;
         }
-        .gemy-image-wrapper img {
-            max-width: 600px;
-            border-radius: 25px;
-            margin-top: -100px;
-        }
-        .info-bar { /* Ajustement responsive pour le bandeau */
+        .info-bar {
             font-size: 1.1em;
             padding: 15px 20px;
         }
@@ -302,7 +277,6 @@
         .hero-header {
             padding: 80px 15px 0;
             min-height: 450px;
-            clip-path: polygon(0 0, 100% 0, 100% 92%, 0% 100%); /* Ajustement léger pour les petits écrans */
         }
         .hero-content h1 {
             font-size: 3.5rem;
@@ -315,16 +289,6 @@
         .hero-button {
             padding: 18px 35px;
             font-size: 1.2em;
-        }
-        .gemy-image-wrapper {
-            margin-top: -80px;
-            padding-bottom: 40px;
-        }
-        .gemy-image-wrapper img {
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            max-width: 90%;
-            border: 6px solid var(--text-light);
         }
         .card h2, .card h3 {
             font-size: 1.6em;
@@ -350,17 +314,7 @@
             padding: 15px 30px;
             font-size: 1em;
         }
-        .gemy-image-wrapper {
-            margin-top: -60px;
-            padding-bottom: 30px;
-        }
-        .gemy-image-wrapper img {
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            max-width: 95%;
-            border: 5px solid var(--text-light);
-        }
-        .info-bar { /* Ajustement très petits écrans */
+        .info-bar {
             font-size: 0.95em;
             padding: 10px 15px;
         }
@@ -384,11 +338,7 @@
     </div>
 </header>
 <div class="container">
-    <div class="gemy-image-wrapper">
-        <img alt="Tablette Gemy" src="gemy.jpeg"/>
-    </div>
     <div class="card" style="text-align: center; padding: 1.5rem 1rem; margin-top: 2rem;">
-
     <h2 style="color: #005fa3; margin-top: 0; margin-bottom: 1.5rem;">Découvrez les versions de votre Gemy Companion</h2>
     <img src="presentationtablette.jpg" alt="Présentation de la tablette Gemy sans clavier et avec clavier" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.6;">
