@@ -33,9 +33,9 @@
         /* --- Réinitialisation de base et typographie générale du site --- */
         body {
             margin: 0;
-            font-family: var(--body-font); /* Montserrat pour le corps */
-            background: var(--light-grey); /* Fond gris clair d'origine */
-            color: var(--text-dark); /* Texte foncé d'origine */
+            font-family: var(--body-font); 
+            background: var(--light-grey); /* FOND DU BODY EN GRIS CLAIR (comme avant) */
+            color: var(--text-dark); 
             line-height: 1.6;
             scroll-behavior: smooth;
         }
@@ -48,30 +48,30 @@
 
         /* Styles des titres Hx hors en-tête */
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--heading-font); /* Poppins pour les titres du reste du site */
-            color: var(--dark-blue); /* Bleu foncé d'origine */
+            font-family: var(--heading-font); 
+            color: var(--dark-blue); 
             margin-top: 0;
             margin-bottom: 20px;
         }
 
-        /* --- Bandeau d'information en haut (STYLES SPÉCIFIQUES CONSERVÉS) --- */
+        /* --- Bandeau d'information en haut (MODIFIÉ) --- */
         .info-bar {
             background-color: var(--text-dark); /* Noir/gris foncé pour l'élégance */
             color: var(--text-light);
-            padding: 15px 20px;
+            padding: 18px 25px; /* Ajusté pour la nouvelle taille de police */
             text-align: center;
-            font-size: 1.05em;
-            font-weight: 600;
-            font-family: var(--heading-font); /* Poppins pour l'impact */
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 1.3em; /* POLICE PLUS GROSSE */
+            font-weight: 700; /* POLICE PLUS GRASSE */
+            font-family: var(--heading-font); 
+            letter-spacing: 0.8px; /* Meilleur espacement */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Légèrement plus prononcé */
             z-index: 100;
             position: relative;
         }
 
-        /* --- En-tête (Hero Section) - DESIGN SPÉCIFIQUE CONSERVÉ --- */
+        /* --- En-tête (Hero Section) - MODIFIÉ POUR RETOURNER AU BLEU --- */
         .hero-header {
-            background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
+            background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%); /* FOND BLEU DÉGRADÉ (comme avant) */
             padding: 100px 0 0;
             position: relative;
             overflow: hidden;
@@ -81,7 +81,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: var(--text-light);
+            color: var(--text-light); /* TEXTE BLANC (comme avant) */
         }
 
         .hero-content {
@@ -96,7 +96,7 @@
             justify-content: space-around;
             gap: 50px;
             text-align: left;
-            flex-direction: row-reverse; /* Place l'image à droite */
+            flex-direction: row-reverse; 
         }
 
         .hero-text-area {
@@ -104,7 +104,7 @@
             min-width: 300px;
             max-width: 550px;
             padding-right: 0;
-            padding-left: 30px; /* Espace avec l'image à droite */
+            padding-left: 30px; 
             animation: slideInRight 1s ease-out forwards;
             opacity: 0;
             transform: translateX(50px);
@@ -115,39 +115,40 @@
         }
 
         .hero-text-area h1 {
-            font-family: var(--heading-font); /* Poppins pour le titre principal */
+            font-family: var(--heading-font); 
             font-size: 5.2rem;
             margin-bottom: 25px;
             font-weight: 900;
             line-height: 1.1;
-            color: var(--text-light);
+            color: var(--text-light); /* TITRE PRINCIPAL EN BLANC (comme avant) */
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
             letter-spacing: -1px;
         }
         .hero-text-area .subtitle {
-            font-family: var(--body-font); /* Montserrat pour le sous-titre */
+            font-family: var(--body-font); 
             font-size: 1.65rem;
             font-weight: 600;
             margin-bottom: 30px;
             line-height: 1.5;
-            color: rgba(255, 255, 255, 0.95);
+            color: rgba(255, 255, 255, 0.95); /* SOUS-TITRE EN BLANC LÉGÈREMENT TRANSPARENT (comme avant) */
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
         }
+        /* PARAGRAPHE PRINCIPAL (MODIFIÉ) */
         .hero-text-area p {
-            font-family: var(--body-font); /* Montserrat pour le paragraphe */
-            font-size: 1.25rem;
-            line-height: 1.8;
-            margin: 0 0 45px 0;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
+            font-family: var(--body-font); 
+            font-size: 1.35rem; /* POLICE PLUS GROSSE (conservé) */
+            line-height: 1.7; /* Légèrement ajusté pour la lisibilité (conservé) */
+            margin: 0 0 25px 0; /* BOUTON "DÉCOUVREZ" PLUS HAUT (conservé) */
+            color: rgba(255, 255, 255, 0.95); /* Couleur légèrement plus opaque pour la visibilité (conservé) */
+            font-weight: 500; /* POLICE PLUS GRASSE (conservé) */
         }
 
         /* Bouton CTA dans le header */
         .hero-button {
             display: inline-block;
             padding: 18px 40px;
-            background-color: var(--text-light);
-            color: var(--primary-accent);
+            background-color: var(--text-light); /* Bouton BLANC (comme avant) */
+            color: var(--primary-accent); /* Texte CYAN sur bouton (comme avant) */
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
@@ -165,11 +166,11 @@
             box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
 
-        /* Image Gemy - Positionnement et animation */
+        /* Image Gemy - Positionnement et animation (MODIFIÉE) */
         .gemy-image-area {
             flex: 1;
             min-width: 300px;
-            max-width: 450px;
+            max-width: 400px; /* IMAGE PLUS PETITE SUR GRAND ÉCRAN (conservé) */
             text-align: center;
             position: relative;
             z-index: 5;
@@ -190,7 +191,7 @@
             border-radius: 25px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border: 6px solid rgba(255, 255, 255, 0.5);
+            border: 6px solid rgba(255, 255, 255, 0.5); /* BORDURE BLANCHE (comme avant) */
         }
         .gemy-image-area img:hover {
             transform: scale(1.05) rotateZ(2deg);
@@ -201,7 +202,7 @@
         .section-title {
             font-size: 2.8em;
             font-weight: 700;
-            color: var(--dark-blue); /* Couleur d'origine */
+            color: var(--dark-blue); 
             text-align: center;
             margin-bottom: 50px;
             margin-top: 80px;
@@ -211,17 +212,17 @@
             border-radius: 16px;
             padding: 2rem 2.5rem;
             margin-bottom: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Ombre d'origine */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
             text-align: center;
         }
         .card h2, .card h3 {
-            color: var(--dark-blue); /* Couleur d'origine */
+            color: var(--dark-blue); 
             font-weight: 700;
             font-size: 2em;
         }
         .card p {
             font-size: 1.1em;
-            color: var(--text-dark); /* Couleur d'origine */
+            color: var(--text-dark); 
             line-height: 1.7;
             font-weight: 500;
         }
@@ -231,21 +232,21 @@
         ul li {
             margin-bottom: 0.6rem;
             font-size: 1.05em;
-            color: var(--text-dark); /* Couleur d'origine */
+            color: var(--text-dark); 
         }
         .contact {
             text-align: center;
-            background: #e9f3ff; /* Couleur d'origine */
+            background: #e9f3ff; 
             padding: 2.5rem;
             border-radius: 16px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
         }
-        .button { /* Style pour les autres boutons sur la page */
+        .button { 
             display: inline-block;
             margin-top: 1.5rem;
             padding: 1rem 2rem;
-            background-color: var(--primary-blue); /* Couleur d'origine */
-            color: var(--text-light); /* Couleur d'origine */
+            background-color: var(--primary-blue); 
+            color: var(--text-light); 
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
@@ -253,15 +254,15 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .button:hover {
-            background-color: var(--dark-blue); /* Couleur d'origine au survol */
+            background-color: var(--dark-blue); 
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
 
-        /* --- Media Queries pour la responsivité --- */
+        /* --- Media Queries pour la responsivité (MODIFIÉES) --- */
         @media (max-width: 992px) {
             .hero-content {
-                flex-direction: column; /* Empile le texte et l'image */
+                flex-direction: column; 
                 text-align: center;
                 gap: 30px;
             }
@@ -277,16 +278,17 @@
                 font-size: 1.3rem;
             }
             .hero-text-area p {
-                font-size: 1em;
+                font-size: 1.1em; /* Ajusté pour smartphones (conservé) */
+                margin-bottom: 20px; /* Ajusté pour smartphones (conservé) */
             }
             .gemy-image-area {
-                order: 1; /* Place l'image avant le texte sur les petits écrans */
+                order: 1; 
             }
             .hero-text-area {
-                order: 2; /* Place le texte après l'image sur les petits écrans */
+                order: 2; 
             }
             .gemy-image-area img {
-                max-width: 400px;
+                max-width: 350px; /* Plus petite sur tablettes (conservé) */
             }
             .hero-header {
                 min-height: 700px;
@@ -294,8 +296,8 @@
         }
         @media (max-width: 768px) {
             .info-bar {
-                font-size: 0.9em;
-                padding: 10px 15px;
+                font-size: 1.1em; /* Taille ajustée pour ce breakpoint (conservé) */
+                padding: 15px 20px;
             }
             .hero-header {
                 padding: 80px 15px 0;
@@ -310,17 +312,17 @@
                 margin-bottom: 20px;
             }
             .hero-text-area p {
-                font-size: 0.95em;
-                margin-bottom: 30px;
+                font-size: 1.05em; /* Ajusté pour smartphones (conservé) */
+                margin-bottom: 20px; /* Ajusté pour smartphones (conservé) */
             }
             .hero-button {
                 padding: 15px 30px;
                 font-size: 1.1em;
             }
             .gemy-image-area img {
-                max-width: 350px;
+                max-width: 300px; /* Encore plus petite sur smartphones (conservé) */
                 border-radius: 20px;
-                border: 4px solid rgba(255, 255, 255, 0.5);
+                border: 4px solid rgba(255, 255, 255, 0.5); /* BORDURE BLANCHE (comme avant) */
             }
         }
         @media (max-width: 480px) {
@@ -335,19 +337,20 @@
                 font-size: 1em;
             }
             .hero-text-area p {
-                font-size: 0.9em;
+                font-size: 1em; /* Ajusté pour petits smartphones (conservé) */
+                margin-bottom: 15px; /* Ajusté pour petits smartphones (conservé) */
             }
             .hero-button {
                 padding: 12px 25px;
                 font-size: 0.95em;
             }
             .gemy-image-area img {
-                max-width: 90%;
+                max-width: 70%; /* Image plus petite sur très petits écrans (conservé) */
                 border-radius: 15px;
             }
             .info-bar {
-                font-size: 0.85em;
-                padding: 8px 10px;
+                font-size: 0.95em; /* Ajustement pour les très petits écrans (conservé) */
+                padding: 10px 15px;
             }
         }
     </style>
