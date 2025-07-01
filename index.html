@@ -1,81 +1,394 @@
 <!DOCTYPE html>
-
-<html lang="fr"> 
+<html lang="fr">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Gemy Companion</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
+    /* Importation des polices Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Montserrat:wght@400;500;700&display=swap');
+    /* Importation de Font Awesome pour les icônes */
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+    /* --- Variables pour les couleurs et polices --- */
+    :root {
+        --primary-blue: #007bff;
+        --dark-blue: #0056b3;
+        --accent-green: #28a745;
+        --light-grey: #f8f9fa;
+        --text-dark: #343a40; /* Couleur texte principal des blocs */
+        --text-light: #ffffff;
+        --heading-font: 'Poppins', sans-serif;
+        --body-font: 'Montserrat', sans-serif;
+    }
+
+    /* --- Réinitialisation de base et typographie --- */
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f2f7fb;
-      color: #222;
+      font-family: var(--body-font);
+      background: var(--light-grey);
+      color: var(--text-dark); /* Utilisation de la variable pour le texte de base */
+      line-height: 1.6;
+      scroll-behavior: smooth;
     }
-    header {
-      background: linear-gradient(to right, #0077cc, #005fa3);
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+
     .container {
-      max-width: 960px;
+      max-width: 1000px;
       margin: auto;
-      padding: 2rem;
+      padding: 0 20px;
     }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--heading-font);
+        color: var(--dark-blue);
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    /* --- Bandeau d'information en haut (Amélioré) --- */
+    .info-bar {
+        background: linear-gradient(90deg, #6dd5ed 0%, #2193b0 100%); /* Dégradé frais */
+        color: #ffffff; /* Texte blanc pur */
+        padding: 18px 25px; /* Plus d'espace */
+        text-align: center;
+        font-size: 1.3em; /* Taille de police augmentée */
+        font-weight: 700; /* Plus gras */
+        font-family: var(--heading-font); /* Nouvelle police plus impactante */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 100;
+        letter-spacing: 0.8px; /* Espacement des lettres pour la clarté */
+        line-height: 1.4; /* Hauteur de ligne pour éviter le chevauchement sur plusieurs lignes */
+    }
+
+    /* --- En-tête (Hero Section) - Vraiment Moderne ! --- */
+    .hero-header {
+      background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%); /* Dégradé vert-bleu dynamique */
+      color: var(--text-light);
+      padding: 100px 20px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      min-height: 550px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* Ajustement du clip-path pour éviter la coupure du bouton */
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); /* Ligne du bas moins "coupée" */
+    }
+
+    /* Éléments de fond abstraits */
+    .hero-header::before, .hero-header::after {
+        content: '';
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        filter: blur(40px);
+        opacity: 0.6;
+        z-index: 1;
+    }
+    .hero-header::before {
+        width: 250px;
+        height: 250px;
+        top: 5%;
+        left: -10%;
+        animation: floatShape 12s infinite ease-in-out;
+    }
+    .hero-header::after {
+        width: 350px;
+        height: 350px;
+        bottom: 10%;
+        right: -15%;
+        animation: floatShape 15s reverse infinite ease-in-out;
+    }
+
+    @keyframes floatShape {
+        0% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(30px, -20px) scale(1.05); }
+        66% { transform: translate(-20px, 30px) scale(0.95); }
+        100% { transform: translate(0, 0) scale(1); }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 850px;
+        margin: auto;
+        padding: 0 20px;
+        animation: fadeInScale 1.5s ease-out forwards;
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: translateY(30px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .hero-content h1 {
+      font-family: var(--heading-font);
+      font-size: 5rem;
+      margin-bottom: 25px;
+      font-weight: 900;
+      text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
+      line-height: 1.1;
+      color: var(--text-light);
+    }
+    .hero-content p {
+      font-family: var(--body-font);
+      font-size: 1.6rem;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto 50px auto;
+      opacity: 0.98;
+      font-weight: 400; /* Légèrement plus gras pour une meilleure lecture */
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Bouton CTA dans le header - Design moderne */
+    .hero-button {
+        display: inline-block;
+        padding: 20px 45px;
+        background-color: #FFD700;
+        color: var(--text-dark);
+        text-decoration: none;
+        border-radius: 60px;
+        font-weight: 800;
+        font-size: 1.4em;
+        transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: all 0.6s ease;
+    }
+    .hero-button:hover::before {
+        left: 100%;
+    }
+    .hero-button:hover {
+        background-color: #FFC107;
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+
+    /* Style pour l'image Gemy qui chevauche - Impact visuel fort */
+    .gemy-image-wrapper {
+        text-align: center;
+        margin-top: -120px;
+        position: relative;
+        z-index: 10;
+        padding-bottom: 60px;
+    }
+    .gemy-image-wrapper img {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        display: block;
+        margin: auto;
+        border-radius: 30px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        border: 8px solid var(--text-light);
+    }
+    .gemy-image-wrapper img:hover {
+        transform: scale(1.04) rotateZ(1.5deg);
+        box-shadow: 0 45px 90px rgba(0, 0, 0, 0.6);
+    }
+
+    /* --- Styles du reste du contenu (pour assurer la cohérence) --- */
     .card {
       background: white;
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      text-align: center;
     }
-    h2, h3 {
-      color: #005fa3;
+    /* Amélioration de la police dans les blocs (h2, h3, p) */
+    .card h2, .card h3 {
+      color: var(--dark-blue);
+      font-weight: 700; /* Plus gras */
+      font-size: 2em; /* Taille plus grande pour les h2 */
+    }
+    .card p {
+      font-size: 1.1em; /* Taille de police augmentée pour le texte des cartes */
+      color: var(--text-dark); /* S'assure que le texte est bien noir/sombre */
+      line-height: 1.7; /* Améliore la lisibilité */
+      font-weight: 500; /* Légèrement plus gras pour la lisibilité */
     }
     ul {
-      padding-left: 1.2rem;
+      padding-left: 1.5rem;
     }
     ul li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.05em; /* Taille de police augmentée pour les listes */
+      color: var(--text-dark); /* S'assure que le texte des listes est bien noir/sombre */
     }
     .contact {
       text-align: center;
       background: #e9f3ff;
-      padding: 2rem;
-      border-radius: 12px;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
     }
-    .button {
+    .button { /* Si vous avez d'autres boutons sur la page */
       display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 1.5rem;
-      background-color: #0077cc;
-      color: white;
+      margin-top: 1.5rem;
+      padding: 1rem 2rem;
+      background-color: var(--primary-blue);
+      color: var(--text-light);
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .button:hover {
-      background-color: #005fa3;
+      background-color: var(--dark-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
-  </style>
-</head>
-<body>
-<div style="background-color:#e0f7fa; padding: 10px; text-align: center; font-size: 1.2em; font-weight: bold;">
-        Gemy, bien plus qu’une tablette : une simplicité totale, une tablette clé en main qui simplifie votre quotidien.
+    .section-title { /* Pour les titres de section génériques */
+        font-size: 2.5em;
+        font-weight: 700;
+        color: var(--dark-blue);
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    /* --- Media Queries pour la responsivité (adapté à l'en-tête) --- */
+    @media (max-width: 992px) {
+        .hero-content h1 {
+            font-size: 4.2rem;
+        }
+        .hero-content p {
+            font-size: 1.4rem;
+        }
+        .gemy-image-wrapper img {
+            max-width: 600px;
+            border-radius: 25px;
+            margin-top: -100px;
+        }
+        .info-bar { /* Ajustement responsive pour le bandeau */
+            font-size: 1.1em;
+            padding: 15px 20px;
+        }
+        .card h2, .card h3 {
+            font-size: 1.8em;
+        }
+        .card p, ul li {
+            font-size: 1em;
+        }
+    }
+    @media (max-width: 768px) {
+        .info-bar {
+            font-size: 1em;
+            padding: 12px 15px;
+        }
+        .hero-header {
+            padding: 80px 15px 0;
+            min-height: 450px;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0% 100%); /* Ajustement léger pour les petits écrans */
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+        }
+        .hero-button {
+            padding: 18px 35px;
+            font-size: 1.2em;
+        }
+        .gemy-image-wrapper {
+            margin-top: -80px;
+            padding-bottom: 40px;
+        }
+        .gemy-image-wrapper img {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            max-width: 90%;
+            border: 6px solid var(--text-light);
+        }
+        .card h2, .card h3 {
+            font-size: 1.6em;
+        }
+        .card p, ul li {
+            font-size: 0.95em;
+        }
+    }
+    @media (max-width: 480px) {
+        .hero-header {
+            padding: 60px 10px 0;
+            min-height: 380px;
+        }
+        .hero-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        .hero-content p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+        .hero-button {
+            padding: 15px 30px;
+            font-size: 1em;
+        }
+        .gemy-image-wrapper {
+            margin-top: -60px;
+            padding-bottom: 30px;
+        }
+        .gemy-image-wrapper img {
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            max-width: 95%;
+            border: 5px solid var(--text-light);
+        }
+        .info-bar { /* Ajustement très petits écrans */
+            font-size: 0.95em;
+            padding: 10px 15px;
+        }
+        .card h2, .card h3 {
+            font-size: 1.4em;
+        }
+        .card p, ul li {
+            font-size: 0.9em;
+        }
+    }
+</style>
+
+<div class="info-bar">
+    Gemy, bien plus qu’une tablette : une simplicité totale, une tablette clé en main qui simplifie votre quotidien.
+</div>
+<header class="hero-header">
+    <div class="hero-content">
+        <h1>Gemy Companion</h1>
+        <p>Votre compagnon intelligent, bienveillant et toujours disponible. Marre de la complexité ? Vous détestez tout configurer ? Vous n'y connaissez rien ou vous n'avez tout simplement pas le temps ? On l'a fait pour vous ! Gemy est la réponse. Une tablette prête à l'emploi, où tous vos essentiels sont déjà installés. Et avec Gemy, votre assistant IA, l'aide est toujours à portée de voix.</p>
+        <a href="#offres" class="hero-button">Découvrez la Magie de Gemy</a>
     </div>
-<header>
-<h1>Gemy Companion</h1>
-<p>Votre compagnon intelligent, bienveillant et toujours disponible, Une solution bien pensée et optimisée, Marre de la complexité ? Vous détestez tout configurer ? Vous n'y connaissez rien ou vous n'avez tout simplement pas le temps ? On l'a fait pour vous ! Gemy est la réponse. Une tablette prête à l'emploi, ou tous vos essentiels sont déja installés. Et avec Gemy, votre assistant IA, l'aide est toujours à portée de voix.</p>
 </header>
 <div class="container">
-<img alt="Tablette Gemy" src="gemy.jpeg" style="width:100%;max-width:600px;display:block;margin:auto;border-radius:12px;margin-bottom:2rem;"/>
-<div class="card" style="text-align: center; padding: 1.5rem 1rem;">
+    <div class="gemy-image-wrapper">
+        <img alt="Tablette Gemy" src="gemy.jpeg"/>
+    </div>
+    <div class="card" style="text-align: center; padding: 1.5rem 1rem; margin-top: 2rem;">
+
     <h2 style="color: #005fa3; margin-top: 0; margin-bottom: 1.5rem;">Découvrez les versions de votre Gemy Companion</h2>
     <img src="presentationtablette.jpg" alt="Présentation de la tablette Gemy sans clavier et avec clavier" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.6;">
