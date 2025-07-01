@@ -46,11 +46,11 @@
         margin-bottom: 20px;
     }
 
-    /* --- Bandeau d'information en haut (Nouvelles couleurs) --- */
+    /* --- Bandeau d'information en haut (Nouvelles couleurs plus sobres) --- */
     .info-bar {
-        /* Nouveau dégradé : du bleu doux au vert menthe */
-        background: linear-gradient(90deg, #89CFF0 0%, #7FFFD4 100%); /* Bleu ciel clair à Vert menthe */
-        color: #343a40; /* Texte sombre pour un contraste élégant sur ce fond clair */
+        /* Nouveau dégradé : du bleu marine au bleu ciel doux */
+        background: linear-gradient(90deg, #2c3e50 0%, #3498db 100%); /* Bleu marine profond à Bleu ciel */
+        color: #ffffff; /* Texte blanc pur pour un contraste maximal */
         padding: 18px 25px;
         text-align: center;
         font-size: 1.3em;
@@ -63,15 +63,15 @@
         line-height: 1.4;
     }
 
-    /* --- En-tête (Hero Section) - Image de fond plus visible et nouvelles couleurs ! --- */
+    /* --- En-tête (Hero Section) - Image de fond plus visible et couleurs optimisées ! --- */
     .hero-header {
       /* Dégradé semi-transparent par-dessus l'image de fond */
-      /* Les valeurs RGBA ont une opacité plus faible pour laisser transparaître l'image */
-      background-image: linear-gradient(135deg, rgba(60, 179, 113, 0.6) 0%, rgba(30, 144, 255, 0.6) 100%), url('gemy.jpeg');
+      /* Utilisation d'un dégradé plus uniforme et plus sombre pour un meilleur contraste du texte */
+      background-image: linear-gradient(135deg, rgba(30, 30, 30, 0.75) 0%, rgba(50, 50, 50, 0.75) 100%), url('gemy.jpeg');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      color: var(--text-light);
+      color: var(--text-light); /* Texte blanc */
       padding: 100px 20px 0;
       text-align: center;
       position: relative;
@@ -82,17 +82,16 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      /* On s'assure que le clip-path est bien retiré pour éviter la coupure */
     }
 
-    /* Éléments de fond abstraits (maintenus mais plus subtils avec l'image de fond) */
+    /* Éléments de fond abstraits (maintenus mais très subtils) */
     .hero-header::before, .hero-header::after {
         content: '';
         position: absolute;
-        background: rgba(255, 255, 255, 0.1); /* Opacité très faible pour ne pas masquer l'image */
+        background: rgba(255, 255, 255, 0.08); /* Opacité très faible */
         border-radius: 50%;
-        filter: blur(30px); /* Flou légèrement réduit */
-        opacity: 0.4; /* Opacité générale réduite */
+        filter: blur(25px); /* Flou légèrement réduit */
+        opacity: 0.3; /* Opacité générale très faible */
         z-index: 1;
     }
     .hero-header::before {
@@ -338,7 +337,8 @@
     </div>
 </header>
 <div class="container">
-    <div class="card" style="text-align: center; padding: 1.5rem 1rem; margin-top: 2rem;">
+    
+<div class="card" style="text-align: center; padding: 1.5rem 1rem; margin-top: 2rem;">
     <h2 style="color: #005fa3; margin-top: 0; margin-bottom: 1.5rem;">Découvrez les versions de votre Gemy Companion</h2>
     <img src="presentationtablette.jpg" alt="Présentation de la tablette Gemy sans clavier et avec clavier" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
     <p style="margin-top: 1.5rem; font-size: 1.1rem; line-height: 1.6;">
