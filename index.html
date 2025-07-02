@@ -96,7 +96,7 @@
             justify-content: space-around;
             gap: 50px;
             text-align: left;
-            /* MODIFICATION ICI : Passe de row-reverse à row pour image à gauche, texte à droite par défaut */
+            /* Par défaut, image à gauche, texte à droite */
             flex-direction: row; 
         }
 
@@ -139,7 +139,7 @@
             font-family: var(--body-font); 
             font-size: 1.35rem; /* POLICE PLUS GROSSE (conservé) */
             line-height: 1.7; /* Légèrement ajusté pour la lisibilité (conservé) */
-            margin: 0 0 25px 0; /* BOUTON "DÉCOUVREZ" PLUS HAUT (conservé) */
+            margin: 0 0 25px 0; 
             color: rgba(255, 255, 255, 0.95); /* Couleur légèrement plus opaque pour la visibilité (conservé) */
             font-weight: 500; /* POLICE PLUS GRASSE (conservé) */
         }
@@ -160,7 +160,6 @@
             text-transform: uppercase;
             /* AJOUT/MODIFICATION ICI : augmente la marge sous le bouton */
             margin-bottom: 50px; 
-            /* FIN AJOUT/MODIFICATION */
             border: none;
         }
         .hero-button:hover {
@@ -263,11 +262,11 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
 
-        /* --- Media Queries pour la responsivité (MODIFIÉES) --- */
+        /* --- Media Queries pour la responsivité (AJUSTÉES POUR MOBILE) --- */
         @media (max-width: 992px) {
             .hero-content {
-                /* SUPPRIME CETTE LIGNE - on ne veut plus de column */
-                /* flex-direction: column; */ 
+                /* Sur les écrans intermédiaires, on passe l'image au-dessus du texte */
+                flex-direction: column-reverse; 
                 text-align: center;
                 gap: 30px;
             }
@@ -286,15 +285,15 @@
                 font-size: 1.1em; 
                 margin-bottom: 20px; 
             }
-            /* SUPPRIME CES LIGNES - elles ne sont plus nécessaires sans flex-direction: column; */
-            /* .gemy-image-area { order: 1; } */
-            /* .hero-text-area { order: 2; } */
             
             .gemy-image-area img {
                 max-width: 350px; 
+                /* Ajout d'une marge sous l'image pour l'espacer du texte quand elle est au-dessus */
+                margin-bottom: 40px; 
             }
             .hero-header {
-                min-height: 700px;
+                /* Augmenter la hauteur minimale si nécessaire pour accommoder le contenu en colonne */
+                min-height: 800px; /* Ajusté pour une meilleure visualisation sur tablettes */
             }
         }
         @media (max-width: 768px) {
@@ -303,8 +302,8 @@
                 padding: 15px 20px;
             }
             .hero-header {
-                padding: 80px 15px 0;
-                min-height: 600px;
+                padding: 60px 15px 0; /* Moins de padding en haut pour remonter le contenu */
+                min-height: 700px; /* Ajusté pour smartphones */
             }
             .hero-text-area h1 {
                 font-size: 2.8rem;
@@ -321,21 +320,20 @@
             .hero-button {
                 padding: 15px 30px;
                 font-size: 1.1em;
+                margin-bottom: 40px; /* Légèrement réduit pour mobile */
             }
-            /* SUPPRIME CES LIGNES - elles ne sont plus nécessaires sans flex-direction: column; */
-            /* .gemy-image-area { order: 1; } */
-            /* .hero-text-area { order: 2; } */
             
             .gemy-image-area img {
-                max-width: 300px; 
+                max-width: 280px; /* Réduit encore la taille de l'image sur plus petits mobiles */
                 border-radius: 20px;
                 border: 4px solid rgba(255, 255, 255, 0.5); 
+                margin-bottom: 30px; /* Marge réduite sur très petits écrans */
             }
         }
         @media (max-width: 480px) {
             .hero-header {
-                padding: 60px 10px 0;
-                min-height: 550px;
+                padding: 40px 10px 0; /* Encore moins de padding pour remonter */
+                min-height: 650px; /* Hauteur minimale ajustée pour les très petits écrans */
             }
             .hero-text-area h1 {
                 font-size: 2.2rem;
@@ -350,14 +348,13 @@
             .hero-button {
                 padding: 12px 25px;
                 font-size: 0.95em;
+                margin-bottom: 30px; /* Marge encore réduite */
             }
-            /* SUPPRIME CES LIGNES - elles ne sont plus nécessaires sans flex-direction: column; */
-            /* .gemy-image-area { order: 1; } */
-            /* .hero-text-area { order: 2; } */
             
             .gemy-image-area img {
-                max-width: 70%; 
+                max-width: 60%; /* Image un peu plus petite en pourcentage sur très petits écrans */
                 border-radius: 15px;
+                margin-bottom: 25px; /* Marge sous l'image pour les plus petits écrans */
             }
             .info-bar {
                 font-size: 0.95em; 
