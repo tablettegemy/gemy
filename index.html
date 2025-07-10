@@ -455,35 +455,46 @@
     </form>
 
     <h3 style="margin-top: 40px;">Commander ma Tablette Gemy</h3>
-    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour passer commande. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
-    <form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST" id="form-commande">
-        <label for="nom-commande">Votre Nom Complet :</label><br/>
-        <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
+    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour passer commande. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+    <form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST" id="form-commande">
+        <label for="nom-commande">Votre Nom Complet :</label><br/>
+        <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
 
-        <label for="email-commande">Votre Email :</label><br/>
-        <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
+        <label for="email-commande">Votre Email :</label><br/>
+        <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
 
-        <label for="telephone-commande">Votre Téléphone :</label><br/>
-        <input id="telephone-commande" name="Téléphone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
+        <label for="telephone-commande">Votre Téléphone :</label><br/>
+        <input id="telephone-commande" name="Téléphone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
 
-        <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
-        <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
+        <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
+        <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
 
-        <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
-        <select id="produit-commande" name="Produit Commandé" required>
-            <option value="">-- Sélectionnez votre choix --</option>
-            <option value="Tablette + Etui - 399 €">Tablette + Étui - 399 €</option>
-            <option value="Tablette + Etui avec clavier AZERTY - 449 €">Tablette + Étui avec clavier AZERTY - 449 €</option>
-        </select><br/><br/>
+        <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
+        <select id="produit-commande" name="Produit Commandé" required>
+            <option value="">-- Sélectionnez votre choix --</option>
+            <option value="Tablette + Etui - 399 €">Tablette + Étui - 399 €</option>
+            <option value="Tablette + Etui avec clavier AZERTY - 449 €">Tablette + Étui avec clavier AZERTY - 449 €</option>
+        </select><br/><br/>
 
-        <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
-        <select id="abonnement-commande" name="Abonnement Assistance">
-            <option value="Non souscrit">Non souscrit</option>
-            <option value="Oui - 9,90 €/mois">Oui - 9,90 €/mois</option>
-        </select><br/><br/>
+        <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
+        <select id="abonnement-commande" name="Abonnement Assistance">
+            <option value="Non souscrit">Non souscrit</option>
+            <option value="Oui - 9,90 €/mois">Oui - 9,90 €/mois</option>
+        </select><br/><br/>
 
-        <input class="button" type="submit" value="Envoyer ma commande"/>
-    </form>
+        <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+            <input type="checkbox" id="consentGmail" name="consentGmail" required style="margin-right: 10px;">
+            <label for="consentGmail" style="font-family: 'Arial', sans-serif; font-size: 0.95em; color: #333;">
+                Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" style="color: #007bff; text-decoration: none;">Conditions Générales de Vente</a> de Gemy Solution,
+                et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
+            </label>
+            <br>
+            <span style="font-family: 'Arial', sans-serif; font-size: 0.85em; color: #666; display: block; margin-top: 5px;">
+                *Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).
+            </span>
+        </div>
+                <input class="button" type="submit" value="Envoyer ma commande"/>
+    </form>
 </div>
 
 <div class="card contact" id="contact">
