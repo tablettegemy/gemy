@@ -454,8 +454,75 @@
         <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
     </form>
 
-    <h3 style="margin-top: 40px;">Commander ma Tablette Gemy</h3>
-    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour passer commande. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+    
+<style>
+    /* Style du conteneur du compte à rebours */
+    .countdown-container {
+        font-family: sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* Style du texte principal */
+    .countdown-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    /* Style des chiffres et labels */
+    .countdown-item {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .countdown-item span {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .countdown-item small {
+        font-size: 0.8rem;
+        color: #555;
+    }
+</style>
+
+<div class="countdown-container">
+    <h2 class="countdown-title">Plus que quelques jours pour précommander Gemy !</h2>
+    <div id="countdown">
+        </div>
+</div>
+
+<script>
+    // Date de lancement fixée au 1er octobre 2025
+    var launchDate = new Date("October 1, 2025 00:00:00").getTime();
+
+    // Met à jour le compte à rebours toutes les secondes
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = launchDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = 
+            "<div class='countdown-item'><span>" + days + "</span> <small>Jours</small></div>" +
+            "<div class='countdown-item'><span>" + hours + "</span> <small>Heures</small></div>" +
+            "<div class='countdown-item'><span>" + minutes + "</span> <small>Minutes</small></div>" +
+            "<div class='countdown-item'><span>" + seconds + "</span> <small>Secondes</small></div>";
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Les commandes sont ouvertes !";
+        }
+    }, 1000);
+</script>
+
+
+    <h3 style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
+    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
     <form action="mailto:gemyantho@gmail.com" enctype="text/plain" method="POST" id="form-commande">
         <label for="nom-commande">Votre Nom Complet :</label><br/>
         <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
@@ -493,9 +560,9 @@
                 *Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).
             </span>
         </div>
-                <input class="button" type="submit" value="Envoyer ma commande"/>
+                <input class="button" type="submit" value="Envoyer ma précommande"/>
     </form>
-</div>
+</div> 
 
 <div class="card contact" id="contact">
     <h2>Nous contacter directement</h2>
