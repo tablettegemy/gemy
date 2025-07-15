@@ -603,6 +603,139 @@
                 <input class="button" type="submit" value="Envoyer ma précommande"/>
     </form>
 </div>
+    
+    <style>
+    .avis-section {
+        text-align: center;
+        padding: 40px 20px;
+        background-color: #f9f9f9;
+        border-top: 1px solid #eee;
+        font-family: 'Helvetica Neue', Arial, sans-serif; /* Police plus moderne */
+        color: #333;
+    }
+    .avis-section h2 {
+        font-size: 2.2em;
+        margin-bottom: 40px;
+        color: #2c3e50; /* Couleur plus foncée pour le titre */
+        font-weight: 700;
+    }
+    .avis-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 ou 3 colonnes sur grand écran, 1 sur mobile */
+        gap: 25px; /* Espace entre les avis */
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .avis-item {
+        background-color: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px; /* Bords légèrement plus arrondis */
+        padding: 30px;
+        text-align: left; /* Texte aligné à gauche pour la lecture */
+        box-shadow: 0 6px 15px rgba(0,0,0,0.08); /* Ombre plus douce */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Pour que le bouton soit en bas si on en ajoute */
+    }
+    .avis-item .etoiles {
+        color: #FFC107; /* Un jaune plus vibrant pour les étoiles */
+        font-size: 1.6em;
+        margin-bottom: 15px;
+        text-align: center; /* Centrer les étoiles */
+    }
+    .avis-item p.commentaire {
+        font-size: 1.05em;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    .avis-item p.auteur {
+        font-weight: 600; /* Plus de gras pour l'auteur */
+        color: #34495e; /* Couleur plus foncée */
+        font-size: 0.95em;
+        text-align: right; /* Auteur à droite */
+    }
+    .avis-section .appel-avis {
+        margin-top: 50px;
+        font-size: 1.2em;
+        color: #555;
+    }
+    .avis-section .bouton-avis {
+        display: inline-block;
+        padding: 14px 30px;
+        background-color: #007bff; /* Bleu de Gemy */
+        color: white;
+        text-decoration: none;
+        border-radius: 7px; /* Bouton plus doux */
+        margin-top: 25px;
+        font-weight: bold;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .avis-section .bouton-avis:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px); /* Petit effet au survol */
+    }
+
+    /* Ajustements pour les petits écrans */
+    @media (max-width: 768px) {
+        .avis-grid {
+            grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        }
+        .avis-item {
+            padding: 20px;
+        }
+        .avis-item .etoiles {
+            font-size: 1.4em;
+        }
+    }
+</style>
+
+<div class="avis-section">
+    <h2>Ce que nos clients disent de Gemy</h2>
+
+    <div class="avis-grid">
+        <div class="avis-item">
+            <div class="etoiles">★★★★★</div>
+            <p class="commentaire">"C'est fluide, c'est génial, je la quitterai plus ! Elle m'a vraiment simplifié la vie. Tout est à portée de main, et bien pensée."</p>
+            <p class="auteur">Marie D., 38 ans</p>
+        </div>
+
+        <div class="avis-item">
+            <div class="etoiles">★★★★★</div>
+            <p class="commentaire">"Grâce à Gemy, je peux enfin faire des appels vidéo avec mes petits-enfants sans stresser ! Pas d'installation, pas de stresse'."</p>
+            <p class="auteur">Jean-Luc S., 68 ans</p>
+        </div>
+
+        <div class="avis-item">
+            <div class="etoiles">★★★★★</div>
+            <p class="commentaire">"Molotov TV, la radio, les jeux... tout est là, prêt à l'emploi. une tablette intuitive et amusante."</p>
+            <p class="auteur">Éliane R., 55 ans</p>
+        </div>
+
+        <div class="avis-item">
+            <div class="etoiles">★★★★★</div>
+            <p class="commentaire">"Fini les complications des PC et les abonnements qui s'accumulent. Gemy a tout inclus, de la bureautique au cloud, c'est un vrai soulagement."</p>
+            <p class="auteur">Pierre A., Client Gemy</p>
+        </div>
+
+        <div class="avis-item">
+            <div class="etoiles">★★★★★</div>
+            <p class="commentaire">"Je me sens beaucoup plus autonome avec Gemy. Je peux consulter mes documents, gérer ma santé et même créer un peu, sans aide. Un grand merci !"</p>
+            <p class="auteur">Nathalie L., 42 ans</p>
+        </div>
+
+        <div class="avis-item">
+            <div class="etoiles">★★★★★</div>
+            <p class="commentaire">"Le service d'assistance par AnyDesk est incroyablement réactif. Chaque question est résolue rapidement et avec patience. On se sent vraiment accompagné."</p>
+            <p class="auteur">Dominique G., 59 ans</p>
+        </div>
+    </div>
+
+    <p class="appel-avis">Vous êtes un utilisateur Gemy ? Partagez votre expérience !</p>
+    <a href="mailto:gemysolution@gmail.com?subject=Mon avis sur Gemy" class="bouton-avis">Envoyer mon avis par e-mail</a>
+</div>
 
 <div class="card contact" id="contact">
     <h2>Nous contacter directement</h2>
