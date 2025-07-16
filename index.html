@@ -561,7 +561,7 @@
 </script>
 
 
-    <h3 style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
+    <h3 id="section-precommande-gemy" style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
     <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
     <form action="mailto:gemysolution@gmail.com" enctype="text/plain" method="POST" id="form-commande">
         <label for="nom-commande">Votre Nom Complet :</label><br/>
@@ -763,10 +763,48 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     font-size: 15px;
   }
 }
-</style>
-<button id="acheter-maintenant" onclick="document.getElementById('offre').scrollIntoView({behavior:'smooth'})">Acheter maintenant</button>
+</style>
+    <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
+
 </body>
 </html>
+
+<style>
+    /* Styles pour le bouton flottant "Précommander" */
+    #precommander-flottant {
+        position: fixed; /* Rend le bouton flottant */
+        bottom: 20px;    /* Distance du bas de l'écran */
+        right: 20px;     /* Distance de la droite de l'écran */
+        background-color: #007bff; /* Bleu de Gemy */
+        color: white;
+        padding: 15px 25px;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-decoration: none; /* Supprime le soulignement du lien */
+        border-radius: 50px; /* Rend le bouton rond ou ovale */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Ombre pour le faire ressortir */
+        z-index: 1000; /* Assure qu'il est au-dessus des autres éléments */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: flex; /* Pour centrer le texte si besoin */
+        align-items: center;
+        justify-content: center;
+    }
+
+    #precommander-flottant:hover {
+        background-color: #0056b3; /* Bleu plus foncé au survol */
+        transform: translateY(-2px); /* Petit effet de soulèvement */
+    }
+
+    /* Ajustement pour les petits écrans si le bouton est trop grand */
+    @media (max-width: 600px) {
+        #precommander-flottant {
+            padding: 12px 20px;
+            font-size: 1em;
+            bottom: 15px;
+            right: 15px;
+        }
+    }
+</style>
 <footer style="text-align: center; padding: 30px 20px; font-size: 0.85rem; color: #777; background-color: #f8f8f8; border-top: 1px solid #eee;">
     <p>&copy; 2025 Gemy. Tous droits réservés.</p>
     <p>
