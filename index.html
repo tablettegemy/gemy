@@ -577,11 +577,14 @@
         <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
 
         <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
-        <select id="produit-commande" name="Produit Commandé" required>
-            <option value="">-- Sélectionnez votre choix --</option>
-            <option value="Tablette + Etui - 399 €">Tablette + Étui - 399 €</option>
-            <option value="Tablette + Etui avec clavier AZERTY - 449 €">Tablette + Étui avec clavier AZERTY - 449 €</option>
-        </select><br/><br/>
+<select id="produit-commande" name="Produit Commandé" required>
+    <option value="">-- Sélectionnez votre choix --</option>
+    <option value="Tablette + Etui - 399 € (Quantité: 1)">Tablette + Étui - 399 € (Quantité: 1)</option>
+    <option value="Tablette + Etui avec clavier AZERTY - 449 € (Quantité: 1)">Tablette + Étui avec clavier AZERTY - 449 € (Quantité: 1)</option>
+</select><br/><br/>
+
+<label for="quantite">Modifier la quantité (1-20) :</label><br/>
+<input type="number" id="quantite" name="Quantité" min="1" max="20" value="1" required><br/><br/>
 
         <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
         <select id="abonnement-commande" name="Abonnement Assistance">
