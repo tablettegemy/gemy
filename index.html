@@ -920,35 +920,33 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
-<script>
-  // Désactiver l'envoi normal du formulaire "Assistance"
-  document.getElementById("form-assistance").addEventListener("submit", function(e) {
-    e.preventDefault(); // Bloquer l'envoi classique
-    sendMailto(this); // Envoyer via mailto:
-  });
-
-  // Désactiver l'envoi normal du formulaire "Précommande"
-  document.getElementById("form-commande").addEventListener("submit", function(e) {
+    <script>
+// Solution miracle pour mailto: sans avertissement
+document.addEventListener('DOMContentLoaded', function() {
+  function handleFormSubmit(e) {
     e.preventDefault();
-    sendMailto(this);
-  });
-
-  // Fonction pour générer le mailto: avec les données du formulaire
-  function sendMailto(form) {
-    const email = form.action.replace("mailto:", ""); // Récupère l'email (gemysolution@gmail.com)
-    const formData = new FormData(form); // Récupère toutes les données du formulaire
-    let body = "";
-
-    // Construit le corps du mail
-    formData.forEach((value, key) => {
-      body += `${key}: ${value}\n`; // Format "Nom: Valeur"
+    const form = e.target;
+    let body = '';
+    
+    // Récupère tous les champs du formulaire
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+      if (input.name && input.type !== 'submit') {
+        body += `${input.name}: ${input.value}\n`;
+      }
     });
 
-    // Ouvre le client mail de l'utilisateur
-    window.location.href = `mailto:${email}?body=${encodeURIComponent(body)}&subject=${form.querySelector("[name='subject']")?.value || "Sans objet"}`;
+    // Ouvre le client mail
+    const mailto = form.action.replace('mailto:', '');
+    window.location.href = `mailto:${mailto}?body=${encodeURIComponent(body)}`;
   }
-</script>
 
+  // Applique à tous vos formulaires mailto:
+  document.querySelectorAll('form[action^="mailto:"]').forEach(form => {
+    form.addEventListener('submit', handleFormSubmit);
+  });
+});
+</script>
 </body>
 </html>
 
