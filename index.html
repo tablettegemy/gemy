@@ -6,403 +6,363 @@
     <title>Gemy Companion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
-<style>
-    /* Importation des polices Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Montserrat:wght@400;500;700&display=swap');
-    /* Importation de Font Awesome pour les icônes */
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+    <style>
+        /* Importation des polices Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Montserrat:wght@400;500;700&display=swap');
+        /* Importation de Font Awesome pour les icônes */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
-    /* --- Variables pour les couleurs et polices --- */
-    :root {
-        /* Couleurs du nouvel en-tête (Gemy accent colors) */
-        --primary-accent: #00bcd4; /* Cyan clair, impactant mais doux */
-        --secondary-accent: #2196f3; /* Bleu plus profond */
-        --background-light: #f4f7f6; /* Fond très léger (utilisé dans le hero-header) */
+        /* --- Variables pour les couleurs et polices --- */
+        :root {
+            /* Couleurs du nouvel en-tête (Gemy accent colors) */
+            --primary-accent: #00bcd4; /* Cyan clair, impactant mais doux */
+            --secondary-accent: #2196f3; /* Bleu plus profond */
+            --background-light: #f4f7f6; /* Fond très léger (utilisé dans le hero-header) */
 
-        /* Couleurs pour le reste du site (vos couleurs d'origine) */
-        --primary-blue: #007bff; /* Bleu standard */
-        --dark-blue: #0056b3; /* Bleu foncé pour les titres et boutons */
-        --light-grey: #f8f9fa; /* Gris clair pour le fond du body */
-        --text-dark: #343a40; /* Couleur texte principal des blocs (noir/gris foncé) */
-        --text-light: #ffffff; /* Texte blanc */
-        
-        /* Polices utilisées sur l'ensemble du site */
-        --heading-font: 'Poppins', sans-serif; /* Pour les titres de l'en-tête et les titres du reste du site */
-        --body-font: 'Montserrat', sans-serif; /* Pour le texte courant de l'en-tête et le reste du site */
-    }
-
-    /* --- Réinitialisation de base et typographie générale du site --- */
-    body {
-        margin: 0;
-        font-family: var(--body-font); 
-        background: var(--light-grey); /* FOND DU BODY EN GRIS CLAIR (comme avant) */
-        color: var(--text-dark); 
-        line-height: 1.6;
-        scroll-behavior: smooth;
-    }
-
-    .container {
-        max-width: 1100px;
-        margin: auto;
-        padding: 0 20px;
-    }
-
-    /* Styles des titres Hx hors en-tête */
-    h1, h2, h3, h4, h5, h6 {
-        font-family: var(--heading-font); 
-        color: var(--dark-blue); 
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-
-    /* --- Bandeau d'information en haut (MODIFIÉ) --- */
-    .info-bar {
-        background-color: var(--text-dark); /* Noir/gris foncé pour l'élégance */
-        color: var(--text-light);
-        padding: 18px 25px; /* Ajusté pour la nouvelle taille de police */
-        text-align: center;
-        font-size: 1.3em; /* POLICE PLUS GROSSE */
-        font-weight: 700; /* POLICE PLUS GRASSE */
-        font-family: var(--heading-font); 
-        letter-spacing: 0.8px; /* Meilleur espacement */
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Légèrement plus prononcé */
-        z-index: 100;
-        position: relative;
-    }
-
-    /* --- En-tête (Hero Section) - MODIFIÉ POUR RETOURNER AU BLEU --- */
-    .hero-header {
-        background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%); /* FOND BLEU DÉGRADÉ (comme avant) */
-        padding: 100px 0 0;
-        position: relative;
-        overflow: hidden;
-        min-height: 650px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: var(--text-light); /* TEXTE BLANC (comme avant) */
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 1000px;
-        margin: auto;
-        padding: 0 20px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-around;
-        gap: 50px;
-        text-align: left;
-        /* Par défaut, image à gauche, texte à droite */
-        flex-direction: row; 
-    }
-
-    .hero-text-area {
-        flex: 1;
-        min-width: 300px;
-        max-width: 550px;
-        padding-right: 0;
-        padding-left: 30px; 
-        animation: slideInRight 1s ease-out forwards;
-        opacity: 0;
-        transform: translateX(50px);
-    }
-
-    @keyframes slideInRight {
-        to { opacity: 1; transform: translateX(0); }
-    }
-
-    .hero-text-area h1 {
-        font-family: var(--heading-font); 
-        font-size: 5.2rem;
-        margin-bottom: 25px;
-        font-weight: 900;
-        line-height: 1.1;
-        color: var(--text-light); /* TITRE PRINCIPAL EN BLANC (comme avant) */
-        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
-        letter-spacing: -1px;
-    }
-    .hero-text-area .subtitle {
-        font-family: var(--body-font); 
-        font-size: 1.65rem;
-        font-weight: 600;
-        margin-bottom: 30px;
-        line-height: 1.5;
-        color: rgba(255, 255, 255, 0.95); /* SOUS-TITRE EN BLANC LÉGÈREMENT TRANSPARENT (comme avant) */
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-    }
-    /* PARAGRAPHE PRINCIPAL (MODIFIÉ) */
-    .hero-text-area p {
-        font-family: var(--body-font); 
-        font-size: 1.35rem; /* POLICE PLUS GROSSE (conservé) */
-        line-height: 1.7; /* Légèrement ajusté pour la lisibilité (conservé) */
-        margin: 0 0 25px 0; 
-        color: rgba(255, 255, 255, 0.95); /* Couleur légèrement plus opaque pour la visibilité (conservé) */
-        font-weight: 500; /* POLICE PLUS GRASSE (conservé) */
-    }
-
-    /* Bouton CTA dans le header */
-    .hero-button {
-        display: inline-block;
-        padding: 18px 40px;
-        background-color: var(--text-light); /* Bouton BLANC (comme avant) */
-        color: var(--primary-accent); /* Texte CYAN sur bouton (comme avant) */
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 1.2em;
-        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        letter-spacing: 0.8px;
-        text-transform: uppercase;
-        /* AJOUT/MODIFICATION ICI : augmente la marge sous le bouton */
-        margin-bottom: 50px; 
-        border: none;
-    }
-    .hero-button:hover {
-        background-color: #e0f2f7;
-        color: var(--secondary-accent);
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-    }
-
-    /* Image Gemy - Positionnement et animation (MODIFIÉE) */
-    .gemy-image-area {
-        flex: 1;
-        min-width: 300px;
-        max-width: 400px; /* IMAGE PLUS PETITE SUR GRAND ÉCRAN (conservé) */
-        text-align: center;
-        position: relative;
-        z-index: 5;
-        animation: slideInLeft 1s ease-out forwards;
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-
-    @keyframes slideInLeft {
-        to { opacity: 1; transform: translateX(0); }
-    }
-
-    .gemy-image-area img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: auto;
-        border-radius: 25px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-        border: 6px solid rgba(255, 255, 255, 0.5); /* BORDURE BLANCHE (comme avant) */
-    }
-    .gemy-image-area img:hover {
-        transform: scale(1.05) rotateZ(2deg);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-    }
-
-    /* --- Styles du reste du contenu (REVERTIS AUX ÉTATS PRÉCÉDENTS) --- */
-    .section-title {
-        font-size: 2.8em;
-        font-weight: 700;
-        color: var(--dark-blue); 
-        text-align: center;
-        margin-bottom: 50px;
-        margin-top: 80px;
-    }
-    .card {
-        background: white;
-        border-radius: 16px;
-        padding: 2rem 2.5rem;
-        margin-bottom: 2.5rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
-        text-align: center;
-    }
-    .card h2, .card h3 {
-        color: var(--dark-blue); 
-        font-weight: 700;
-        font-size: 2em;
-    }
-    .card p {
-        font-size: 1.1em;
-        color: var(--text-dark); 
-        line-height: 1.7;
-        font-weight: 500;
-    }
-    ul {
-        padding-left: 1.5rem;
-    }
-    ul li {
-        margin-bottom: 0.6rem;
-        font-size: 1.05em;
-        color: var(--text-dark); 
-    }
-    .contact {
-        text-align: center;
-        background: #e9f3ff; 
-        padding: 2.5rem;
-        border-radius: 16px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-    }
-    .button { 
-        display: inline-block;
-        margin-top: 1.5rem;
-        padding: 1rem 2rem;
-        background-color: var(--primary-blue); 
-        color: var(--text-light); 
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .button:hover {
-        background-color: var(--dark-blue); 
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-
-    /* --- Media Queries pour la responsivité (AJUSTÉES POUR MOBILE) --- */
-    @media (max-width: 992px) {
-        .hero-content {
-            /* Sur les écrans intermédiaires, on passe l'image au-dessus du texte */
-            flex-direction: column-reverse; 
-            text-align: center;
-            gap: 30px;
+            /* Couleurs pour le reste du site (vos couleurs d'origine) */
+            --primary-blue: #007bff; /* Bleu standard */
+            --dark-blue: #0056b3; /* Bleu foncé pour les titres et boutons */
+            --light-grey: #f8f9fa; /* Gris clair pour le fond du body */
+            --text-dark: #343a40; /* Couleur texte principal des blocs (noir/gris foncé) */
+            --text-light: #ffffff; /* Texte blanc */
+            
+            /* Polices utilisées sur l'ensemble du site */
+            --heading-font: 'Poppins', sans-serif; /* Pour les titres de l'en-tête et les titres du reste du site */
+            --body-font: 'Montserrat', sans-serif; /* Pour le texte courant de l'en-tête et le reste du site */
         }
-        .hero-text-area, .gemy-image-area {
-            max-width: 100%;
-            padding-right: 0;
-            padding-left: 0;
+
+        /* --- Réinitialisation de base et typographie générale du site --- */
+        body {
+            margin: 0;
+            font-family: var(--body-font); 
+            background: var(--light-grey); /* FOND DU BODY EN GRIS CLAIR (comme avant) */
+            color: var(--text-dark); 
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
-        .hero-text-area h1 {
-            font-size: 3.5rem;
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
         }
-        .hero-text-area .subtitle {
-            font-size: 1.3rem;
-        }
-        .hero-text-area p {
-            font-size: 1.1em; 
-            margin-bottom: 20px; 
-        }
-        
-        .gemy-image-area img {
-            max-width: 350px; 
-            /* Ajout d'une marge sous l'image pour l'espacer du texte quand elle est au-dessus */
-            margin-bottom: 40px; 
-        }
-        .hero-header {
-            /* Augmenter la hauteur minimale si nécessaire pour accommoder le contenu en colonne */
-            min-height: 800px; /* Ajusté pour une meilleure visualisation sur tablettes */
-        }
-    }
-    @media (max-width: 768px) {
-        .info-bar {
-            font-size: 1.1em; 
-            padding: 15px 20px;
-        }
-        .hero-header {
-            padding: 60px 15px 0; /* Moins de padding en haut pour remonter le contenu */
-            min-height: 700px; /* Ajusté pour smartphones */
-        }
-        .hero-text-area h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        .hero-text-area .subtitle {
-            font-size: 1.1rem;
+
+        /* Styles des titres Hx hors en-tête */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font); 
+            color: var(--dark-blue); 
+            margin-top: 0;
             margin-bottom: 20px;
         }
-        .hero-text-area p {
-            font-size: 1.05em; 
-            margin-bottom: 20px; 
+
+        /* --- Bandeau d'information en haut (MODIFIÉ) --- */
+        .info-bar {
+            background-color: var(--text-dark); /* Noir/gris foncé pour l'élégance */
+            color: var(--text-light);
+            padding: 18px 25px; /* Ajusté pour la nouvelle taille de police */
+            text-align: center;
+            font-size: 1.3em; /* POLICE PLUS GROSSE */
+            font-weight: 700; /* POLICE PLUS GRASSE */
+            font-family: var(--heading-font); 
+            letter-spacing: 0.8px; /* Meilleur espacement */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Légèrement plus prononcé */
+            z-index: 100;
+            position: relative;
         }
-        .hero-button {
-            padding: 15px 30px;
-            font-size: 1.1em;
-            margin-bottom: 40px; /* Légèrement réduit pour mobile */
-        }
-        
-        .gemy-image-area img {
-            max-width: 280px; /* Réduit encore la taille de l'image sur plus petits mobiles */
-            border-radius: 20px;
-            border: 4px solid rgba(255, 255, 255, 0.5); 
-            margin-bottom: 30px; /* Marge réduite sur très petits écrans */
-        }
-    }
-    @media (max-width: 480px) {
+
+        /* --- En-tête (Hero Section) - MODIFIÉ POUR RETOURNER AU BLEU --- */
         .hero-header {
-            padding: 40px 10px 0; /* Encore moins de padding pour remonter */
-            min-height: 650px; /* Hauteur minimale ajustée pour les très petits écrans */
+            background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%); /* FOND BLEU DÉGRADÉ (comme avant) */
+            padding: 100px 0 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 650px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light); /* TEXTE BLANC (comme avant) */
         }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            gap: 50px;
+            text-align: left;
+            /* Par défaut, image à gauche, texte à droite */
+            flex-direction: row; 
+        }
+
+        .hero-text-area {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            padding-right: 0;
+            padding-left: 30px; 
+            animation: slideInRight 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         .hero-text-area h1 {
-            font-size: 2.2rem;
+            font-family: var(--heading-font); 
+            font-size: 5.2rem;
+            margin-bottom: 25px;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-light); /* TITRE PRINCIPAL EN BLANC (comme avant) */
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+            letter-spacing: -1px;
         }
         .hero-text-area .subtitle {
-            font-size: 1em;
+            font-family: var(--body-font); 
+            font-size: 1.65rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.95); /* SOUS-TITRE EN BLANC LÉGÈREMENT TRANSPARENT (comme avant) */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
         }
+        /* PARAGRAPHE PRINCIPAL (MODIFIÉ) */
         .hero-text-area p {
-            font-size: 1em; 
-            margin-bottom: 15px; 
+            font-family: var(--body-font); 
+            font-size: 1.35rem; /* POLICE PLUS GROSSE (conservé) */
+            line-height: 1.7; /* Légèrement ajusté pour la lisibilité (conservé) */
+            margin: 0 0 25px 0; 
+            color: rgba(255, 255, 255, 0.95); /* Couleur légèrement plus opaque pour la visibilité (conservé) */
+            font-weight: 500; /* POLICE PLUS GRASSE (conservé) */
         }
+
+        /* Bouton CTA dans le header */
         .hero-button {
-            padding: 12px 25px;
-            font-size: 0.95em;
-            margin-bottom: 30px; /* Marge encore réduite */
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: var(--text-light); /* Bouton BLANC (comme avant) */
+            color: var(--primary-accent); /* Texte CYAN sur bouton (comme avant) */
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            /* AJOUT/MODIFICATION ICI : augmente la marge sous le bouton */
+            margin-bottom: 50px; 
+            border: none;
         }
-        
+        .hero-button:hover {
+            background-color: #e0f2f7;
+            color: var(--secondary-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Image Gemy - Positionnement et animation (MODIFIÉE) */
+        .gemy-image-area {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px; /* IMAGE PLUS PETITE SUR GRAND ÉCRAN (conservé) */
+            text-align: center;
+            position: relative;
+            z-index: 5;
+            animation: slideInLeft 1s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         .gemy-image-area img {
-            max-width: 60%; /* Image un peu plus petite en pourcentage sur très petits écrans */
-            border-radius: 15px;
-            border: 4px solid rgba(255, 255, 255, 0.5); 
-            margin-bottom: 25px; /* Marge sous l'image pour les plus petits écrans */
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: auto;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 6px solid rgba(255, 255, 255, 0.5); /* BORDURE BLANCHE (comme avant) */
         }
-        .info-bar {
-            font-size: 0.95em; 
-            padding: 10px 15px;
+        .gemy-image-area img:hover {
+            transform: scale(1.05) rotateZ(2deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
-    }
 
-    /* --- Correctifs pour les éléments affectés par Tailwind Preflight --- */
+        /* --- Styles du reste du contenu (REVERTIS AUX ÉTATS PRÉCÉDENTS) --- */
+        .section-title {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--dark-blue); 
+            text-align: center;
+            margin-bottom: 50px;
+            margin-top: 80px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+            text-align: center;
+        }
+        .card h2, .card h3 {
+            color: var(--dark-blue); 
+            font-weight: 700;
+            font-size: 2em;
+        }
+        .card p {
+            font-size: 1.1em;
+            color: var(--text-dark); 
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        ul {
+            padding-left: 1.5rem;
+        }
+        ul li {
+            margin-bottom: 0.6rem;
+            font-size: 1.05em;
+            color: var(--text-dark); 
+        }
+        .contact {
+            text-align: center;
+            background: #e9f3ff; 
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+        .button { 
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background-color: var(--primary-blue); 
+            color: var(--text-light); 
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .button:hover {
+            background-color: var(--dark-blue); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
 
-    /* Restaure les bordures et le padding pour les champs de texte, emails, mots de passe et zones de texte */
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    textarea {
-        border-width: 1px; /* Épaisseur de la bordure */
-        border-color: #d1d5db; /* Couleur de bordure (gris clair par défaut de Tailwind) */
-        border-style: solid; /* Type de bordure (solide) */
-        border-radius: 0.25rem; /* Arrondi léger des coins */
-        padding: 0.5rem 0.75rem; /* Espacement interne */
-        /* Vous pouvez ajuster ces valeurs selon vos préférences */
-    }
-
-    /* Restaure les bordures et le style pour les menus déroulants (<select>) */
-    select {
-        border-width: 1px;
-        border-color: #d1d5db;
-        border-style: solid;
-        border-radius: 0.25rem;
-        padding: 0.5rem 0.75rem;
-        /* Pour la flèche du menu déroulant (si elle a disparu) */
-        appearance: none; /* Supprime le style natif du navigateur */
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
-        background-repeat: no-repeat;
-        background-position: right 0.75rem center;
-        background-size: 1.5em 1.5em;
-        padding-right: 2.5rem; /* Espace pour la flèche */
-    }
-
-    /* Si d'autres éléments sont "décalés", cela peut être dû aux marges/paddings par défaut de Tailwind. */
-    /* Vous pouvez cibler des classes spécifiques de votre site et leur ajouter des marges si elles sont trop collées. */
-    /* Exemple (à adapter avec vos propres classes CSS) : */
-    /* .votre-classe-de-menu-ou-bloc {
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-    } */
-</style>
+        /* --- Media Queries pour la responsivité (AJUSTÉES POUR MOBILE) --- */
+        @media (max-width: 992px) {
+            .hero-content {
+                /* Sur les écrans intermédiaires, on passe l'image au-dessus du texte */
+                flex-direction: column-reverse; 
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-text-area, .gemy-image-area {
+                max-width: 100%;
+                padding-right: 0;
+                padding-left: 0;
+            }
+            .hero-text-area h1 {
+                font-size: 3.5rem;
+            }
+            .hero-text-area .subtitle {
+                font-size: 1.3rem;
+            }
+            .hero-text-area p {
+                font-size: 1.1em; 
+                margin-bottom: 20px; 
+            }
+            
+            .gemy-image-area img {
+                max-width: 350px; 
+                /* Ajout d'une marge sous l'image pour l'espacer du texte quand elle est au-dessus */
+                margin-bottom: 40px; 
+            }
+            .hero-header {
+                /* Augmenter la hauteur minimale si nécessaire pour accommoder le contenu en colonne */
+                min-height: 800px; /* Ajusté pour une meilleure visualisation sur tablettes */
+            }
+        }
+        @media (max-width: 768px) {
+            .info-bar {
+                font-size: 1.1em; 
+                padding: 15px 20px;
+            }
+            .hero-header {
+                padding: 60px 15px 0; /* Moins de padding en haut pour remonter le contenu */
+                min-height: 700px; /* Ajusté pour smartphones */
+            }
+            .hero-text-area h1 {
+                font-size: 2.8rem;
+                margin-bottom: 15px;
+            }
+            .hero-text-area .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+            .hero-text-area p {
+                font-size: 1.05em; 
+                margin-bottom: 20px; 
+            }
+            .hero-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+                margin-bottom: 40px; /* Légèrement réduit pour mobile */
+            }
+            
+            .gemy-image-area img {
+                max-width: 280px; /* Réduit encore la taille de l'image sur plus petits mobiles */
+                border-radius: 20px;
+                border: 4px solid rgba(255, 255, 255, 0.5); 
+                margin-bottom: 30px; /* Marge réduite sur très petits écrans */
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-header {
+                padding: 40px 10px 0; /* Encore moins de padding pour remonter */
+                min-height: 650px; /* Hauteur minimale ajustée pour les très petits écrans */
+            }
+            .hero-text-area h1 {
+                font-size: 2.2rem;
+            }
+            .hero-text-area .subtitle {
+                font-size: 1em;
+            }
+            .hero-text-area p {
+                font-size: 1em; 
+                margin-bottom: 15px; 
+            }
+            .hero-button {
+                padding: 12px 25px;
+                font-size: 0.95em;
+                margin-bottom: 30px; /* Marge encore réduite */
+            }
+            
+            .gemy-image-area img {
+                max-width: 60%; /* Image un peu plus petite en pourcentage sur très petits écrans */
+                border-radius: 15px;
+                margin-bottom: 25px; /* Marge sous l'image pour les plus petits écrans */
+            }
+            .info-bar {
+                font-size: 0.95em; 
+                padding: 10px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="info-bar">
@@ -469,147 +429,149 @@
 </div>
 <div class="card">
     
- <h2 style="color: #005fa3;">Mon Espace Client</h2>
+ <!-- Conteneur principal pour toutes les sections (Assistance, Compte à rebours, Précommande) -->
+<div class="container mx-auto p-4 sm:p-6 max-w-screen-lg">
 
     <!-- Section "Mon Espace Client" et Demande d'Assistance -->
-<section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-xl mx-auto text-center mt-12 mb-12">
-    <h2 class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">Mon Espace Client</h2>
+    <section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6 text-center">Mon Espace Client</h2>
 
-    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 mt-8">Demande d'Assistance ou Informations</h3>
-    <p class="text-gray-600 mb-6">Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
+        <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 mt-8 text-center">Demande d'Assistance ou Informations</h3>
+        <p class="text-gray-600 mb-6 text-center">Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
 
-    <form action="mailto:gemysolution@gmail.com?subject=Demande Assistance Gemy" enctype="text/plain" method="POST" class="space-y-6">
-        <!-- Champ Nom -->
-        <div>
-            <label for="nomAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Nom :</label>
-            <input type="text" id="nomAssistance" name="nomAssistance" placeholder="Ex: Jean Dupont"
-                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        <form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy" enctype="text/plain" method="POST" class="space-y-6 max-w-md mx-auto">
+            <!-- Champ Nom -->
+            <div>
+                <label for="nomAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Nom :</label>
+                <input type="text" id="nomAssistance" name="Nom" placeholder="Ex: Jean Dupont"
+                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- Champ ID Tablette -->
+            <div>
+                <label for="idTabletteAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">ID Tablette (si connu) :</label>
+                <input type="text" id="idTabletteAssistance" name="ID Tablette" placeholder="Ex: GEMY-12345"
+                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Type de demande -->
+            <div>
+                <label for="typeDemande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Type de demande :</label>
+                <select id="typeDemande" name="Type de demande" required
+                        class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
+                    <option value="">-- Sélectionnez un type --</option>
+                    <option value="Assistance technique">Assistance technique</option>
+                    <option value="Ajout contact ou application">Ajout contact ou application</option>
+                    <option value="Problème vocal">Problème vocal</option>
+                    <option value="Renouvellement abonnement">Renouvellement abonnement</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+                <label for="messageAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre message (décrivez votre besoin) :</label>
+                <textarea id="messageAssistance" name="Message" rows="4" placeholder="Décrivez votre question ou problème ici."
+                          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+            </div>
+
+            <!-- Bouton Envoyer -->
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Envoyer ma demande d'assistance
+            </button>
+        </form>
+    </section>
+
+    <!-- Section Compte à Rebours -->
+    <section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-2xl mx-auto text-center mt-12 mb-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-blue-700 mb-6">Plus que quelques jours pour précommander Gemy !</h2>
+        <div id="countdown" class="flex justify-center flex-wrap gap-4 sm:gap-8">
+            <!-- Les éléments du compte à rebours seront insérés ici par le script JS -->
         </div>
+    </section>
 
-        <!-- Champ ID Tablette -->
-        <div>
-            <label for="idTabletteAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">ID Tablette (si connu) :</label>
-            <input type="text" id="idTabletteAssistance" name="idTabletteAssistance" placeholder="Ex: GEMY-12345"
-                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+    <!-- Section Précommande Tablette Gemy -->
+    <section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full mb-12">
+        <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 mt-8 text-center">Précommander ma Tablette Gemy</h3>
+        <p class="text-gray-600 mb-6 text-center">Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyez parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
 
-        <!-- Type de demande -->
-        <div>
-            <label for="typeDemande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Type de demande :</label>
-            <select id="typeDemande" name="typeDemande" required
-                    class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
-                <option value="">-- Sélectionnez un type --</option>
-                <option value="Assistance technique">Assistance technique</option>
-                <option value="Ajout contact ou application">Ajout contact ou application</option>
-                <option value="Probleme vocal">Problème vocal</option>
-                <option value="Renouvellement abonnement">Renouvellement abonnement</option>
-                <option value="Autre">Autre</option>
-            </select>
-        </div>
+        <form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" class="space-y-6 max-w-md mx-auto">
+            <!-- Champ Nom Complet -->
+            <div>
+                <label for="nomCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Nom Complet :</label>
+                <input type="text" id="nomCommande" name="Nom Client" placeholder="Ex: Marie Dubois"
+                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
 
-        <!-- Message -->
-        <div>
-            <label for="messageAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre message (décrivez votre besoin) :</label>
-            <textarea id="messageAssistance" name="messageAssistance" rows="4" placeholder="Décrivez votre question ou problème ici."
-                      class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-        </div>
+            <!-- Champ Email -->
+            <div>
+                <label for="emailCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Email :</label>
+                <input type="email" id="emailCommande" name="Email Client" placeholder="Ex: votre.email@example.com"
+                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
 
-        <!-- Bouton Envoyer -->
-        <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Envoyer ma demande d'assistance
-        </button>
-    </form>
-</section>
+            <!-- Champ Téléphone -->
+            <div>
+                <label for="telephoneCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Téléphone :</label>
+                <input type="tel" id="telephoneCommande" name="Telephone Client" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"
+                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
 
-<!-- Section Compte à Rebours -->
-<section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-2xl mx-auto text-center mt-12 mb-12">
-    <h2 class="text-2xl sm:text-3xl font-bold text-blue-700 mb-6">Plus que quelques jours pour précommander Gemy !</h2>
-    <div id="countdown" class="flex justify-center flex-wrap gap-4 sm:gap-8">
-        <!-- Les éléments du compte à rebours seront insérés ici par le script JS -->
-    </div>
-</section>
+            <!-- Champ Adresse de livraison -->
+            <div>
+                <label for="adresseLivraison" class="block text-left text-gray-700 text-sm font-semibold mb-2">Adresse complète de livraison :</label>
+                <textarea id="adresseLivraison" name="Adresse de livraison" rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"
+                          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+            </div>
 
-<!-- Section Précommande Tablette Gemy -->
-<section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-xl mx-auto text-center mt-12 mb-12">
-    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 mt-8">Précommander ma Tablette Gemy</h3>
-    <p class="text-gray-600 mb-6">Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyez parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+            <!-- Choix du produit -->
+            <div>
+                <label for="produitCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Choisissez votre produit Gemy :</label>
+                <select id="produitCommande" name="Produit Commande" required
+                        class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
+                    <option value="">-- Sélectionnez votre choix --</option>
+                    <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 €</option>
+                    <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 €</option>
+                </select>
+            </div>
 
-    <form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" class="space-y-6">
-        <!-- Champ Nom Complet -->
-        <div>
-            <label for="nomCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Nom Complet :</label>
-            <input type="text" id="nomCommande" name="nomCommande" placeholder="Ex: Marie Dubois"
-                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-        </div>
+            <!-- Quantité -->
+            <div>
+                <label for="quantite" class="block text-left text-gray-700 text-sm font-semibold mb-2">Quantité (1-20) :</label>
+                <input type="number" id="quantite" name="Quantite" min="1" max="20" value="1"
+                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
 
-        <!-- Champ Email -->
-        <div>
-            <label for="emailCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Email :</label>
-            <input type="email" id="emailCommande" name="emailCommande" placeholder="Ex: votre.email@example.com"
-                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-        </div>
+            <!-- Abonnement assistance -->
+            <div>
+                <label for="abonnementCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Abonnement assistance (optionnel) :</label>
+                <select id="abonnementCommande" name="Abonnement Assistance">
+                    <option value="Non souscrit">Non souscrit</option>
+                    <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 € / mois</option>
+                    <option value="30 Euros l'intervention">30 € l'intervention</option>
+                </select>
+            </div>
 
-        <!-- Champ Téléphone -->
-        <div>
-            <label for="telephoneCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Téléphone :</label>
-            <input type="tel" id="telephoneCommande" name="telephoneCommande" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"
-                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+            <!-- Conditions Générales de Vente et Consentement Gmail -->
+            <div class="flex items-start p-4 border border-gray-300 rounded-lg bg-gray-50 text-left">
+                <input type="checkbox" id="consentGmail" name="consentGmail" class="mt-1 mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
+                <label for="consentGmail" class="text-sm text-gray-700">
+                    Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" class="text-blue-600 hover:underline font-medium">Conditions Générales de Vente</a> de Gemy Solution,
+                    et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
+                    <span class="block text-xs text-gray-600 mt-1">*Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).</span>
+                </label>
+            </div>
 
-        <!-- Champ Adresse de livraison -->
-        <div>
-            <label for="adresseLivraison" class="block text-left text-gray-700 text-sm font-semibold mb-2">Adresse complète de livraison :</label>
-            <textarea id="adresseLivraison" name="adresseLivraison" rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"
-                      class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-        </div>
+            <!-- Bouton de soumission -->
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Envoyer ma précommande
+            </button>
+        </form>
+    </section>
 
-        <!-- Choix du produit -->
-        <div>
-            <label for="produitCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Choisissez votre produit Gemy :</label>
-            <select id="produitCommande" name="produitCommande" required
-                    class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
-                <option value="">-- Sélectionnez votre choix --</option>
-                <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 €</option>
-                <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 €</option>
-            </select>
-        </div>
-
-        <!-- Quantité -->
-        <div>
-            <label for="quantite" class="block text-left text-gray-700 text-sm font-semibold mb-2">Quantité (1-20) :</label>
-            <input type="number" id="quantite" name="quantite" min="1" max="20" value="1"
-                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-        </div>
-
-        <!-- Abonnement assistance -->
-        <div>
-            <label for="abonnementCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Abonnement assistance (optionnel) :</label>
-            <select id="abonnementCommande" name="abonnementCommande"
-                    class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
-                <option value="Non souscrit">Non souscrit</option>
-                <option value="Oui - 9.90 Euros par Mois">Oui - 9,90 € / mois</option>
-                <option value="30 Euros l'intervention">30 € l'intervention</option>
-            </select>
-        </div>
-
-        <!-- Conditions Générales de Vente et Consentement Gmail -->
-        <div class="flex items-start p-4 border border-gray-300 rounded-lg bg-gray-50 text-left">
-            <input type="checkbox" id="consentGmail" name="consentGmail" class="mt-1 mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
-            <label for="consentGmail" class="text-sm text-gray-700">
-                Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" class="text-blue-600 hover:underline font-medium">Conditions Générales de Vente</a> de Gemy Solution,
-                et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
-                <span class="block text-xs text-gray-600 mt-1">*Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).</span>
-            </label>
-        </div>
-
-        <!-- Bouton de soumission -->
-        <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-            Envoyer ma précommande
-        </button>
-    </form>
-</section>
+</div>
 
 <!-- Script JavaScript pour le compte à rebours -->
 <script>
@@ -651,8 +613,7 @@
         }
     }, 1000);
 </script>
-    
-    <style>
+<style>
     .avis-section {
         text-align: center;
         padding: 40px 20px;
@@ -822,7 +783,6 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     <p class="text-gray-500 text-sm mt-8">
                     </p>
 </section>
-
 
 <div class="card contact" id="contact">
     <h2>Nous contacter directement</h2>
