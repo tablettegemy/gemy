@@ -920,6 +920,35 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
+<script>
+  // Désactiver l'envoi normal du formulaire "Assistance"
+  document.getElementById("form-assistance").addEventListener("submit", function(e) {
+    e.preventDefault(); // Bloquer l'envoi classique
+    sendMailto(this); // Envoyer via mailto:
+  });
+
+  // Désactiver l'envoi normal du formulaire "Précommande"
+  document.getElementById("form-commande").addEventListener("submit", function(e) {
+    e.preventDefault();
+    sendMailto(this);
+  });
+
+  // Fonction pour générer le mailto: avec les données du formulaire
+  function sendMailto(form) {
+    const email = form.action.replace("mailto:", ""); // Récupère l'email (gemysolution@gmail.com)
+    const formData = new FormData(form); // Récupère toutes les données du formulaire
+    let body = "";
+
+    // Construit le corps du mail
+    formData.forEach((value, key) => {
+      body += `${key}: ${value}\n`; // Format "Nom: Valeur"
+    });
+
+    // Ouvre le client mail de l'utilisateur
+    window.location.href = `mailto:${email}?body=${encodeURIComponent(body)}&subject=${form.querySelector("[name='subject']")?.value || "Sans objet"}`;
+  }
+</script>
+
 </body>
 </html>
 
