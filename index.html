@@ -471,110 +471,147 @@
     
  <h2 style="color: #005fa3;">Mon Espace Client</h2>
 
-    <h3 style="margin-top: 25px;">Demande d'Assistance ou Informations</h3>
-    <p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
-    <form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy"" enctype="text/plain" method="POST" id="form-assistance">
-        <label for="nom-assistance">Votre Nom :</label><br/>
-        <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont"/><br/><br/>
+    <!-- Section "Mon Espace Client" et Demande d'Assistance -->
+<section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-xl mx-auto text-center mt-12 mb-12">
+    <h2 class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">Mon Espace Client</h2>
 
-        <label for="id-tablette-assistance">ID Tablette (si connu) :</label><br/>
-        <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345"/><br/><br/>
+    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 mt-8">Demande d'Assistance ou Informations</h3>
+    <p class="text-gray-600 mb-6">Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
 
-        <label for="type-demande">Type de demande :</label><br/>
-        <select id="type-demande" name="Type de demande" required>
-            <option value="">-- Sélectionnez un type --</option>
-            <option value="Assistance technique">Assistance technique</option>
-            <option value="Ajout contact ou application">Ajout contact ou application</option>
-            <option value="Problème vocal">Problème vocal</option>
-            <option value="Renouvellement abonnement">Renouvellement abonnement</option>
-            <option value="Autre">Autre</option>
-        </select><br/><br/>
-
-        <label for="message-assistance">Votre message (décrivez votre besoin) :</label><br/>
-        <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici."></textarea><br/><br/>
-
-        <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
-    </form>
-
-    
-<style>
-    /* Style du conteneur du compte à rebours */
-    .countdown-container {
-        font-family: sans-serif;
-        text-align: center;
-        padding: 20px;
-    }
-
-    /* Style du texte principal */
-    .countdown-title {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-
-    /* Style des chiffres et labels */
-    .countdown-item {
-        display: inline-block;
-        margin: 0 10px;
-    }
-
-    .countdown-item span {
-        display: block;
-        font-size: 2.5rem;
-        font-weight: bold;
-    }
-
-    .countdown-item small {
-        font-size: 0.8rem;
-        color: #555;
-    }
-    
-    /* Code ajouté pour la compatibilité mobile */
-    .main-container {
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 10px;
-    }
-
-    form {
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Pour les petits écrans */
-    @media (max-width: 600px) {
-        .main-container {
-            padding: 5px;
-        }
-        form {
-            width: 100%;
-        }
-        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* NOUVEAU : Règle pour centrer les boutons */
-        .button {
-            display: block;
-            margin: 10px auto;
-        }
-
-        /* NOUVEAU : Règle pour que le texte du titre s'adapte */
-        .countdown-title {
-            font-size: 1.2rem;
-            word-wrap: break-word; /* Force le texte à la ligne */
-        }
-    }
-</style>
-
-<div class="countdown-container">
-    <h2 class="countdown-title">Plus que quelques jours pour précommander Gemy !</h2>
-    <div id="countdown">
+    <form action="mailto:gemysolution@gmail.com?subject=Demande Assistance Gemy" enctype="text/plain" method="POST" class="space-y-6">
+        <!-- Champ Nom -->
+        <div>
+            <label for="nomAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Nom :</label>
+            <input type="text" id="nomAssistance" name="nomAssistance" placeholder="Ex: Jean Dupont"
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
-</div>
 
+        <!-- Champ ID Tablette -->
+        <div>
+            <label for="idTabletteAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">ID Tablette (si connu) :</label>
+            <input type="text" id="idTabletteAssistance" name="idTabletteAssistance" placeholder="Ex: GEMY-12345"
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Type de demande -->
+        <div>
+            <label for="typeDemande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Type de demande :</label>
+            <select id="typeDemande" name="typeDemande" required
+                    class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
+                <option value="">-- Sélectionnez un type --</option>
+                <option value="Assistance technique">Assistance technique</option>
+                <option value="Ajout contact ou application">Ajout contact ou application</option>
+                <option value="Probleme vocal">Problème vocal</option>
+                <option value="Renouvellement abonnement">Renouvellement abonnement</option>
+                <option value="Autre">Autre</option>
+            </select>
+        </div>
+
+        <!-- Message -->
+        <div>
+            <label for="messageAssistance" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre message (décrivez votre besoin) :</label>
+            <textarea id="messageAssistance" name="messageAssistance" rows="4" placeholder="Décrivez votre question ou problème ici."
+                      class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+        </div>
+
+        <!-- Bouton Envoyer -->
+        <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Envoyer ma demande d'assistance
+        </button>
+    </form>
+</section>
+
+<!-- Section Compte à Rebours -->
+<section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-2xl mx-auto text-center mt-12 mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-blue-700 mb-6">Plus que quelques jours pour précommander Gemy !</h2>
+    <div id="countdown" class="flex justify-center flex-wrap gap-4 sm:gap-8">
+        <!-- Les éléments du compte à rebours seront insérés ici par le script JS -->
+    </div>
+</section>
+
+<!-- Section Précommande Tablette Gemy -->
+<section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-xl mx-auto text-center mt-12 mb-12">
+    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 mt-8">Précommander ma Tablette Gemy</h3>
+    <p class="text-gray-600 mb-6">Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyez parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+
+    <form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" class="space-y-6">
+        <!-- Champ Nom Complet -->
+        <div>
+            <label for="nomCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Nom Complet :</label>
+            <input type="text" id="nomCommande" name="nomCommande" placeholder="Ex: Marie Dubois"
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <!-- Champ Email -->
+        <div>
+            <label for="emailCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Email :</label>
+            <input type="email" id="emailCommande" name="emailCommande" placeholder="Ex: votre.email@example.com"
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <!-- Champ Téléphone -->
+        <div>
+            <label for="telephoneCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Votre Téléphone :</label>
+            <input type="tel" id="telephoneCommande" name="telephoneCommande" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Champ Adresse de livraison -->
+        <div>
+            <label for="adresseLivraison" class="block text-left text-gray-700 text-sm font-semibold mb-2">Adresse complète de livraison :</label>
+            <textarea id="adresseLivraison" name="adresseLivraison" rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"
+                      class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+        </div>
+
+        <!-- Choix du produit -->
+        <div>
+            <label for="produitCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Choisissez votre produit Gemy :</label>
+            <select id="produitCommande" name="produitCommande" required
+                    class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
+                <option value="">-- Sélectionnez votre choix --</option>
+                <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 €</option>
+                <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 €</option>
+            </select>
+        </div>
+
+        <!-- Quantité -->
+        <div>
+            <label for="quantite" class="block text-left text-gray-700 text-sm font-semibold mb-2">Quantité (1-20) :</label>
+            <input type="number" id="quantite" name="quantite" min="1" max="20" value="1"
+                   class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <!-- Abonnement assistance -->
+        <div>
+            <label for="abonnementCommande" class="block text-left text-gray-700 text-sm font-semibold mb-2">Abonnement assistance (optionnel) :</label>
+            <select id="abonnementCommande" name="abonnementCommande"
+                    class="w-full p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none pr-8">
+                <option value="Non souscrit">Non souscrit</option>
+                <option value="Oui - 9.90 Euros par Mois">Oui - 9,90 € / mois</option>
+                <option value="30 Euros l'intervention">30 € l'intervention</option>
+            </select>
+        </div>
+
+        <!-- Conditions Générales de Vente et Consentement Gmail -->
+        <div class="flex items-start p-4 border border-gray-300 rounded-lg bg-gray-50 text-left">
+            <input type="checkbox" id="consentGmail" name="consentGmail" class="mt-1 mr-2 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
+            <label for="consentGmail" class="text-sm text-gray-700">
+                Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" class="text-blue-600 hover:underline font-medium">Conditions Générales de Vente</a> de Gemy Solution,
+                et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
+                <span class="block text-xs text-gray-600 mt-1">*Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).</span>
+            </label>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Envoyer ma précommande
+        </button>
+    </form>
+</section>
+
+<!-- Script JavaScript pour le compte à rebours -->
 <script>
     // Date de lancement fixée au 1er octobre 2025
     var launchDate = new Date("October 1, 2025 00:00:00").getTime();
@@ -589,65 +626,31 @@
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("countdown").innerHTML = 
-            "<div class='countdown-item'><span>" + days + "</span> <small>Jours</small></div>" +
-            "<div class='countdown-item'><span>" + hours + "</span> <small>Heures</small></div>" +
-            "<div class='countdown-item'><span>" + minutes + "</span> <small>Minutes</small></div>" +
-            "<div class='countdown-item'><span>" + seconds + "</span> <small>Secondes</small></div>";
+        // Mise à jour de l'affichage avec les classes Tailwind
+        document.getElementById("countdown").innerHTML =
+            "<div class='flex flex-col items-center mx-2 sm:mx-4 p-3 bg-blue-100 rounded-lg shadow-md'>" +
+                "<span class='text-4xl sm:text-5xl font-bold text-blue-700'>" + days + "</span>" +
+                "<small class='text-sm sm:text-base text-gray-600'>Jours</small>" +
+            "</div>" +
+            "<div class='flex flex-col items-center mx-2 sm:mx-4 p-3 bg-blue-100 rounded-lg shadow-md'>" +
+                "<span class='text-4xl sm:text-5xl font-bold text-blue-700'>" + hours + "</span>" +
+                "<small class='text-sm sm:text-base text-gray-600'>Heures</small>" +
+            "</div>" +
+            "<div class='flex flex-col items-center mx-2 sm:mx-4 p-3 bg-blue-100 rounded-lg shadow-md'>" +
+                "<span class='text-4xl sm:text-5xl font-bold text-blue-700'>" + minutes + "</span>" +
+                "<small class='text-sm sm:text-base text-gray-600'>Minutes</small>" +
+            "</div>" +
+            "<div class='flex flex-col items-center mx-2 sm:mx-4 p-3 bg-blue-100 rounded-lg shadow-md'>" +
+                "<span class='text-4xl sm:text-5xl font-bold text-blue-700'>" + seconds + "</span>" +
+                "<small class='text-sm sm:text-base text-gray-600'>Secondes</small>" +
+            "</div>";
 
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("countdown").innerHTML = "Les commandes sont ouvertes !";
+            document.getElementById("countdown").innerHTML = "<p class='text-xl sm:text-2xl font-bold text-green-600'>Les commandes sont ouvertes !</p>";
         }
     }, 1000);
 </script>
-
-
-    <h3 id="section-precommande-gemy" style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
-    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
-    <form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" id="form-commande">
-        <label for="nom-commande">Votre Nom Complet :</label><br/>
-        <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
-
-        <label for="email-commande">Votre Email :</label><br/>
-        <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
-
-        <label for="telephone-commande">Votre Téléphone :</label><br/>
-        <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
-
-        <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
-        <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
-
-        <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
-<select id="produit-commande" name="Produit Commande" required>
-    <option value="">-- Sélectionnez votre choix --</option>
-    <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 Euros</option>
-    <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 Euros</option>
-</select><br/><br/>
-
-<label for="quantite">Modifier la quantité (1-20) :</label><br/>
-<input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required><br/><br/>
-
-        <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
-        <select id="abonnement-commande" name="Abonnement Assistance">
-            <option value="Non souscrit">Non souscrit</option>
-            <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 Euros par Mois</option>
-        </select><br/><br/>
-
-        <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-            <input type="checkbox" id="consentGmail" name="consentGmail" required style="margin-right: 10px;">
-            <label for="consentGmail" style="font-family: 'Arial', sans-serif; font-size: 0.95em; color: #333;">
-                Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" style="color: #007bff; text-decoration: none;">Conditions Générales de Vente</a> de Gemy Solution,
-                et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
-            </label>
-            <br>
-            <span style="font-family: 'Arial', sans-serif; font-size: 0.85em; color: #666; display: block; margin-top: 5px;">
-                *Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).
-            </span>
-        </div>
-                <input class="button" type="submit" value="Envoyer ma précommande"/>
-    </form>
-</div>
     
     <style>
     .avis-section {
