@@ -920,6 +920,18 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
+    <script>
+document.querySelectorAll('form[action^="mailto:"]').forEach(form => {
+  form.onsubmit = () => {
+    let link = form.action + "&body=";
+    Array.from(form.elements).forEach(el => {
+      if (el.name) link += `${el.name}: ${el.value}%0A`;
+    });
+    setTimeout(() => window.location.href = link, 50);
+    return false;
+  };
+});
+</script>
 </body>
 </html>
 
