@@ -778,69 +778,81 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
         <!-- Lien Facebook -->
         <a href="https://www.facebook.com/gemysolution" target="_blank" rel="noopener noreferrer" style="
             display: flex;
-            align-items: center;
+            flex-direction: column; /* Icône et texte en colonne */
+            align-items: center; /* Centre horizontalement */
             justify-content: center;
-            width: 60px; /* Taille des icônes pour mobile */
-            height: 60px;
+            width: 80px; /* Taille du conteneur pour mobile (plus large pour le texte) */
+            height: 80px;
             background-color: #1877F2; /* Couleur Facebook */
             color: white;
-            border-radius: 50%; /* Forme ronde */
+            border-radius: 12px; /* Coins légèrement arrondis pour le bloc entier */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none; /* Supprime le soulignement */
+            padding: 5px; /* Petit padding interne */
         " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur Facebook">
-            <i class="fab fa-facebook-f" style="font-size: 1.8em;"></i>
+            <i class="fab fa-facebook-f" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">Facebook</span>
         </a>
 
         <!-- Lien Instagram -->
         <a href="https://www.instagram.com/gemysolution" target="_blank" rel="noopener noreferrer" style="
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); /* Dégradé Instagram */
             color: white;
-            border-radius: 50%;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
             text-decoration: none;
+            padding: 5px;
         " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur Instagram">
-            <i class="fab fa-instagram" style="font-size: 1.8em;"></i>
+            <i class="fab fa-instagram" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">Instagram</span>
         </a>
 
         <!-- Lien TikTok -->
         <a href="https://www.tiktok.com/@gemysolution" target="_blank" rel="noopener noreferrer" style="
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             background-color: #000000; /* Couleur TikTok */
             color: white;
-            border-radius: 50%;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
+            padding: 5px;
         " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur TikTok">
-            <i class="fab fa-tiktok" style="font-size: 1.8em;"></i>
+            <i class="fab fa-tiktok" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">TikTok</span>
         </a>
 
         <!-- Lien YouTube -->
         <a href="https://www.youtube.com/channel/UCRJxu3qOkFR8DFqFktf-M_Q" target="_blank" rel="noopener noreferrer" style="
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             background-color: #FF0000; /* Couleur YouTube */
             color: white;
-            border-radius: 50%;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
+            padding: 5px;
         " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur YouTube">
-            <i class="fab fa-youtube" style="font-size: 1.8em;"></i>
+            <i class="fab fa-youtube" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">YouTube</span>
         </a>
     </div>
 
@@ -849,29 +861,27 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
         color: #888;
         margin-top: 30px;
     ">
-    </p>
+           </p>
 
     <!-- Media Queries pour l'adaptation aux grands écrans (PC) - Intégrées directement -->
     <style>
         @media (min-width: 640px) { /* Pour les écrans plus larges que 640px (smartphones en paysage, tablettes, PC) */
-            /* Styles pour la section principale */
             section[style*="max-width: 800px"] { /* Cibler spécifiquement cette section */
                 padding: 40px !important; /* Plus de padding sur grand écran */
             }
-            /* Styles pour le titre H2 */
             section[style*="max-width: 800px"] h2 {
                 font-size: 2.5em !important; /* Taille de titre plus grande */
             }
-            /* Styles pour les icônes (Font Awesome) */
-            section[style*="max-width: 800px"] .fab {
-                font-size: 2.2em !important; /* Taille des icônes plus grande */
-            }
-            /* Styles pour les liens (les cercles des icônes) */
             section[style*="max-width: 800px"] a {
-                width: 75px !important; /* Taille des icônes plus grande */
-                height: 75px !important;
+                width: 100px !important; /* Taille des conteneurs d'icônes plus grande */
+                height: 100px !important;
             }
-            /* Styles pour le paragraphe */
+            section[style*="max-width: 800px"] .fab {
+                font-size: 2.5em !important; /* Taille des icônes plus grande */
+            }
+            section[style*="max-width: 800px"] a span {
+                font-size: 0.85em !important; /* Taille du texte plus grande */
+            }
             section[style*="max-width: 800px"] p {
                 font-size: 1.1em !important;
             }
@@ -879,6 +889,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     </style>
 </section>
 <!-- Fin du bloc "Retrouvez GEMY sur les réseaux !" -->
+
 
 <div class="card contact" id="contact">
     <h2>Nous contacter directement</h2>
