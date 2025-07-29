@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Gemy Companion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Importation des polices Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Montserrat:wght@400;500;700&display=swap');
@@ -427,7 +428,8 @@
     <p><strong>Abonnement assistance à distance :</strong> 9,90 €/mois</p>
 </div>
 <div class="card">
-     <h2 style="color: #005fa3;">Mon Espace Client</h2>
+    
+ <h2 style="color: #005fa3;">Mon Espace Client</h2>
 
     <h3 style="margin-top: 25px;">Demande d'Assistance ou Informations</h3>
     <p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
@@ -741,6 +743,45 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     <a href="mailto:gemysolution@gmail.com?subject=Mon avis sur Gemy" class="bouton-avis">Envoyer mon avis par e-mail</a>
 </div>
 
+<section class="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-2xl mx-auto text-center mt-12 mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Retrouvez GEMY sur les réseaux !</h2>
+    <p class="text-gray-600 mb-8">Suivez-nous pour les dernières actualités, astuces et offres de la Tablette GEMY Solution.</p>
+
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+        <!-- Lien Facebook -->
+        <a href="https://www.facebook.com/gemysolution" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+           aria-label="Suivez-nous sur Facebook">
+            <i class="fab fa-facebook-f text-3xl sm:text-4xl"></i>
+        </a>
+
+        <!-- Lien Instagram -->
+        <a href="https://www.instagram.com/gemysolution" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-pink-600 hover:bg-pink-700 text-white rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+           aria-label="Suivez-nous sur Instagram">
+            <i class="fab fa-instagram text-3xl sm:text-4xl"></i>
+        </a>
+
+        <!-- Lien TikTok -->
+        <a href="https://www.tiktok.com/@gemysolution" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-black hover:bg-gray-800 text-white rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+           aria-label="Suivez-nous sur TikTok">
+            <i class="fab fa-tiktok text-3xl sm:text-4xl"></i>
+        </a>
+
+        <!-- Lien YouTube -->
+        <a href="https://www.youtube.com/channel/gemysolution" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-red-600 hover:bg-red-700 text-white rounded-full shadow-md transition-all duration-300 transform hover:scale-105"
+           aria-label="Suivez-nous sur YouTube">
+            <i class="fab fa-youtube text-3xl sm:text-4xl"></i>
+        </a>
+    </div>
+
+    <p class="text-gray-500 text-sm mt-8">
+                    </p>
+</section>
+
+
 <div class="card contact" id="contact">
     <h2>Nous contacter directement</h2>
     <p><strong>Gemy Solution</p>
@@ -766,7 +807,8 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     font-size: 15px;
   }
 }
-</style>
+
+</style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
 </body>
