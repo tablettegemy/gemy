@@ -921,6 +921,56 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
 </body>
+<script>
+// Solution light sans aucun impact sur le layout
+document.addEventListener('DOMContentLoaded', function() {
+  const forms = document.querySelectorAll('form[action^="mailto:"]');
+  const style = document.createElement('style');
+  style.textContent = `
+    .gemy-warning {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background: #FFF3CD;
+      color: #856404;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 9999;
+      display: none;
+      border: 1px solid #FFEEBA;
+    }
+    .gemy-warning-close {
+      float: right;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  `;
+  document.head.appendChild(style);
+
+  const warning = document.createElement('div');
+  warning.className = 'gemy-warning';
+  warning.innerHTML = `
+    ℹ️ Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée" Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
+    <span class="gemy-warning-close" onclick="this.parentElement.style.display='none'">×</span>
+  `;
+  document.body.appendChild(warning);
+
+  forms.forEach(form => {
+    const fields = form.querySelectorAll('input, textarea, select');
+    fields.forEach(field => {
+      field.addEventListener('focus', () => {
+        warning.style.display = 'block';
+        setTimeout(() => warning.style.display = 'none', 20000);
+      });
+    });
+  });
+});
+</script>
+
 </html>
 
 <style>
