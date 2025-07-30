@@ -456,13 +456,13 @@
     </div>
 
     <label for="nom-assistance">Votre Nom :</label><br/>
-    <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont"/><br/><br/>
+    <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
 
     <label for="id-tablette-assistance">ID Tablette (si connu) :</label><br/>
-    <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345"/><br/><br/>
+    <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
 
     <label for="type-demande">Type de demande :</label><br/>
-    <select id="type-demande" name="Type de demande" required>
+    <select id="type-demande" name="Type de demande" required style="box-sizing: border-box !important; width: 100% !important;">
         <option value="">-- Sélectionnez un type --</option>
         <option value="Assistance technique">Assistance technique</option>
         <option value="Ajout contact ou application">Ajout contact ou application</option>
@@ -472,7 +472,7 @@
     </select><br/><br/>
 
     <label for="message-assistance">Votre message (décrivez votre besoin) :</label><br/>
-    <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici."></textarea><br/><br/>
+    <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici." style="box-sizing: border-box !important; width: 100% !important;"></textarea><br/><br/>
 
     <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
 </form>
@@ -521,7 +521,7 @@
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
-        box-sizing: border-box; /* AJOUTÉ ICI POUR ÉVITER LES DÉCALAGES */
+        box-sizing: border-box; /* AJOUTÉ ICI POUR ÉVITER LES DÉCALAGES SUR TOUTES LES TAILLES D'ÉCRAN */
     }
 
     /* Pour les petits écrans */
@@ -612,29 +612,29 @@
     </div>
 
     <label for="nom-commande">Votre Nom Complet :</label><br/>
-    <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
+    <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
 
     <label for="email-commande">Votre Email :</label><br/>
-    <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
+    <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
 
     <label for="telephone-commande">Votre Téléphone :</label><br/>
-    <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
+    <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
 
     <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
-    <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
+    <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France" style="box-sizing: border-box !important; width: 100% !important;"></textarea><br/><br/>
 
     <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
-<select id="produit-commande" name="Produit Commande" required>
+<select id="produit-commande" name="Produit Commande" required style="box-sizing: border-box !important; width: 100% !important;">
     <option value="">-- Sélectionnez votre choix --</option>
     <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 Euros</option>
     <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 Euros</option>
 </select><br/><br/>
 
 <label for="quantite">Modifier la quantité (1-20) :</label><br/>
-<input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required><br/><br/>
+<input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
 
     <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
-    <select id="abonnement-commande" name="Abonnement Assistance">
+    <select id="abonnement-commande" name="Abonnement Assistance" style="box-sizing: border-box !important; width: 100% !important;">
         <option value="Non souscrit">Non souscrit</option>
         <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 Euros par Mois</option>
     </select><br/><br/>
@@ -652,6 +652,7 @@
     </div>
     <input class="button" type="submit" value="Envoyer ma précommande"/>
 </form>
+
     
     <style>
     .avis-section {
