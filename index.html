@@ -435,6 +435,7 @@
 <p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
 
 <!-- Message de rassurance personnalisé pour le formulaire d'assistance (initialement caché) -->
+<!-- Positionné juste avant le formulaire d'assistance -->
 <div class="reassurance-message" style="
     background-color: #fff3cd; /* Jaune très clair */
     border: 1px solid #ffeeba; /* Bordure jaune */
@@ -446,11 +447,12 @@
     line-height: 1.4;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    font-family: sans-serif; /* Utilise une police sans-serif générique pour éviter les conflits */
-    max-width: 600px; /* Limite la largeur du message */
+    font-family: sans-serif; /* Police simple pour la lisibilité */
+    max-width: 600px; /* Limite la largeur du message comme le formulaire */
     margin-left: auto; /* Centre le message */
     margin-right: auto; /* Centre le message */
     display: none; /* Initialement caché */
+    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur */
 ">
     <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
     Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
@@ -590,6 +592,7 @@
 <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
 
 <!-- Message de rassurance personnalisé pour le formulaire de précommande (initialement caché) -->
+<!-- Positionné juste avant le formulaire de précommande -->
 <div class="reassurance-message" style="
     background-color: #fff3cd; /* Jaune très clair */
     border: 1px solid #ffeeba; /* Bordure jaune */
@@ -601,11 +604,12 @@
     line-height: 1.4;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    font-family: sans-serif; /* Utilise une police sans-serif générique pour éviter les conflits */
-    max-width: 600px; /* Limite la largeur du message */
+    font-family: sans-serif; /* Police simple pour la lisibilité */
+    max-width: 600px; /* Limite la largeur du message comme le formulaire */
     margin-left: auto; /* Centre le message */
     margin-right: auto; /* Centre le message */
     display: none; /* Initialement caché */
+    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur */
 ">
     <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
     Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
@@ -654,7 +658,7 @@
     <input class="button" type="submit" value="Envoyer ma précommande"/>
 </form>
 
-<!-- Script JavaScript pour gérer le message de rassurance -->
+<!-- Script JavaScript pour gérer les messages de rassurance -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var formAssistance = document.getElementById('form-assistance');
@@ -662,17 +666,20 @@
         // Sélectionne TOUS les messages de rassurance par leur classe
         var reassuranceMessages = document.querySelectorAll('.reassurance-message');
 
-        // Fonction pour montrer TOUS les messages
-        function showReassuranceMessages() {
+        // Fonction pour montrer le message spécifique au formulaire qui a reçu le focus
+        function showReassuranceMessageForForm(formElement) {
             reassuranceMessages.forEach(function(message) {
-                if (message && message.style.display === 'none') {
-                    message.style.display = 'block';
-                }
+                message.style.display = 'none'; // Cache tous les messages d'abord
             });
+            // Trouve le message de rassurance qui est le PRÉCÉDENT FRÈRE du formulaire
+            let targetMessage = formElement.previousElementSibling;
+            if (targetMessage && targetMessage.classList.contains('reassurance-message')) {
+                targetMessage.style.display = 'block';
+            }
         }
 
         // Fonction pour cacher TOUS les messages définitivement
-        function hideReassuranceMessagesPermanently() {
+        function hideAllReassuranceMessagesPermanently() {
             reassuranceMessages.forEach(function(message) {
                 if (message) {
                     message.style.display = 'none';
@@ -687,11 +694,13 @@
             var allFormElements = document.querySelectorAll('#form-assistance input, #form-assistance select, #form-assistance textarea, #form-commande input, #form-commande select, #form-commande textarea');
 
             allFormElements.forEach(function(element) {
-                // Montre les messages quand un champ reçoit le focus (clic ou tabulation)
-                element.addEventListener('focus', showReassuranceMessages);
-                // Cache les messages définitivement dès la première saisie ou changement
-                element.addEventListener('input', hideReassuranceMessagesPermanently);
-                element.addEventListener('change', hideReassuranceMessagesPermanently); // Pour les <select>
+                // Montre le message spécifique au formulaire parent quand un champ reçoit le focus
+                element.addEventListener('focus', function() {
+                    showReassuranceMessageForForm(element.closest('form'));
+                });
+                // Cache tous les messages définitivement dès la première saisie ou changement
+                element.addEventListener('input', hideAllReassuranceMessagesPermanently);
+                element.addEventListener('change', hideAllReassuranceMessagesPermanently); // Pour les <select>
             });
         }
 
@@ -699,9 +708,9 @@
         function removeAllListeners() {
             var allFormElements = document.querySelectorAll('#form-assistance input, #form-assistance select, #form-assistance textarea, #form-commande input, #form-commande select, #form-commande textarea');
             allFormElements.forEach(function(element) {
-                element.removeEventListener('focus', showReassuranceMessages);
-                element.removeEventListener('input', hideReassuranceMessagesPermanently);
-                element.removeEventListener('change', hideReassuranceMessagesPermanently);
+                element.removeEventListener('focus', function() {}); // Supprime l'écouteur focus
+                element.removeEventListener('input', hideAllReassuranceMessagesPermanently);
+                element.removeEventListener('change', hideAllReassuranceMessagesPermanently);
             });
         }
 
