@@ -428,49 +428,11 @@
 </div>
 <div class="card">
     
-<!-- NOUVEAU CONTENEUR GLOBAL POUR ASSURER LA RESPONSIVITE ET L'ISOLATION -->
-<div style="
-    width: 100% !important;
-    max-width: 800px !important; /* Limite la largeur sur les grands écrans */
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 10px !important; /* Un peu de padding pour les bords sur mobile */
-    box-sizing: border-box !important; /* Crucial pour la responsivité */
-    font-family: sans-serif !important; /* Assure une police de base cohérente */
-">
-
-    <!-- Section "Mon Espace Client" et Demande d'Assistance -->
-    <h2 style="color: #005fa3;">Mon Espace Client</h2>
+ <h2 style="color: #005fa3;">Mon Espace Client</h2>
 
     <h3 style="margin-top: 25px;">Demande d'Assistance ou Informations</h3>
     <p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
-
-    <!-- Message de rassurance personnalisé pour le formulaire d'assistance (initialement caché) -->
-    <!-- Positionné juste avant le formulaire d'assistance -->
-    <div class="reassurance-message" style="
-        background-color: #fff3cd; /* Jaune très clair */
-        border: 1px solid #ffeeba; /* Bordure jaune */
-        color: #856404; /* Texte jaune foncé */
-        padding: 15px;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        font-size: 0.95em;
-        line-height: 1.4;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        font-family: sans-serif; /* Police simple pour la lisibilité */
-        width: 100%; /* Prend la largeur du conteneur parent (le formulaire) */
-        max-width: 600px; /* Limite la largeur du message comme le formulaire */
-        margin-left: auto; /* Centre le message */
-        margin-right: auto; /* Centre le message */
-        display: none; /* Initialement caché */
-        box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur */
-    ">
-        <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
-        Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
-    </div>
-
-    <form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy" enctype="text/plain" method="POST" id="form-assistance">
+    <form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy"" enctype="text/plain" method="POST" id="form-assistance">
         <label for="nom-assistance">Votre Nom :</label><br/>
         <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont"/><br/><br/>
 
@@ -493,178 +455,143 @@
         <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
     </form>
 
-    <!-- VOTRE BLOC STYLE ORIGINAL - AUCUNE MODIFICATION MAJEURE SAUF POUR LA RESPONSIVITÉ DES FORMULAIRES -->
-    <style>
-        /* Style du conteneur du compte à rebours */
-        .countdown-container {
-            font-family: sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
+    
+<style>
+    /* Style du conteneur du compte à rebours */
+    .countdown-container {
+        font-family: sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
 
-        /* Style du texte principal */
-        .countdown-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
+    /* Style du texte principal */
+    .countdown-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
 
-        /* Style des chiffres et labels */
-        .countdown-item {
-            display: inline-block;
-            margin: 0 10px;
-        }
+    /* Style des chiffres et labels */
+    .countdown-item {
+        display: inline-block;
+        margin: 0 10px;
+    }
 
-        .countdown-item span {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
+    .countdown-item span {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
 
-        .countdown-item small {
-            font-size: 0.8rem;
-            color: #555;
-        }
-        
-        /* Code ajouté pour la compatibilité mobile */
-        /* Note: .main-container n'est pas utilisé dans le HTML fourni, mais conservé si vous l'utilisez ailleurs */
+    .countdown-item small {
+        font-size: 0.8rem;
+        color: #555;
+    }
+    
+    /* Code ajouté pour la compatibilité mobile */
+    .main-container {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    form {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Pour les petits écrans */
+    @media (max-width: 600px) {
         .main-container {
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 10px;
+            padding: 5px;
         }
-
-        /* Styles pour les formulaires (ajustés pour la responsivité) */
         form {
-            max-width: 600px; /* Limite la largeur sur les grands écrans */
-            margin-left: auto;
-            margin-right: auto;
-            /* Ajouté pour s'assurer que le formulaire est bien un bloc et gère son propre espacement */
-            display: block; 
-            padding: 20px; /* Ajouté pour un meilleur espacement interne */
-            border: 1px solid #ddd; /* Ajouté pour le cadre du formulaire */
-            border-radius: 8px; /* Ajouté pour les bords arrondis */
-            background-color: #f9f9f9; /* Ajouté pour le fond du formulaire */
-            box-sizing: border-box; /* Crucial pour la responsivité */
+            width: 100%;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%;
+            box-sizing: border-box;
         }
 
-        /* Pour les petits écrans */
-        @media (max-width: 600px) {
-            .main-container {
-                padding: 5px;
-            }
-            form {
-                width: 100%; /* Le formulaire prend toute la largeur disponible sur mobile */
-            }
-            input[type="text"], input[type="email"], input[type="tel"], select, textarea {
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            /* Règle pour centrer les boutons */
-            .button {
-                display: block;
-                margin: 10px auto;
-            }
-
-            /* Règle pour que le texte du titre s'adapte */
-            .countdown-title {
-                font-size: 1.2rem;
-                word-wrap: break-word; /* Force le texte à la ligne */
-            }
+        /* NOUVEAU : Règle pour centrer les boutons */
+        .button {
+            display: block;
+            margin: 10px auto;
         }
-    </style>
 
-    <div class="countdown-container">
-        <h2 class="countdown-title">Plus que quelques jours pour précommander Gemy !</h2>
-        <div id="countdown">
-            </div>
-    </div>
+        /* NOUVEAU : Règle pour que le texte du titre s'adapte */
+        .countdown-title {
+            font-size: 1.2rem;
+            word-wrap: break-word; /* Force le texte à la ligne */
+        }
+    }
+</style>
 
-    <script>
-        // Date de lancement fixée au 1er octobre 2025
-        var launchDate = new Date("October 1, 2025 00:00:00").getTime();
+<div class="countdown-container">
+    <h2 class="countdown-title">Plus que quelques jours pour précommander Gemy !</h2>
+    <div id="countdown">
+        </div>
+</div>
 
-        // Met à jour le compte à rebours toutes les secondes
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = launchDate - now;
+<script>
+    // Date de lancement fixée au 1er octobre 2025
+    var launchDate = new Date("October 1, 2025 00:00:00").getTime();
 
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Met à jour le compte à rebours toutes les secondes
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = launchDate - now;
 
-            document.getElementById("countdown").innerHTML = 
-                "<div class='countdown-item'><span>" + days + "</span> <small>Jours</small></div>" +
-                "<div class='countdown-item'><span>" + hours + "</span> <small>Heures</small></div>" +
-                "<div class='countdown-item'><span>" + minutes + "</span> <small>Minutes</small></div>" +
-                "<div class='countdown-item'><span>" + seconds + "</span> <small>Secondes</small></div>";
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "Les commandes sont ouvertes !";
-            }
-        }, 1000);
-    </script>
+        document.getElementById("countdown").innerHTML = 
+            "<div class='countdown-item'><span>" + days + "</span> <small>Jours</small></div>" +
+            "<div class='countdown-item'><span>" + hours + "</span> <small>Heures</small></div>" +
+            "<div class='countdown-item'><span>" + minutes + "</span> <small>Minutes</small></div>" +
+            "<div class='countdown-item'><span>" + seconds + "</span> <small>Secondes</small></div>";
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Les commandes sont ouvertes !";
+        }
+    }, 1000);
+</script>
 
 
     <h3 id="section-precommande-gemy" style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
-    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+    <form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" id="form-commande">
+        <label for="nom-commande">Votre Nom Complet :</label><br/>
+        <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
 
-    <!-- Message de rassurance personnalisé pour le formulaire de précommande (initialement caché) -->
-    <!-- Positionné juste avant le formulaire de précommande -->
-    <div class="reassurance-message" style="
-        background-color: #fff3cd; /* Jaune très clair */
-        border: 1px solid #ffeeba; /* Bordure jaune */
-        color: #856404; /* Texte jaune foncé */
-        padding: 15px;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        font-size: 0.95em;
-        line-height: 1.4;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        font-family: sans-serif; /* Police simple pour la lisibilité */
-        width: 100%; /* Prend la largeur du conteneur parent (le formulaire) */
-        max-width: 600px; /* Limite la largeur du message comme le formulaire */
-        margin-left: auto; /* Centre le message */
-        margin-right: auto; /* Centre le message */
-        display: none; /* Initialement caché */
-        box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur */
-    ">
-        <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
-        Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
-    </div>
+        <label for="email-commande">Votre Email :</label><br/>
+        <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
 
-    <form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" id="form-commande">
-        <label for="nom-commande">Votre Nom Complet :</label><br/>
-        <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
+        <label for="telephone-commande">Votre Téléphone :</label><br/>
+        <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
 
-        <label for="email-commande">Votre Email :</label><br/>
-        <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
+        <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
+        <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
 
-        <label for="telephone-commande">Votre Téléphone :</label><br/>
-        <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
+        <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
+<select id="produit-commande" name="Produit Commande" required>
+    <option value="">-- Sélectionnez votre choix --</option>
+    <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 Euros</option>
+    <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 Euros</option>
+</select><br/><br/>
 
-        <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
-        <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
+<label for="quantite">Modifier la quantité (1-20) :</label><br/>
+<input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required><br/><br/>
 
-        <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
-    <select id="produit-commande" name="Produit Commande" required>
-        <option value="">-- Sélectionnez votre choix --</option>
-        <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 Euros</option>
-        <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 Euros</option>
-    </select><br/><br/>
-
-    <label for="quantite">Modifier la quantité (1-20) :</label><br/>
-    <input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required><br/><br/>
-
-        <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
-        <select id="abonnement-commande" name="Abonnement Assistance">
-            <option value="Non souscrit">Non souscrit</option>
-            <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 Euros par Mois</option>
-        </select><br/><br/>
+        <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
+        <select id="abonnement-commande" name="Abonnement Assistance">
+            <option value="Non souscrit">Non souscrit</option>
+            <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 Euros par Mois</option>
+        </select><br/><br/>
 
         <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
             <input type="checkbox" id="consentGmail" name="consentGmail" required style="margin-right: 10px;">
@@ -677,73 +604,9 @@
                 *Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).
             </span>
         </div>
-        <input class="button" type="submit" value="Envoyer ma précommande"/>
-    </form>
-
-    <!-- Script JavaScript pour gérer les messages de rassurance -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var forms = document.querySelectorAll('form'); // Sélectionne tous les formulaires
-            var reassuranceMessages = document.querySelectorAll('.reassurance-message');
-            var activeFormElements = []; // Pour suivre les éléments de formulaire actuellement actifs
-
-            // Fonction pour cacher tous les messages de rassurance
-            function hideAllReassuranceMessages() {
-                reassuranceMessages.forEach(function(message) {
-                    message.style.display = 'none';
-                });
-            }
-
-            // Fonction pour montrer le message spécifique au formulaire parent de l'élément focusé
-            function showReassuranceMessageForElement(element) {
-                hideAllReassuranceMessages(); // Cache tous les messages avant d'en afficher un nouveau
-                let formElement = element.closest('form');
-                if (formElement) {
-                    // Trouve le message de rassurance qui est le PRÉCÉDENT FRÈRE du formulaire
-                    let targetMessage = formElement.previousElementSibling;
-                    // Assure que c'est bien le div de message et non un autre élément
-                    if (targetMessage && targetMessage.classList.contains('reassurance-message')) {
-                        targetMessage.style.display = 'block';
-                    }
-                }
-            }
-
-            // Collecte tous les éléments de formulaire une seule fois
-            forms.forEach(function(form) {
-                var elements = form.querySelectorAll('input, select, textarea');
-                elements.forEach(function(element) {
-                    activeFormElements.push(element);
-                });
-            });
-
-            // Ajoute les écouteurs d'événements à tous les éléments de formulaire
-            activeFormElements.forEach(function(element) {
-                element.addEventListener('focus', function() {
-                    showReassuranceMessageForElement(this); // 'this' fait référence à l'élément qui a reçu le focus
-                });
-
-                element.addEventListener('blur', function() {
-                    // Utilise un petit délai pour permettre au focus de se déplacer vers un autre champ
-                    // avant de décider de masquer le message.
-                    setTimeout(function() {
-                        let isAnyFormElementFocused = false;
-                        activeFormElements.forEach(function(el) {
-                            if (document.activeElement === el) {
-                                isAnyFormElementFocused = true;
-                            }
-                        });
-
-                        // Si aucun élément de formulaire n'est focusé, cache tous les messages
-                        if (!isAnyFormElementFocused) {
-                            hideAllReassuranceMessages();
-                        }
-                    }, 50); // Délai de 50ms
-                });
-            });
-        });
-    </script>
-
-</div> <!-- FIN DU NOUVEAU CONTENEUR GLOBAL -->
+                <input class="button" type="submit" value="Envoyer ma précommande"/>
+    </form>
+</div>
     
     <style>
     .avis-section {
