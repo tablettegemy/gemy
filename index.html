@@ -429,59 +429,118 @@
 <div class="card">
     
 <!-- Section "Mon Espace Client" et Demande d'Assistance -->
-<h2 style="color: #005fa3;">Mon Espace Client</h2>
+<h2 style="color: #005fa3 !important; margin-top: 0px !important; margin-bottom: 25px !important; text-align: center !important; font-size: 2em !important; box-sizing: border-box !important;">Mon Espace Client</h2>
 
-<h3 style="margin-top: 25px;">Demande d'Assistance ou Informations</h3>
-<p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
+<h3 style="margin-top: 25px !important; margin-bottom: 15px !important; text-align: center !important; font-size: 1.5em !important; box-sizing: border-box !important;">Demande d'Assistance ou Informations</h3>
+<p style="margin-bottom: 20px !important; text-align: center !important; font-size: 1em !important; line-height: 1.5 !important; box-sizing: border-box !important;">Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
 
 <!-- Message de rassurance personnalisé pour le formulaire d'assistance (initialement caché) -->
 <!-- Positionné juste avant le formulaire d'assistance -->
 <div class="reassurance-message" style="
-    background-color: #fff3cd; /* Jaune très clair */
-    border: 1px solid #ffeeba; /* Bordure jaune */
-    color: #856404; /* Texte jaune foncé */
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-size: 0.95em;
-    line-height: 1.4;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    font-family: sans-serif; /* Police simple pour la lisibilité */
-    max-width: 600px; /* Limite la largeur du message comme le formulaire */
-    margin-left: auto; /* Centre le message */
-    margin-right: auto; /* Centre le message */
-    display: none; /* Initialement caché */
-    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur */
+    background-color: #fff3cd !important; /* Jaune très clair */
+    border: 1px solid #ffeeba !important; /* Bordure jaune */
+    color: #856404 !important; /* Texte jaune foncé */
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    border-radius: 8px !important;
+    font-size: 0.95em !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    font-family: sans-serif !important; /* Police simple pour la lisibilité */
+    width: 90% !important; /* Largeur pour mobile */
+    max-width: 600px !important; /* Limite la largeur du message comme le formulaire */
+    margin-left: auto !important; /* Centre le message */
+    margin-right: auto !important; /* Centre le message */
+    display: none !important; /* Initialement caché */
+    box-sizing: border-box !important; /* Assure que padding et border sont inclus dans la largeur */
 ">
     <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
     Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
 </div>
 
-<form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy" enctype="text/plain" method="POST" id="form-assistance">
-    <label for="nom-assistance">Votre Nom :</label><br/>
-    <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont"/><br/><br/>
+<form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy" enctype="text/plain" method="POST" id="form-assistance" style="
+    width: 90% !important; /* Largeur pour mobile */
+    max-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 20px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    background-color: #f9f9f9 !important;
+    box-sizing: border-box !important; /* Essentiel pour éviter les débordements */
+    display: block !important; /* S'assure que le formulaire est un bloc */
+">
+    <label for="nom-assistance" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Votre Nom :</label>
+    <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont" style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+    "/><br/>
 
-    <label for="id-tablette-assistance">ID Tablette (si connu) :</label><br/>
-    <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345"/><br/><br/>
+    <label for="id-tablette-assistance" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">ID Tablette (si connu) :</label>
+    <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345" style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+    "/><br/>
 
-    <label for="type-demande">Type de demande :</label><br/>
-    <select id="type-demande" name="Type de demande" required>
+    <label for="type-demande" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Type de demande :</label>
+    <select id="type-demande" name="Type de demande" required style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+        background-color: white !important;
+    ">
         <option value="">-- Sélectionnez un type --</option>
         <option value="Assistance technique">Assistance technique</option>
         <option value="Ajout contact ou application">Ajout contact ou application</option>
         <option value="Problème vocal">Problème vocal</option>
         <option value="Renouvellement abonnement">Renouvellement abonnement</option>
         <option value="Autre">Autre</option>
-    </select><br/><br/>
+    </select><br/>
 
-    <label for="message-assistance">Votre message (décrivez votre besoin) :</label><br/>
-    <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici."></textarea><br/><br/>
+    <label for="message-assistance" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Votre message (décrivez votre besoin) :</label>
+    <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici." style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+        resize: vertical !important; /* Permet le redimensionnement vertical */
+    "></textarea><br/>
 
-    <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
+    <input class="button" type="submit" value="Envoyer ma demande d'assistance" style="
+        display: block !important; /* Pour centrer le bouton */
+        width: auto !important; /* Largeur automatique */
+        padding: 10px 20px !important;
+        margin: 10px auto !important; /* Centre le bouton */
+        background-color: #007bff !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 5px !important;
+        cursor: pointer !important;
+        font-size: 1em !important;
+        transition: background-color 0.3s ease !important;
+    "/>
 </form>
 
 <!-- Votre style existant pour le compte à rebours et la compatibilité mobile -->
+<!-- Note: Ce bloc style est conservé car il était déjà dans votre code original. -->
 <style>
     /* Style du conteneur du compte à rebours */
     .countdown-container {
@@ -594,22 +653,23 @@
 <!-- Message de rassurance personnalisé pour le formulaire de précommande (initialement caché) -->
 <!-- Positionné juste avant le formulaire de précommande -->
 <div class="reassurance-message" style="
-    background-color: #fff3cd; /* Jaune très clair */
-    border: 1px solid #ffeeba; /* Bordure jaune */
-    color: #856404; /* Texte jaune foncé */
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-size: 0.95em;
-    line-height: 1.4;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    font-family: sans-serif; /* Police simple pour la lisibilité */
-    max-width: 600px; /* Limite la largeur du message comme le formulaire */
-    margin-left: auto; /* Centre le message */
-    margin-right: auto; /* Centre le message */
-    display: none; /* Initialement caché */
-    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur */
+    background-color: #fff3cd !important; /* Jaune très clair */
+    border: 1px solid #ffeeba !important; /* Bordure jaune */
+    color: #856404 !important; /* Texte jaune foncé */
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    border-radius: 8px !important;
+    font-size: 0.95em !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    font-family: sans-serif !important; /* Police simple pour la lisibilité */
+    width: 90% !important; /* Largeur pour mobile */
+    max-width: 600px !important; /* Limite la largeur du message comme le formulaire */
+    margin-left: auto !important; /* Centre le message */
+    margin-right: auto !important; /* Centre le message */
+    display: none !important; /* Initialement caché */
+    box-sizing: border-box !important; /* Assure que padding et border sont inclus dans la largeur */
 ">
     <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
     Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
@@ -673,6 +733,7 @@
             });
             // Trouve le message de rassurance qui est le PRÉCÉDENT FRÈRE du formulaire
             let targetMessage = formElement.previousElementSibling;
+            // Assure que c'est bien le div de message et non un autre élément
             if (targetMessage && targetMessage.classList.contains('reassurance-message')) {
                 targetMessage.style.display = 'block';
             }
