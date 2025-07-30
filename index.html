@@ -428,56 +428,34 @@
 </div>
 <div class="card">
     
-<h2 style="color: #005fa3;">Mon Espace Client</h2>
+ <h2 style="color: #005fa3;">Mon Espace Client</h2>
 
-<h3 style="margin-top: 25px;">Demande d'Assistance ou Informations</h3>
-<p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
+    <h3 style="margin-top: 25px;">Demande d'Assistance ou Informations</h3>
+    <p>Vous avez une question sur votre tablette Gemy ou besoin d'aide ? Remplissez ce formulaire pour nous contacter. Nous vous recontacterons rapidement !</p>
+    <form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy"" enctype="text/plain" method="POST" id="form-assistance">
+        <label for="nom-assistance">Votre Nom :</label><br/>
+        <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont"/><br/><br/>
 
-<form action="mailto:gemysolution@gmail.com?subject=Assistance Gemy" enctype="text/plain" method="POST" id="form-assistance">
-    <!-- Message de rassurance fixe pour le formulaire d'assistance -->
-    <div style="
-        background-color: #fff3cd !important; /* Jaune très clair */
-        border: 1px solid #ffeeba !important; /* Bordure jaune */
-        color: #856404 !important; /* Texte jaune foncé */
-        padding: 15px !important;
-        margin-bottom: 20px !important;
-        border-radius: 8px !important;
-        font-size: 0.95em !important;
-        line-height: 1.4 !important;
-        text-align: center !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
-        font-family: sans-serif !important; /* Police simple pour la lisibilité */
-        width: 100% !important; /* Prend la largeur du conteneur parent (le formulaire) */
-        box-sizing: border-box !important; /* Assure que padding et border sont inclus dans la largeur */
-        display: block !important; /* Toujours visible */
-    ">
-        <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
-        Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
-    </div>
+        <label for="id-tablette-assistance">ID Tablette (si connu) :</label><br/>
+        <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345"/><br/><br/>
 
-    <label for="nom-assistance">Votre Nom :</label><br/>
-    <input id="nom-assistance" name="Nom" required type="text" placeholder="Ex: Jean Dupont" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
+        <label for="type-demande">Type de demande :</label><br/>
+        <select id="type-demande" name="Type de demande" required>
+            <option value="">-- Sélectionnez un type --</option>
+            <option value="Assistance technique">Assistance technique</option>
+            <option value="Ajout contact ou application">Ajout contact ou application</option>
+            <option value="Problème vocal">Problème vocal</option>
+            <option value="Renouvellement abonnement">Renouvellement abonnement</option>
+            <option value="Autre">Autre</option>
+        </select><br/><br/>
 
-    <label for="id-tablette-assistance">ID Tablette (si connu) :</label><br/>
-    <input id="id-tablette-assistance" name="ID Tablette" type="text" placeholder="Ex: GEMY-12345" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
+        <label for="message-assistance">Votre message (décrivez votre besoin) :</label><br/>
+        <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici."></textarea><br/><br/>
 
-    <label for="type-demande">Type de demande :</label><br/>
-    <select id="type-demande" name="Type de demande" required style="box-sizing: border-box !important; width: 100% !important;">
-        <option value="">-- Sélectionnez un type --</option>
-        <option value="Assistance technique">Assistance technique</option>
-        <option value="Ajout contact ou application">Ajout contact ou application</option>
-        <option value="Problème vocal">Problème vocal</option>
-        <option value="Renouvellement abonnement">Renouvellement abonnement</option>
-        <option value="Autre">Autre</option>
-    </select><br/><br/>
+        <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
+    </form>
 
-    <label for="message-assistance">Votre message (décrivez votre besoin) :</label><br/>
-    <textarea cols="50" id="message-assistance" name="Message" required rows="4" placeholder="Décrivez votre question ou problème ici." style="box-sizing: border-box !important; width: 100% !important;"></textarea><br/><br/>
-
-    <input class="button" type="submit" value="Envoyer ma demande d'assistance"/>
-</form>
-
-<!-- VOTRE BLOC STYLE ORIGINAL - SEULE MODIFICATION : box-sizing: border-box; sur form -->
+    
 <style>
     /* Style du conteneur du compte à rebours */
     .countdown-container {
@@ -521,7 +499,6 @@
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
-        box-sizing: border-box; /* AJOUTÉ ICI POUR ÉVITER LES DÉCALAGES SUR TOUTES LES TAILLES D'ÉCRAN */
     }
 
     /* Pour les petits écrans */
@@ -531,20 +508,19 @@
         }
         form {
             width: 100%;
-            box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur */
         }
         input[type="text"], input[type="email"], input[type="tel"], select, textarea {
             width: 100%;
             box-sizing: border-box;
         }
 
-        /* Règle pour centrer les boutons */
+        /* NOUVEAU : Règle pour centrer les boutons */
         .button {
             display: block;
             margin: 10px auto;
         }
 
-        /* Règle pour que le texte du titre s'adapte */
+        /* NOUVEAU : Règle pour que le texte du titre s'adapte */
         .countdown-title {
             font-size: 1.2rem;
             word-wrap: break-word; /* Force le texte à la ligne */
@@ -586,72 +562,51 @@
 </script>
 
 
-<h3 id="section-precommande-gemy" style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
-<p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+    <h3 id="section-precommande-gemy" style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
+    <p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+    <form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" id="form-commande">
+        <label for="nom-commande">Votre Nom Complet :</label><br/>
+        <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
 
-<form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" id="form-commande">
-    <!-- Message de rassurance fixe pour le formulaire de précommande -->
-    <div style="
-        background-color: #fff3cd !important; /* Jaune très clair */
-        border: 1px solid #ffeeba !important; /* Bordure jaune */
-        color: #856404 !important; /* Texte jaune foncé */
-        padding: 15px !important;
-        margin-bottom: 20px !important;
-        border-radius: 8px !important;
-        font-size: 0.95em !important;
-        line-height: 1.4 !important;
-        text-align: center !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
-        font-family: sans-serif !important; /* Police simple pour la lisibilité */
-        width: 100% !important; /* Prend la largeur du conteneur parent (le formulaire) */
-        box-sizing: border-box !important; /* Assure que padding et border sont inclus dans la largeur */
-        display: block !important; /* Toujours visible */
-    ">
-        <strong>Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée"</strong><br>
-        Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
-    </div>
+        <label for="email-commande">Votre Email :</label><br/>
+        <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
 
-    <label for="nom-commande">Votre Nom Complet :</label><br/>
-    <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
+        <label for="telephone-commande">Votre Téléphone :</label><br/>
+        <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
 
-    <label for="email-commande">Votre Email :</label><br/>
-    <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
+        <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
+        <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
 
-    <label for="telephone-commande">Votre Téléphone :</label><br/>
-    <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)" style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
-
-    <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
-    <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France" style="box-sizing: border-box !important; width: 100% !important;"></textarea><br/><br/>
-
-    <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
-<select id="produit-commande" name="Produit Commande" required style="box-sizing: border-box !important; width: 100% !important;">
+        <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
+<select id="produit-commande" name="Produit Commande" required>
     <option value="">-- Sélectionnez votre choix --</option>
     <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 Euros</option>
     <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 Euros</option>
 </select><br/><br/>
 
 <label for="quantite">Modifier la quantité (1-20) :</label><br/>
-<input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required style="box-sizing: border-box !important; width: 100% !important;"/><br/><br/>
+<input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required><br/><br/>
 
-    <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
-    <select id="abonnement-commande" name="Abonnement Assistance" style="box-sizing: border-box !important; width: 100% !important;">
-        <option value="Non souscrit">Non souscrit</option>
-        <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 Euros par Mois</option>
-    </select><br/><br/>
+        <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
+        <select id="abonnement-commande" name="Abonnement Assistance">
+            <option value="Non souscrit">Non souscrit</option>
+            <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 Euros par Mois</option>
+        </select><br/><br/>
 
-    <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-        <input type="checkbox" id="consentGmail" name="consentGmail" required style="margin-right: 10px;">
-        <label for="consentGmail" style="font-family: 'Arial', sans-serif; font-size: 0.95em; color: #333;">
-            Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" style="color: #007bff; text-decoration: none;">Conditions Générales de Vente</a> de Gemy Solution,
-            et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
-        </label>
-        <br>
-        <span style="font-family: 'Arial', sans-serif; font-size: 0.85em; color: #666; display: block; margin-top: 5px;">
-            *Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).
-        </span>
-    </div>
-    <input class="button" type="submit" value="Envoyer ma précommande"/>
-</form>
+        <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+            <input type="checkbox" id="consentGmail" name="consentGmail" required style="margin-right: 10px;">
+            <label for="consentGmail" style="font-family: 'Arial', sans-serif; font-size: 0.95em; color: #333;">
+                Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" style="color: #007bff; text-decoration: none;">Conditions Générales de Vente</a> de Gemy Solution,
+                et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
+            </label>
+            <br>
+            <span style="font-family: 'Arial', sans-serif; font-size: 0.85em; color: #666; display: block; margin-top: 5px;">
+                *Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).
+            </span>
+        </div>
+                <input class="button" type="submit" value="Envoyer ma précommande"/>
+    </form>
+</div>
     
     <style>
     .avis-section {
@@ -800,7 +755,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     margin: 40px auto; /* Centre le bloc horizontalement et ajoute de la marge */
     text-align: center;
     color: #333;
-    box-sizing: border-box !important; /* Assure que padding et border sont inclus dans la largeur/hauteur */
+    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur/hauteur */
 ">
     <h2 style="
         font-size: 1.8em; /* Taille de titre pour mobile */
@@ -819,7 +774,6 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
         flex-wrap: wrap; /* Permet aux icônes de passer à la ligne sur petits écrans */
         justify-content: center;
         gap: 15px; /* Espace entre les icônes */
-        box-sizing: border-box !important; /* Ajouté pour la responsivité */
     ">
         <!-- Lien Facebook -->
         <a href="https://www.facebook.com/profile.php?id=61577886117469" target="_blank" rel="noopener noreferrer" style="
@@ -836,10 +790,9 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none; /* Supprime le soulignement */
             padding: 5px; /* Petit padding interne */
-            box-sizing: border-box !important; /* Ajouté pour la responsivité */
-        " aria-label="Suivez-nous sur Facebook">
-            <i class="fab fa-facebook-f" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">Facebook</span>
+        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur Facebook">
+            <i class="fab fa-facebook-f" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">Facebook</span>
         </a>
 
         <!-- Lien Instagram -->
@@ -857,10 +810,9 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: transform 0.3s ease;
             text-decoration: none;
             padding: 5px;
-            box-sizing: border-box !important; /* Ajouté pour la responsivité */
-        " aria-label="Suivez-nous sur Instagram">
-            <i class="fab fa-instagram" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">Instagram</span>
+        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur Instagram">
+            <i class="fab fa-instagram" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">Instagram</span>
         </a>
 
         <!-- Lien TikTok -->
@@ -878,10 +830,9 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
             padding: 5px;
-            box-sizing: border-box !important; /* Ajouté pour la responsivité */
-        " aria-label="Suivez-nous sur TikTok">
-            <i class="fab fa-tiktok" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">TikTok</span>
+        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur TikTok">
+            <i class="fab fa-tiktok" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">TikTok</span>
         </a>
 
         <!-- Lien YouTube -->
@@ -899,10 +850,9 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
             padding: 5px;
-            box-sizing: border-box !important; /* Ajouté pour la responsivité */
-        " aria-label="Suivez-nous sur YouTube">
-            <i class="fab fa-youtube" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">YouTube</span>
+        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur YouTube">
+            <i class="fab fa-youtube" style="font-size: 1.8em; margin-bottom: 5px;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">YouTube</span>
         </a>
     </div>
 
@@ -911,7 +861,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
         color: #888;
         margin-top: 30px;
     ">
-               </p>
+           </p>
 
     <!-- Media Queries pour l'adaptation aux grands écrans (PC) - Intégrées directement -->
     <style>
@@ -935,10 +885,6 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             section[style*="max-width: 800px"] p {
                 font-size: 1.1em !important;
             }
-        }
-        /* Règle CSS pour les effets de survol (hover) */
-        section a:hover {
-            transform: translateY(-3px) !important;
         }
     </style>
 </section>
