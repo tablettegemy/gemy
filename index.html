@@ -800,7 +800,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
     margin: 40px auto; /* Centre le bloc horizontalement et ajoute de la marge */
     text-align: center;
     color: #333;
-    box-sizing: border-box; /* Assure que padding et border sont inclus dans la largeur/hauteur */
+    box-sizing: border-box !important; /* Assure que padding et border sont inclus dans la largeur/hauteur */
 ">
     <h2 style="
         font-size: 1.8em; /* Taille de titre pour mobile */
@@ -819,6 +819,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
         flex-wrap: wrap; /* Permet aux icônes de passer à la ligne sur petits écrans */
         justify-content: center;
         gap: 15px; /* Espace entre les icônes */
+        box-sizing: border-box !important; /* Ajouté pour la responsivité */
     ">
         <!-- Lien Facebook -->
         <a href="https://www.facebook.com/profile.php?id=61577886117469" target="_blank" rel="noopener noreferrer" style="
@@ -835,9 +836,10 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none; /* Supprime le soulignement */
             padding: 5px; /* Petit padding interne */
-        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur Facebook">
-            <i class="fab fa-facebook-f" style="font-size: 1.8em; margin-bottom: 5px;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">Facebook</span>
+            box-sizing: border-box !important; /* Ajouté pour la responsivité */
+        " aria-label="Suivez-nous sur Facebook">
+            <i class="fab fa-facebook-f" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">Facebook</span>
         </a>
 
         <!-- Lien Instagram -->
@@ -855,9 +857,10 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: transform 0.3s ease;
             text-decoration: none;
             padding: 5px;
-        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur Instagram">
-            <i class="fab fa-instagram" style="font-size: 1.8em; margin-bottom: 5px;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">Instagram</span>
+            box-sizing: border-box !important; /* Ajouté pour la responsivité */
+        " aria-label="Suivez-nous sur Instagram">
+            <i class="fab fa-instagram" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">Instagram</span>
         </a>
 
         <!-- Lien TikTok -->
@@ -875,9 +878,10 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
             padding: 5px;
-        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur TikTok">
-            <i class="fab fa-tiktok" style="font-size: 1.8em; margin-bottom: 5px;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">TikTok</span>
+            box-sizing: border-box !important; /* Ajouté pour la responsivité */
+        " aria-label="Suivez-nous sur TikTok">
+            <i class="fab fa-tiktok" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">TikTok</span>
         </a>
 
         <!-- Lien YouTube -->
@@ -895,9 +899,10 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
             padding: 5px;
-        " onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'" aria-label="Suivez-nous sur YouTube">
-            <i class="fab fa-youtube" style="font-size: 1.8em; margin-bottom: 5px;"></i>
-            <span style="font-size: 0.75em; font-weight: 600; text-align: center;">YouTube</span>
+            box-sizing: border-box !important; /* Ajouté pour la responsivité */
+        " aria-label="Suivez-nous sur YouTube">
+            <i class="fab fa-youtube" style="font-size: 1.8em; margin-bottom: 5px; box-sizing: border-box !important;"></i>
+            <span style="font-size: 0.75em; font-weight: 600; text-align: center; box-sizing: border-box !important;">YouTube</span>
         </a>
     </div>
 
@@ -906,7 +911,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
         color: #888;
         margin-top: 30px;
     ">
-           </p>
+               </p>
 
     <!-- Media Queries pour l'adaptation aux grands écrans (PC) - Intégrées directement -->
     <style>
@@ -930,6 +935,10 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             section[style*="max-width: 800px"] p {
                 font-size: 1.1em !important;
             }
+        }
+        /* Règle CSS pour les effets de survol (hover) */
+        section a:hover {
+            transform: translateY(-3px) !important;
         }
     </style>
 </section>
