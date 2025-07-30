@@ -536,86 +536,22 @@
         cursor: pointer !important;
         font-size: 1em !important;
         transition: background-color 0.3s ease !important;
-    "/>
+    "/><br/>
 </form>
 
-<!-- Votre style existant pour le compte à rebours et la compatibilité mobile -->
-<!-- Note: Ce bloc style est conservé car il était déjà dans votre code original. -->
-<style>
-    /* Style du conteneur du compte à rebours */
-    .countdown-container {
-        font-family: sans-serif;
-        text-align: center;
-        padding: 20px;
-    }
-
-    /* Style du texte principal */
-    .countdown-title {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-
-    /* Style des chiffres et labels */
-    .countdown-item {
-        display: inline-block;
-        margin: 0 10px;
-    }
-
-    .countdown-item span {
-        display: block;
-        font-size: 2.5rem;
-        font-weight: bold;
-    }
-
-    .countdown-item small {
-        font-size: 0.8rem;
-        color: #555;
-    }
-    
-    /* Code ajouté pour la compatibilité mobile */
-    .main-container {
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 10px;
-    }
-
-    form {
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Pour les petits écrans */
-    @media (max-width: 600px) {
-        .main-container {
-            padding: 5px;
-        }
-        form {
-            width: 100%;
-        }
-        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* NOUVEAU : Règle pour centrer les boutons */
-        .button {
-            display: block;
-            margin: 10px auto;
-        }
-
-        /* NOUVEAU : Règle pour que le texte du titre s'adapte */
-        .countdown-title {
-            font-size: 1.2rem;
-            word-wrap: break-word; /* Force le texte à la ligne */
-        }
-    }
-</style>
-
-<div class="countdown-container">
-    <h2 class="countdown-title">Plus que quelques jours pour précommander Gemy !</h2>
-    <div id="countdown">
+<!-- Conteneur du compte à rebours avec styles en ligne -->
+<div class="countdown-container" style="
+    font-family: sans-serif !important;
+    text-align: center !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    width: 100% !important; /* S'assure de prendre toute la largeur disponible */
+    max-width: 800px !important; /* Limite la largeur sur les grands écrans */
+    margin-left: auto !important; /* Centre */
+    margin-right: auto !important; /* Centre */
+">
+    <h2 class="countdown-title" style="font-size: 1.5rem !important; margin-bottom: 20px !important; box-sizing: border-box !important;">Plus que quelques jours pour précommander Gemy !</h2>
+    <div id="countdown" style="box-sizing: border-box !important;">
         </div>
 </div>
 
@@ -634,10 +570,22 @@
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         document.getElementById("countdown").innerHTML = 
-            "<div class='countdown-item'><span>" + days + "</span> <small>Jours</small></div>" +
-            "<div class='countdown-item'><span>" + hours + "</span> <small>Heures</small></div>" +
-            "<div class='countdown-item'><span>" + minutes + "</span> <small>Minutes</small></div>" +
-            "<div class='countdown-item'><span>" + seconds + "</span> <small>Secondes</small></div>";
+            "<div class='countdown-item' style='display: inline-block !important; margin: 0 10px !important; box-sizing: border-box !important;'>" +
+                "<span style='display: block !important; font-size: 2.5rem !important; font-weight: bold !important; box-sizing: border-box !important;'>" + days + "</span>" +
+                "<small style='font-size: 0.8rem !important; color: #555 !important; box-sizing: border-box !important;'>Jours</small>" +
+            "</div>" +
+            "<div class='countdown-item' style='display: inline-block !important; margin: 0 10px !important; box-sizing: border-box !important;'>" +
+                "<span style='display: block !important; font-size: 2.5rem !important; font-weight: bold !important; box-sizing: border-box !important;'>" + hours + "</span>" +
+                "<small style='font-size: 0.8rem !important; color: #555 !important; box-sizing: border-box !important;'>Heures</small>" +
+            "</div>" +
+            "<div class='countdown-item' style='display: inline-block !important; margin: 0 10px !important; box-sizing: border-box !important;'>" +
+                "<span style='display: block !important; font-size: 2.5rem !important; font-weight: bold !important; box-sizing: border-box !important;'>" + minutes + "</span>" +
+                "<small style='font-size: 0.8rem !important; color: #555 !important; box-sizing: border-box !important;'>Minutes</small>" +
+            "</div>" +
+            "<div class='countdown-item' style='display: inline-block !important; margin: 0 10px !important; box-sizing: border-box !important;'>" +
+                "<span style='display: block !important; font-size: 2.5rem !important; font-weight: bold !important; box-sizing: border-box !important;'>" + seconds + "</span>" +
+                "<small style='font-size: 0.8rem !important; color: #555 !important; box-sizing: border-box !important;'>Secondes</small>" +
+            "</div>";
 
         if (distance < 0) {
             clearInterval(x);
@@ -647,8 +595,8 @@
 </script>
 
 
-<h3 id="section-precommande-gemy" style="margin-top: 40px;">Précommander ma Tablette Gemy</h3>
-<p>Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
+<h3 id="section-precommande-gemy" style="margin-top: 40px !important; margin-bottom: 15px !important; text-align: center !important; font-size: 1.5em !important; box-sizing: border-box !important;">Précommander ma Tablette Gemy</h3>
+<p style="margin-bottom: 20px !important; text-align: center !important; font-size: 1em !important; line-height: 1.5 !important; box-sizing: border-box !important;">Prêt(e) à simplifier votre quotidien avec Gemy ? Remplissez ce formulaire pour précommander votre tablette Gemy en avant-première ! Soyer parmi les premiers à recevoir votre tablette Gemy pour une vie numérique simplifiée. En précommandant dès maintenant, vous vous assurez de recevoir votre tablette en priorité. La livraison des précommandes est prévue pour début octobre. Nous vous enverrons les informations de paiement en ligne sécurisé.</p>
 
 <!-- Message de rassurance personnalisé pour le formulaire de précommande (initialement caché) -->
 <!-- Positionné juste avant le formulaire de précommande -->
@@ -675,47 +623,129 @@
     Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
 </div>
 
-<form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" id="form-commande">
-    <label for="nom-commande">Votre Nom Complet :</label><br/>
-    <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois"/><br/><br/>
+<form action="mailto:gemysolution@gmail.com?subject=Precommande Gemy" enctype="text/plain" method="POST" id="form-commande" style="
+    width: 90% !important; /* Largeur pour mobile */
+    max-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 20px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    background-color: #f9f9f9 !important;
+    box-sizing: border-box !important; /* Essentiel pour éviter les débordements */
+    display: block !important; /* S'assure que le formulaire est un bloc */
+">
+    <label for="nom-commande" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Votre Nom Complet :</label>
+    <input id="nom-commande" name="Nom Client" required type="text" placeholder="Ex: Marie Dubois" style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+    "/><br/>
 
-    <label for="email-commande">Votre Email :</label><br/>
-    <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com"/><br/><br/>
+    <label for="email-commande" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Votre Email :</label>
+    <input id="email-commande" name="Email Client" required type="email" placeholder="Ex: votre.email@example.com" style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+    "/><br/>
 
-    <label for="telephone-commande">Votre Téléphone :</label><br/>
-    <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)"/><br/><br/>
+    <label for="telephone-commande" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Votre Téléphone :</label>
+    <input id="telephone-commande" name="Telephone Client" type="tel" placeholder="Ex: +41 79 123 45 67 (ou 06... pour France)" style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+    "/><br/>
 
-    <label for="adresse-livraison">Adresse complète de livraison :</label><br/>
-    <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France"></textarea><br/><br/>
+    <label for="adresse-livraison" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Adresse complète de livraison :</label>
+    <textarea cols="50" id="adresse-livraison" name="Adresse de livraison" required rows="3" placeholder="Ex: Rue du Commerce 123, 1000 Lausanne, Suisse ou 75 rue de Paris, 75001 Paris, France" style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+        resize: vertical !important;
+    "></textarea><br/>
 
-    <label for="produit-commande">Choisissez votre produit Gemy :</label><br/>
-<select id="produit-commande" name="Produit Commande" required>
-    <option value="">-- Sélectionnez votre choix --</option>
-    <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 Euros</option>
-    <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 Euros</option>
-</select><br/><br/>
+    <label for="produit-commande" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Choisissez votre produit Gemy :</label>
+    <select id="produit-commande" name="Produit Commande" required style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+        background-color: white !important;
+    ">
+        <option value="">-- Sélectionnez votre choix --</option>
+        <option value="Tablette + Etui - 399 Euros">Tablette + Étui - 399 Euros</option>
+        <option value="Tablette + Etui avec clavier AZERTY - 449 Euros">Tablette + Étui avec clavier AZERTY - 449 Euros</option>
+    </select><br/>
 
-<label for="quantite">Modifier la quantité (1-20) :</label><br/>
-<input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required><br/><br/>
+    <label for="quantite" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Modifier la quantité (1-20) :</label>
+    <input type="number" id="quantite" name="Quantite" min="1" max="20" value="1" required style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+    "/><br/>
 
-    <label for="abonnement-commande">Abonnement assistance (optionnel) :</label><br/>
-    <select id="abonnement-commande" name="Abonnement Assistance">
+    <label for="abonnement-commande" style="display: block !important; margin-bottom: 5px !important; text-align: left !important; font-size: 1em !important; box-sizing: border-box !important;">Abonnement assistance (optionnel) :</label>
+    <select id="abonnement-commande" name="Abonnement Assistance" style="
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+        font-size: 1em !important;
+        background-color: white !important;
+    ">
         <option value="Non souscrit">Non souscrit</option>
         <option value="Oui - 9,90 Euros par Mois">Oui - 9,90 Euros par Mois</option>
-    </select><br/><br/>
+    </select><br/>
 
-    <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-        <input type="checkbox" id="consentGmail" name="consentGmail" required style="margin-right: 10px;">
-        <label for="consentGmail" style="font-family: 'Arial', sans-serif; font-size: 0.95em; color: #333;">
-            Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" style="color: #007bff; text-decoration: none;">Conditions Générales de Vente</a> de Gemy Solution,
+    <div style="margin: 20px 0 !important; padding: 15px !important; border: 1px solid #ddd !important; border-radius: 8px !important; background-color: #f9f9f9 !important; box-sizing: border-box !important;">
+        <input type="checkbox" id="consentGmail" name="consentGmail" required style="margin-right: 10px !important; vertical-align: middle !important;">
+        <label for="consentGmail" style="font-family: 'Arial', sans-serif !important; font-size: 0.95em !important; color: #333 !important; display: inline !important;">
+            Je reconnais avoir lu et j'accepte les <a href="conditions-generales-de-vente.html" target="_blank" style="color: #007bff !important; text-decoration: none !important;">Conditions Générales de Vente</a> de Gemy Solution,
             et j'autorise la création d'un compte Google (Gmail) par Gemy Solution pour mon utilisation, dont les identifiants me seront remis dans le guide de démarrage de ma tablette.
         </label>
-        <br>
-        <span style="font-family: 'Arial', sans-serif; font-size: 0.85em; color: #666; display: block; margin-top: 5px;">
+        <br style="display: block !important;"/>
+        <span style="font-family: 'Arial', sans-serif !important; font-size: 0.85em !important; color: #666 !important; display: block !important; margin-top: 5px !important;">
             *Ce compte est essentiel pour accéder à certaines applications (Google Play Livres, Gmail, Drive...).
         </span>
     </div>
-    <input class="button" type="submit" value="Envoyer ma précommande"/>
+    <input class="button" type="submit" value="Envoyer ma précommande" style="
+        display: block !important;
+        width: auto !important;
+        padding: 10px 20px !important;
+        margin: 10px auto !important;
+        background-color: #007bff !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 5px !important;
+        cursor: pointer !important;
+        font-size: 1em !important;
+        transition: background-color 0.3s ease !important;
+    "/>
 </form>
 
 <!-- Script JavaScript pour gérer les messages de rassurance -->
