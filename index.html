@@ -923,115 +923,134 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Sélectionne tous les formulaires dont l'action commence par "mailto:"
-  const forms = document.querySelectorAll('form[action^="mailto:"]');
-  
-  // Crée un élément <style> pour injecter les règles CSS du message d'avertissement
-  const style = document.createElement('style');
-  style.textContent = `
-    .gemy-warning {
-      position: fixed; /* Rend le message flottant */
-      top: 10px;    /* Positionne à 10px du haut de l'écran pour éviter le clavier virtuel */
-      left: 10px;     /* Positionne à 10px de la gauche */
-      right: 10px;    /* Positionne à 10px de la droite, pour une largeur adaptative */
-      background: #FFF3CD; /* Couleur de fond jaune clair */
-      color: #856404; /* Couleur du texte jaune foncé */
-      padding: 10px;  /* Espacement interne */
-      border-radius: 4px; /* Coins légèrement arrondis */
-      text-align: center; /* Centre le texte */
-      font-size: 14px; /* Taille de police */
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ombre légère pour le faire ressortir */
-      z-index: 9999; /* Assure qu'il est au-dessus de tous les autres éléments */
-      display: none; /* Initialement caché */
-      border: 1px solid #FFEEBA; /* Bordure jaune clair */
-      box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur */
-    }
-    .gemy-warning-close {
-      float: right; /* Positionne le bouton de fermeture à droite */
-      cursor: pointer; /* Indique que c'est cliquable */
-      font-weight: bold; /* Texte en gras */
-      font-size: 18px; /* Taille de la croix */
-      line-height: 1; /* Aligne verticalement la croix */
-      padding: 0 5px; /* Petit padding pour faciliter le clic */
-    }
-  `;
-  // Ajoute les styles au <head> du document
-  document.head.appendChild(style);
+    // Sélectionne tous les formulaires dont l'action commence par "mailto:"
+    const forms = document.querySelectorAll('form[action^="mailto:"]');
 
-  // Crée l'élément <div> pour le message d'avertissement
-  const warning = document.createElement('div');
-  warning.className = 'gemy-warning'; // Applique la classe CSS définie
-  warning.innerHTML = `
-    ℹ️ Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée" Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
-    <span class="gemy-warning-close" onclick="this.parentElement.style.display='none'">×</span>
-  `;
-  // Ajoute le message au <body> du document
-  document.body.appendChild(warning);
-
-  // Collecte tous les champs de formulaire (input, textarea, select) de tous les formulaires mailto
-  const allFormFields = [];
-  forms.forEach(form => {
-    form.querySelectorAll('input, textarea, select').forEach(field => {
-      allFormFields.push(field);
-    });
-  });
-
-  // Ajoute un écouteur d'événement 'focus' à chaque champ de formulaire
-  // Lorsque l'un de ces champs reçoit le focus (clic ou tabulation), le message s'affiche
-  allFormFields.forEach(field => {
-    field.addEventListener('focus', () => {
-      warning.style.display = 'block'; // Affiche le message
-    });
-  });
-
-  // Ajoute un écouteur d'événement 'click' global au document
-  // Ce gestionnaire est déclenché lors de n'importe quel clic sur la page
-  document.addEventListener('click', (event) => {
-    let isClickInsideFormOrWarning = false;
-
-    // Vérifie si le clic a eu lieu à l'intérieur d'un champ de formulaire
-    for (const field of allFormFields) {
-      if (field.contains(event.target)) {
-        isClickInsideFormOrWarning = true;
-        break; // Pas besoin de vérifier les autres champs si le clic est déjà dedans
-      }
-    }
-
-    // Vérifie si le clic a eu lieu à l'intérieur du message d'avertissement lui-même
-    if (warning.contains(event.target)) {
-      isClickInsideFormOrWarning = true;
-    }
-
-    // Si le clic n'est ni dans un champ de formulaire, ni dans le message d'avertissement,
-    // alors le message est masqué
-    if (!isClickInsideFormOrWarning) {
-      warning.style.display = 'none';
-    }
-  });
-
-  // Ajoute un écouteur d'événement 'focusout' global au document
-  // Ce gestionnaire est déclenché lorsque le focus quitte un élément
-  document.addEventListener('focusout', (event) => {
-    // Utilise un petit délai pour permettre au navigateur de déterminer
-    // le nouvel élément qui a reçu le focus après le 'focusout'
-    setTimeout(() => {
-      let isAnyFormFieldFocused = false;
-      // Vérifie si un champ de formulaire est actuellement focusé
-      for (const field of allFormFields) {
-        if (document.activeElement === field) {
-          isAnyFormFieldFocused = true;
-          break;
+    // Crée un élément <style> pour injecter les règles CSS du message d'avertissement
+    const style = document.createElement('style');
+    style.textContent = `
+        .gemy-warning {
+            position: fixed; /* Rend le message flottant */
+            top: 10px;       /* Positionne à 10px du haut de l'écran pour éviter le clavier virtuel */
+            left: 10px;      /* Positionne à 10px de la gauche */
+            right: 10px;     /* Positionne à 10px de la droite, pour une largeur adaptative */
+            background: #FFF3CD; /* Couleur de fond jaune clair */
+            color: #856404; /* Couleur du texte jaune foncé */
+            padding: 10px;   /* Espacement interne */
+            border-radius: 4px; /* Coins légèrement arrondis */
+            text-align: center; /* Centre le texte */
+            font-size: 14px; /* Taille de police */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Ombre légère pour le faire ressortir */
+            z-index: 9999; /* Assure qu'il est au-dessus de tous les autres éléments */
+            display: none; /* Initialement caché */
+            border: 1px solid #FFEEBA; /* Bordure jaune clair */
+            box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur */
         }
-      }
+        .gemy-warning-close {
+            float: right; /* Positionne le bouton de fermeture à droite */
+            cursor: pointer; /* Indique que c'est cliquable */
+            font-weight: bold; /* Texte en gras */
+            font-size: 18px; /* Taille de la croix */
+            line-height: 1; /* Aligne verticalement la croix */
+            padding: 0 5px; /* Petit padding pour faciliter le clic */
+        }
+    `;
+    // Ajoute les styles au <head> du document
+    document.head.appendChild(style);
 
-      // Si aucun champ de formulaire n'est focusé ET que l'élément focusé
-      // n'est pas le message d'avertissement lui-même ou un de ses enfants,
-      // alors le message est masqué.
-      if (!isAnyFormFieldFocused && document.activeElement !== warning && !warning.contains(document.activeElement)) {
-        warning.style.display = 'none';
-      }
-    }, 50); // Délai court de 50 millisecondes
-  });
+    // Crée l'élément <div> pour le message d'avertissement
+    const warning = document.createElement('div');
+    warning.className = 'gemy-warning'; // Applique la classe CSS définie
+    warning.innerHTML = `
+        ℹ️ Si vous voyez un message tel que : "Ce formulaire n'est pas sécurisé" ou "Saisie automatique désactivée" Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.
+        <span class="gemy-warning-close">×</span>
+    `;
+    // Ajoute le message au <body> du document
+    document.body.appendChild(warning);
+
+    // Collecte tous les champs de formulaire (input, textarea, select) de tous les formulaires mailto
+    const allFormFields = [];
+    forms.forEach(form => {
+        form.querySelectorAll('input, textarea, select').forEach(field => {
+            allFormFields.push(field);
+        });
+    });
+
+    // Variable pour suivre si le message a été fermé manuellement par l'utilisateur
+    let messageManuallyClosed = false;
+
+    // Ajoute un écouteur d'événement 'focus' à chaque champ de formulaire
+    allFormFields.forEach(field => {
+        field.addEventListener('focus', () => {
+            if (!messageManuallyClosed) { // Affiche le message seulement s'il n'a pas été fermé manuellement
+                warning.style.display = 'block';
+            }
+        });
+
+        // Ajoute un écouteur d'événement 'input' pour cacher le message dès la saisie de texte
+        field.addEventListener('input', () => {
+            warning.style.display = 'none';
+            // Important : ne pas réinitialiser messageManuallyClosed ici,
+            // car l'utilisateur est en train de taper et le message doit rester caché.
+        });
+    });
+
+    // Gère le clic sur le bouton de fermeture du message
+    const closeButton = warning.querySelector('.gemy-warning-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            warning.style.display = 'none';
+            messageManuallyClosed = true; // Marque le message comme fermé manuellement
+        });
+    }
+
+    // Ajoute un écouteur d'événement 'click' global au document
+    document.addEventListener('click', (event) => {
+        let isClickInsideFormOrWarning = false;
+
+        // Vérifie si le clic a eu lieu à l'intérieur d'un champ de formulaire
+        for (const field of allFormFields) {
+            if (field.contains(event.target)) {
+                isClickInsideFormOrWarning = true;
+                break;
+            }
+        }
+
+        // Vérifie si le clic a eu lieu à l'intérieur du message d'avertissement lui-même
+        if (warning.contains(event.target)) {
+            isClickInsideFormOrWarning = true;
+        }
+
+        // Si le clic n'est ni dans un champ de formulaire, ni dans le message d'avertissement,
+        // alors le message est masqué et l'état de fermeture manuelle est réinitialisé.
+        if (!isClickInsideFormOrWarning) {
+            warning.style.display = 'none';
+            messageManuallyClosed = false; // Réinitialise l'état pour permettre l'affichage futur
+        }
+    });
+
+    // Ajoute un écouteur d'événement 'focusout' global au document
+    document.addEventListener('focusout', (event) => {
+        // Utilise un petit délai pour permettre au navigateur de déterminer le nouvel élément focusé
+        setTimeout(() => {
+            let isAnyFormFieldFocused = false;
+            // Vérifie si un champ de formulaire est actuellement focusé
+            for (const field of allFormFields) {
+                if (document.activeElement === field) {
+                    isAnyFormFieldFocused = true;
+                    break;
+                }
+            }
+
+            // Si aucun champ de formulaire n'est focusé ET que l'élément focusé
+            // n'est pas le message d'avertissement lui-même ou un de ses enfants,
+            // alors le message est masqué et l'état de fermeture manuelle est réinitialisé.
+            if (!isAnyFormFieldFocused && document.activeElement !== warning && !warning.contains(document.activeElement)) {
+                warning.style.display = 'none';
+                messageManuallyClosed = false; // Réinitialise l'état
+            }
+        }, 50); // Délai court de 50 millisecondes
+    });
 });
 </script>
 
