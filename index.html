@@ -6,6 +6,155 @@
     <title>Gemy Companion</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
     <style>
+    /* Styles spécifiques au chatbot */
+    .chatbot-container {
+        position: fixed;
+        /* Ajusté pour être au-dessus du bouton de précommande existant */
+        /* Si votre bouton de précommande est à bottom: 20px; et mesure environ 60px de haut, */
+        /* 90px laissera un espace de 10px entre les deux. Ajustez si nécessaire. */
+        bottom: 90px;
+        right: 20px;
+        z-index: 1000; /* Assure que le chatbot est au-dessus des autres éléments */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .chatbot-button {
+        background-color: #3B82F6; /* blue-500 */
+        color: white;
+        border-radius: 9999px; /* full rounded */
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+    }
+
+    .chatbot-button:hover {
+        transform: scale(1.05);
+    }
+
+    .chat-window {
+        background-color: #1F2937; /* gray-800 */
+        border-radius: 1rem; /* rounded-xl */
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        width: 350px; /* Largeur fixe pour la fenêtre de chat */
+        height: 500px; /* Hauteur fixe pour la fenêtre de chat */
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: 1rem; /* Espace entre la fenêtre et le bouton */
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .chat-header {
+        background-color: #3B82F6; /* blue-500 */
+        color: white;
+        padding: 1rem;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        background-color: #111827; /* gray-900 */
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem; /* space-y-3 */
+    }
+
+    .message {
+        max-width: 80%;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem; /* rounded-lg */
+        word-wrap: break-word; /* Assure que le texte ne déborde pas */
+    }
+
+    .message.user {
+        background-color: #3B82F6; /* blue-500 */
+        align-self: flex-end; /* Aligne le message de l'utilisateur à droite */
+        color: white;
+    }
+
+    .message.bot {
+        background-color: #4B5563; /* gray-600 */
+        align-self: flex-start; /* Aligne le message du bot à gauche */
+        color: white;
+    }
+
+    .chat-input-container {
+        padding: 1rem;
+        background-color: #1F2937; /* gray-800 */
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        display: flex;
+        gap: 0.5rem; /* space-x-2 */
+    }
+
+    .chat-input {
+        flex-grow: 1;
+        background-color: #374151; /* gray-700 */
+        border: none;
+        border-radius: 0.5rem; /* rounded-md */
+        padding: 0.75rem;
+        color: white;
+        outline: none; /* Supprime le contour bleu au focus */
+    }
+
+    .chat-send-button {
+        background-color: #10B981; /* green-500 */
+        color: white;
+        border-radius: 0.5rem; /* rounded-md */
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .chat-send-button:hover {
+        background-color: #059669; /* green-600 */
+    }
+
+    /* Ajustements responsifs */
+    @media (max-width: 768px) {
+        .chatbot-container {
+            bottom: 10px;
+            right: 10px;
+        }
+        .chat-window {
+            width: 95vw; /* Presque pleine largeur sur petits écrans */
+            height: 70vh; /* Ajuster la hauteur pour mobile */
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    /* Spinner de chargement */
+    .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #3B82F6;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+    <style>
         /* Importation des polices Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Montserrat:wght@400;500;700&display=swap');
         /* Importation de Font Awesome pour les icônes */
@@ -920,6 +1069,196 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
+    <!-- Conteneur du Chatbot -->
+<div class="chatbot-container">
+    <!-- Fenêtre du Chat -->
+    <div id="chatWindow" class="chat-window hidden">
+        <div class="chat-header">
+            <span>GemyBot - Votre Assistant</span>
+            <button id="closeChat" class="text-white text-xl leading-none">&times;</button>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+            <!-- Les messages seront ajoutés ici -->
+            <div class="message bot">Bonjour ! Je suis GemyBot, votre assistant pour tout savoir sur Gemy Solution. Comment puis-je vous aider aujourd'hui ?</div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Posez votre question...">
+            <button id="sendMessage" class="chat-send-button">Envoyer</button>
+        </div>
+    </div>
+    <!-- Bouton flottant pour ouvrir/fermer le chat -->
+    <button id="chatbotButton" class="chatbot-button">
+        <!-- Icône de message (Lucide React Icons) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    </button>
+</div>
+<!-- Script du Chatbot - À placer juste avant la balise de fermeture </body> -->
+<script type="text/babel">
+    const chatbotButton = document.getElementById('chatbotButton');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChatButton = document.getElementById('closeChat');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendMessageButton = document.getElementById('sendMessage');
+
+    // Initialiser l'historique du chat avec un message de bienvenue du bot
+    let chatHistory = [{ role: "model", parts: [{ text: "Bonjour ! Je suis GemyBot, votre assistant pour tout savoir sur Gemy Solution. Comment puis-je vous aider aujourd'hui ?" }] }];
+
+    // Fonction pour basculer la visibilité de la fenêtre de chat
+    chatbotButton.addEventListener('click', () => {
+        chatWindow.classList.toggle('hidden');
+        if (!chatWindow.classList.contains('hidden')) {
+            chatInput.focus(); // Met le focus sur le champ de saisie
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Fait défiler vers le bas
+        }
+    });
+
+    // Fonction pour fermer la fenêtre de chat
+    closeChatButton.addEventListener('click', () => {
+        chatWindow.classList.add('hidden');
+    });
+
+    // Fonction pour envoyer un message
+    const sendMessage = async () => {
+        const userMessage = chatInput.value.trim();
+        if (userMessage === '') return; // Ne rien faire si le message est vide
+
+        // Ajouter le message de l'utilisateur au chat
+        appendMessage(userMessage, 'user');
+        chatInput.value = ''; // Effacer le champ de saisie
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Faire défiler vers le bas
+
+        // Ajouter le message de l'utilisateur à l'historique du chat
+        chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
+
+        // Afficher le spinner de chargement pendant que le bot réfléchit
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.className = 'message bot flex items-center';
+        loadingSpinner.innerHTML = '<div class="spinner mr-2"></div><span>GemyBot réfléchit...</span>';
+        chatMessages.appendChild(loadingSpinner);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    temperature: 0.7, // Contrôle la créativité de la réponse
+                    topK: 40,
+                    topP: 0.95,
+                }
+            };
+            const apiKey = ""; // La clé API sera fournie par l'environnement Canvas à l'exécution
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            // Appel API avec backoff exponentiel pour gérer les erreurs et les limites de débit
+            const response = await fetchWithBackoff(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            // Supprimer le spinner de chargement une fois la réponse reçue
+            chatMessages.removeChild(loadingSpinner);
+
+            // Traiter la réponse de l'API
+            if (response.candidates && response.candidates.length > 0 &&
+                response.candidates[0].content && response.candidates[0].content.parts &&
+                response.candidates[0].content.parts.length > 0) {
+                const botResponse = response.candidates[0].content.parts[0].text;
+                appendMessage(botResponse, 'bot'); // Ajouter la réponse du bot au chat
+                chatHistory.push({ role: "model", parts: [{ text: botResponse }] }); // Ajouter la réponse à l'historique
+            } else {
+                const errorMessage = "Désolé, je n'ai pas pu générer de réponse. Veuillez réessayer ou reformuler votre question.";
+                appendMessage(errorMessage, 'bot');
+                chatHistory.push({ role: "model", parts: [{ text: errorMessage }] });
+            }
+        } catch (error) {
+            console.error("Erreur lors de l'appel API:", error);
+            // Supprimer le spinner en cas d'erreur
+            chatMessages.removeChild(loadingSpinner);
+            const errorMessage = "Une erreur est survenue. Veuillez vérifier votre connexion ou réessayer plus tard.";
+            appendMessage(errorMessage, 'bot');
+            chatHistory.push({ role: "model", parts: [{ text: errorMessage }] : [{ text: errorMessage }] });
+        } finally {
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Assurer le défilement vers le bas après chaque interaction
+        }
+    };
+
+    // Fonction utilitaire pour ajouter des messages au DOM
+    const appendMessage = (text, sender) => {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.innerHTML = text; // Utiliser innerHTML pour permettre un formatage de base si nécessaire
+        chatMessages.appendChild(messageElement);
+    };
+
+    // Écouteurs d'événements pour l'envoi de messages (clic sur bouton et touche Entrée)
+    sendMessageButton.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Fonction pour le backoff exponentiel (gestion des retries en cas d'échec API)
+    async function fetchWithBackoff(url, options, retries = 3, delay = 1000) {
+        for (let i = 0; i < retries; i++) {
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    // Gérer les erreurs HTTP, par exemple 429 Too Many Requests
+                    if (response.status === 429 && i < retries - 1) {
+                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                        continue;
+                    }
+                    throw new Error(`Erreur HTTP! statut: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                if (i < retries - 1) {
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                } else {
+                    throw error; // Relancer l'erreur si toutes les tentatives ont échoué
+                }
+            }
+        }
+    }
+
+    // Initialiser l'historique du chat avec le prompt système (base de connaissances du bot)
+    // Ce prompt est crucial pour guider les réponses du bot et l'inciter à la vente
+    chatHistory.unshift({
+        role: "user",
+        parts: [{ text: `Tu es 'GemyBot', un assistant virtuel amical et expert de Gemy Solution. Ton rôle est de répondre aux questions des utilisateurs sur la tablette Gemy, ses fonctionnalités, ses services (assistance, Gemy Compagnon), ses prix, et **surtout, d'encourager activement les commandes et les précommandes**.
+
+        Voici les informations clés sur Gemy Solution que tu dois utiliser pour répondre :
+        - **Nom du produit** : Tablette Android Gemy Solution.
+        - **Concept** : Tablette simplifiée et clé en main, avec tout pré-installé pour une utilisation facile dès la sortie de la boîte.
+        - **Public cible** : Idéale pour les seniors, les personnes peu technophiles, et les personnes en situation de handicap, cherchant la simplicité et l'autonomie.
+        - **Fonctionnalités incluses** :
+            - **Divertissement** : Jeux, Molotov TV (accès à 99 chaînes sans latence), radio.
+            - **Communication** : WhatsApp et d'autres logiciels gratuits pour rester connecté avec les proches.
+        - **Assistant intégré** : Gemini est l'assistant et compagnon intelligent des utilisateurs, prêt à aider au quotidien.
+        - **Prix de la tablette** : 399 euros.
+        - **Services d'assistance** :
+            - **Assistance à distance** : Via AnyDesk, pour une aide rapide et efficace.
+            - **Abonnement assistance** : 9,99 euros par mois pour une assistance illimitée.
+            - **Intervention unique** : 30 euros pour une aide ponctuelle.
+        - **Nouveau service premium (abonnement séparé)** : Gemy Compagnon.
+            - **Rôle de Gemy Compagnon** : Un assistant proactif qui anticipe les besoins et gère les routines pour une tranquillité d'esprit maximale.
+            - **Fonctionnalités de Gemy Compagnon** :
+                - Gestion des routines matinales (météo, actualités, radio).
+                - Rappels intelligents proactifs (détection d'événements importants).
+                - Simplification des tâches par la voix (envoyer message, lancer app, trouver programme TV).
+            - **Prix Gemy Compagnon** : 9,99 euros par mois (abonnement additionnel).
+        - **Site web pour plus d'informations et commande** : https://gemyantho.github.io/gemy/
+        - **Objectif principal de Gemy Solution** : Simplifier la vie numérique, offrir autonomie, et apporter une tranquillité d'esprit aux utilisateurs et à leurs familles.
+
+        **Directives de réponse :**
+        - Réponds de manière claire, concise, amicale et très engageante.
+        - Après chaque réponse pertinente, **suggère toujours à l'utilisateur de visiter le site web pour en savoir plus ou, mieux encore, pour passer commande ou précommander la tablette.** Utilise des phrases incitatives comme "N'attendez plus, commandez votre tablette Gemy Solution dès aujourd'hui sur notre site : [lien] !" ou "Prêt à simplifier votre vie numérique ? Visitez notre site pour précommander : [lien]".
+        - Si la question n'est pas directement liée à Gemy Solution, réponds poliment que tu es spécialisé dans Gemy Solution et que tu ne peux aider qu'avec des questions concernant la tablette et ses services. Ne réponds qu'aux questions en lien avec Gemy Solution.` }]
+    });
+</script>
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
