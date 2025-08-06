@@ -1069,7 +1069,187 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
-    <!-- Conteneur du Chatbot -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; } /* Assurez-vous que cette ligne est dans votre CSS global ou body */
+
+    /* Classe pour cacher les éléments, s'assure qu'elle est prioritaire */
+    .hidden {
+        display: none !important;
+    }
+
+    /* Conteneur principal du chatbot (bouton + fenêtre) */
+    .chatbot-container {
+        position: fixed;
+        bottom: 90px; /* Ajustez si votre bouton de précommande est à une hauteur différente */
+        right: 20px;
+        z-index: 1000; /* Assure que le chatbot est au-dessus des autres éléments */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    /* Bouton flottant pour ouvrir/fermer le chat */
+    .chatbot-button {
+        background-color: #3B82F6; /* blue-500 */
+        color: white;
+        border-radius: 9999px; /* full rounded */
+        padding: 0.75rem 1.25rem; /* Ajusté pour le texte */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Espace entre l'icône et le texte */
+        width: auto; /* Laisser la largeur s'adapter au contenu */
+        height: 60px; /* Conserver une hauteur fixe pour l'esthétique */
+        font-size: 1rem; /* Taille de police pour le texte du bouton */
+        font-weight: 600; /* Semi-bold */
+    }
+
+    .chatbot-button:hover {
+        transform: scale(1.05);
+    }
+
+    /* Fenêtre du Chat */
+    .chat-window {
+        background-color: #1F2937; /* gray-800 */
+        border-radius: 1rem; /* rounded-xl */
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        width: 300px; /* Largeur par défaut plus petite */
+        height: 400px; /* Hauteur par défaut plus petite */
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: 1rem; /* Espace entre la fenêtre et le bouton */
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    /* En-tête du chat */
+    .chat-header {
+        background-color: #3B82F6; /* blue-500 */
+        color: white;
+        padding: 0.6rem 1rem; /* Padding réduit */
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1rem; /* Taille de police ajustée */
+    }
+
+    /* Zone des messages */
+    .chat-messages {
+        flex-grow: 1;
+        padding: 0.75rem; /* Padding réduit */
+        overflow-y: auto;
+        background-color: #111827; /* gray-900 */
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem; /* Espace réduit entre les messages */
+    }
+
+    /* Style des messages individuels */
+    .message {
+        max-width: 85%; /* Augmenté légèrement pour mieux utiliser l'espace */
+        padding: 0.6rem 0.8rem; /* Padding réduit */
+        border-radius: 0.75rem; /* rounded-lg */
+        word-wrap: break-word;
+        font-size: 0.875rem; /* Taille de police du message (sm) */
+    }
+
+    .message.user {
+        background-color: #3B82F6; /* blue-500 */
+        align-self: flex-end;
+        color: white;
+    }
+
+    .message.bot {
+        background-color: #4B5563; /* gray-600 */
+        align-self: flex-start;
+        color: white;
+    }
+
+    /* Conteneur de l'input et du bouton d'envoi */
+    .chat-input-container {
+        padding: 0.75rem; /* Padding réduit */
+        background-color: #1F2937; /* gray-800 */
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        display: flex;
+        gap: 0.5rem; /* space-x-2 */
+    }
+
+    /* Champ de saisie */
+    .chat-input {
+        flex-grow: 1;
+        background-color: #374151; /* gray-700 */
+        border: none;
+        border-radius: 0.5rem; /* rounded-md */
+        padding: 0.6rem; /* Padding réduit */
+        color: white;
+        outline: none;
+        font-size: 0.875rem; /* Taille de police (sm) */
+    }
+
+    /* Bouton d'envoi */
+    .chat-send-button {
+        background-color: #10B981; /* green-500 */
+        color: white;
+        border-radius: 0.5rem; /* rounded-md */
+        padding: 0.6rem 0.9rem; /* Padding réduit */
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        font-size: 0.875rem; /* Taille de police (sm) */
+    }
+
+    .chat-send-button:hover {
+        background-color: #059669; /* green-600 */
+    }
+
+    /* Ajustements responsifs pour les écrans plus petits (smartphones) */
+    @media (max-width: 768px) {
+        .chatbot-container {
+            bottom: 10px;
+            right: 10px;
+        }
+        .chat-window {
+            width: 90vw; /* Utilise 90% de la largeur de la vue */
+            max-width: 320px; /* Limite la largeur même sur de très grands mobiles */
+            height: 65vh; /* Utilise 65% de la hauteur de la vue */
+            max-height: 450px; /* Limite la hauteur */
+            margin-bottom: 0.5rem;
+        }
+        .chatbot-button {
+            padding: 0.75rem 1rem; /* Ajusté pour les petits écrans */
+            height: 50px; /* Hauteur légèrement réduite */
+            font-size: 0.9rem;
+        }
+        .chatbot-button svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    /* Spinner de chargement */
+    .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #3B82F6;
+        border-radius: 50%;
+        width: 20px; /* Taille réduite */
+        height: 20px; /* Taille réduite */
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<!-- Conteneur du Chatbot - À placer juste avant </body> -->
 <div class="chatbot-container">
     <!-- Fenêtre du Chat -->
     <div id="chatWindow" class="chat-window hidden">
@@ -1082,18 +1262,20 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             <div class="message bot">Bonjour ! Je suis GemyBot, votre assistant pour tout savoir sur Gemy Solution. Comment puis-je vous aider aujourd'hui ?</div>
         </div>
         <div class="chat-input-container">
-            <input type="text" id="chatInput" class="chat-input" placeholder="Posez votre question...">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Discuter avec nous...">
             <button id="sendMessage" class="chat-send-button">Envoyer</button>
         </div>
     </div>
     <!-- Bouton flottant pour ouvrir/fermer le chat -->
     <button id="chatbotButton" class="chatbot-button">
-        <!-- Icône de message (Lucide React Icons) -->
+        <!-- Icône de message (Lucide) -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        <span>Discuter avec nous</span> <!-- Texte ajouté ici -->
     </button>
 </div>
+
 <!-- Script du Chatbot - À placer juste avant la balise de fermeture </body> -->
-<script type="text/babel">
+<script>
     const chatbotButton = document.getElementById('chatbotButton');
     const chatWindow = document.getElementById('chatWindow');
     const closeChatButton = document.getElementById('closeChat');
@@ -1178,7 +1360,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             chatMessages.removeChild(loadingSpinner);
             const errorMessage = "Une erreur est survenue. Veuillez vérifier votre connexion ou réessayer plus tard.";
             appendMessage(errorMessage, 'bot');
-            chatHistory.push({ role: "model", parts: [{ text: errorMessage }] : [{ text: errorMessage }] });
+            chatHistory.push({ role: "model", parts: [{ text: errorMessage }] });
         } finally {
             chatMessages.scrollTop = chatMessages.scrollHeight; // Assurer le défilement vers le bas après chaque interaction
         }
@@ -1255,7 +1437,7 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 
         **Directives de réponse :**
         - Réponds de manière claire, concise, amicale et très engageante.
-        - Après chaque réponse pertinente, **suggère toujours à l'utilisateur de visiter le site web pour en savoir plus ou, mieux encore, pour passer commande ou précommander la tablette.** Utilise des phrases incitatives comme "N'attendez plus, commandez votre tablette Gemy Solution dès aujourd'hui sur notre site : [lien] !" ou "Prêt à simplifier votre vie numérique ? Visitez notre site pour précommander : [lien]".
+        - Après chaque réponse pertinente, **suggère toujours à l'utilisateur de commander ou de précommander la tablette directement sur notre site web.** Utilise des phrases incitatives comme "N'attendez plus, commandez votre tablette Gemy Solution dès aujourd'hui sur notre site : https://gemyantho.github.io/gemy/ !" ou "Prêt à simplifier votre vie numérique ? Visitez notre site pour précommander : https://gemyantho.github.io/gemy/".
         - Si la question n'est pas directement liée à Gemy Solution, réponds poliment que tu es spécialisé dans Gemy Solution et que tu ne peux aider qu'avec des questions concernant la tablette et ses services. Ne réponds qu'aux questions en lien avec Gemy Solution.` }]
     });
 </script>
