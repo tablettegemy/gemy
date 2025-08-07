@@ -920,6 +920,300 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
+    <!-- Début du code pour le chatbot GemyBot avec sa base de connaissances complète -->
+
+<!-- Styles intégrés pour garantir l'affichage correct du bouton et de la fenêtre de chat -->
+<style>
+    .gemybot-container {
+        position: fixed;
+        bottom: 145px;
+        right: 16px;
+        z-index: 1001;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    
+    .gemybot-button {
+        background-color: #1e40af; /* Bleu foncé */
+        color: white;
+        font-weight: bold;
+        padding: 12px 24px;
+        border-radius: 9999px; /* Forme de bulle */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+        text-decoration: none;
+    }
+    
+    .gemybot-button:hover {
+        background-color: #1d4ed8; /* Bleu un peu plus clair au survol */
+        transform: scale(1.05);
+    }
+    
+    .chat-window {
+        width: 320px;
+        height: 450px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-top: 16px;
+    }
+
+    .chat-window.hidden {
+        display: none;
+    }
+    
+    .chat-header {
+        background-color: #1e40af;
+        color: white;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chat-header .close-button {
+        background: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 9999px;
+        transition: all 0.2s ease;
+    }
+    .chat-header .close-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .chat-body {
+        flex-grow: 1;
+        padding: 16px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background-color: #f9fafb;
+    }
+    
+    .chat-input-container {
+        padding: 16px;
+        border-top: 1px solid #e5e7eb;
+        display: flex;
+        align-items: center;
+        background-color: white;
+    }
+    
+    .chat-input {
+        flex-grow: 1;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 9999px;
+        outline: none;
+        transition: box-shadow 0.2s ease;
+    }
+    .chat-input:focus {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Anneau bleu */
+    }
+
+    .send-button {
+        margin-left: 8px;
+        padding: 12px;
+        border-radius: 9999px;
+        color: white;
+        background-color: #1e40af;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    .send-button:hover {
+        background-color: #1d4ed8;
+    }
+
+    .message {
+        padding: 12px;
+        border-radius: 12px;
+        max-width: 80%;
+    }
+    
+    .message.bot {
+        background-color: #e5e7eb;
+        color: #1f2937;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+    }
+    
+    .message.user {
+        background-color: #1e40af;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+</style>
+
+<!-- Conteneur principal pour le chatbot -->
+<div id="gemybot-container" class="gemybot-container">
+    
+    <!-- Bouton flottant pour ouvrir le chat, avec le texte demandé -->
+    <button id="gemybot-button" class="gemybot-button">
+        Discuter avec GemyBot
+    </button>
+    
+    <!-- Fenêtre de chat -->
+    <div id="chat-window" class="chat-window hidden">
+        
+        <!-- En-tête de la fenêtre de chat -->
+        <div id="chat-header" class="chat-header">
+            <span class="font-semibold text-lg">GemyBot Assistant</span>
+            <button id="close-chat-button" class="close-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+        
+        <!-- Corps de la fenêtre de chat, où les messages sont affichés -->
+        <div id="chat-body" class="chat-body">
+            <!-- Les messages s'affichent ici -->
+        </div>
+        
+        <!-- Pied de la fenêtre de chat avec la zone de saisie -->
+        <div id="chat-input-container" class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Posez une question..." class="chat-input">
+            <button id="send-button" class="send-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 18-4-6-6-4 18-7z"/><path d="M22 2 11 13"/></svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const gemybotContainer = document.getElementById('gemybot-container');
+        const gemybotButton = document.getElementById('gemybot-button');
+        const chatWindow = document.getElementById('chat-window');
+        const closeChatButton = document.getElementById('close-chat-button');
+        const chatBody = document.getElementById('chat-body');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+
+        // Styles pour les messages
+        const botMessageStyle = "message bot";
+        const userMessageStyle = "message user";
+
+        // Base de connaissances du chatbot, basée sur les informations fournies
+        const knowledgeBase = {
+            "bonjour": "Bonjour ! Je suis GemyBot, l'assistant virtuel de Gemy. Je peux vous renseigner sur la tablette, ses fonctionnalités, ses tarifs ou son assistance.",
+            "salut": "Bonjour ! Je suis GemyBot, l'assistant virtuel de Gemy. Je peux vous renseigner sur la tablette, ses fonctionnalités, ses tarifs ou son assistance.",
+            "aide": "Je suis là pour vous aider ! La tablette Gemy est un véritable compagnon. Je peux répondre à des questions sur les fonctionnalités, le prix, l'assistance ou les applications préinstallées.",
+            "companion": "Gemy Companion est un véritable compagnon fidèle. C'est une tablette Android simplifiée avec une intelligence artificielle bienveillante pour rompre la solitude et vous assister au quotidien.",
+            "philosophie": "Gemy Companion est conçu pour être un compagnon fidèle, toujours disponible, sans jugement. Son objectif est de rompre la solitude et d'apporter une présence de chaque instant grâce à son intelligence artificielle bienveillante.",
+            "simplifie": "La tablette Gemy simplifie la vie grâce à des dossiers clairs et intuitifs. Tout est préinstallé et prêt à l'emploi : vous n'avez plus qu'à profiter, sans vous soucier de l'installation ou des réglages complexes.",
+            "caractéristiques": "La tablette Gemy a un écran 11\" FHD+ à 90 Hz, un processeur Snapdragon 680, 8 Go de RAM, 256 Go de stockage (extensible à 1 To) et une batterie de 8000 mAh. Elle est aussi équipée de quatre haut-parleurs Dolby Atmos.",
+            "technique": "La tablette Gemy a un écran 11\" FHD+ à 90 Hz, un processeur Snapdragon 680, 8 Go de RAM, 256 Go de stockage (extensible à 1 To) et une batterie de 8000 mAh. Elle est aussi équipée de quatre haut-parleurs Dolby Atmos.",
+            "prix": "La tablette coûte 399€. Avec le clavier AZERTY, elle est à 449€.",
+            "tarif": "Le prix de la tablette est de 399€. Avec le clavier AZERTY, elle coûte 449€. Pour l'assistance à distance, c'est 9,99€ par mois ou 30€ l'intervention.",
+            "cout": "Le prix de la tablette est de 399€. Avec le clavier AZERTY, elle coûte 449€. Pour l'assistance à distance, c'est 9,99€ par mois ou 30€ l'intervention.",
+            "clavier": "L'option avec le clavier AZERTY coûte 50€ de plus, portant le total à 449€.",
+            "assistance": "Nous proposons une assistance à distance via AnyDesk. Vous pouvez choisir un abonnement mensuel à 9,99€, ou une intervention unique à 30€. Un dossier 'Assistance Gemy' est préconfiguré sur la tablette.",
+            "anydesk": "AnyDesk est un logiciel d'assistance à distance sécurisé que nous utilisons pour vous aider à distance en cas de besoin. Un dossier 'Assistance Gemy' sur la tablette vous permet d'y accéder facilement.",
+            "garantie": "La tablette Gemy est couverte par une garantie de 2 ans du constructeur. Nous nous occupons du service après-vente pour vous !",
+            "dossiers": "La tablette Gemy a des dossiers préconfigurés : Santé, Mes Papiers & Services, Bureautique, Assistance Gemy, Divertissement, Jeux, Outils, Communication, Le coin des enfants et Réseaux Sociaux.",
+            "sante": "Le dossier 'Santé' gère votre bien-être en toute simplicité. Il offre un accès direct aux services vitaux avec des applications comme Doctolib pour vos rendez-vous, Ameli pour vos remboursements, et Mon Espace Santé pour un suivi complet de votre dossier médical.",
+            "papiers": "Le dossier 'Mes Papiers & Services' facilite vos démarches administratives et la gestion de vos services essentiels avec des applications préinstallées comme Impots.gouv et EDF.",
+            "bureautique": "Le dossier 'Bureautique' rassemble les outils essentiels pour la modification et la création de documents Word et Excel, ainsi que la lecture de PDF. Vous pouvez tout faire directement sur la tablette.",
+            "divertissement": "Le dossier 'Divertissement' regroupe vos chaînes TV favorites via Molotov TV (99 chaînes), vos stations de radio préférées (des centaines de radios), et des milliers de livres via une bibliothèque numérique.",
+            "jeux": "Le dossier 'Jeux' regorge de jeux populaires et stimulants comme le Solitaire, le Poker, les Mots Mêlés, le Mahjong, et bien d'autres pour vous divertir à tout moment.",
+            "ia": "L'assistant intelligent Gemy, basé sur l'IA, est votre compagnon fidèle. Il peut converser naturellement, vous raconter des histoires, faire des quiz, et même proposer des repas selon vos ingrédients disponibles. Il est toujours là pour vous, 24h/24.",
+            "assistant": "Votre Gemy est équipée d'une intelligence artificielle déjà configurée, prête à vous assister. Il peut répondre à vos questions, vous aider avec une tâche spécifique, ou simplement échanger pour passer le temps.",
+            "tv": "Vous pouvez regarder jusqu'à 99 chaînes TV grâce au dossier 'Divertissement' qui contient Molotov TV.",
+            "livres": "Le dossier 'Divertissement' vous donne accès à une vaste bibliothèque de livres numériques.",
+            "radio": "La tablette vous permet d'écouter des centaines de stations de radio grâce aux applications préinstallées dans le dossier 'Divertissement'.",
+            "que peut faire la tablette": "La tablette Gemy est un véritable couteau suisse ! Grâce à ses dossiers préconfigurés, vous pouvez :\n\n- **Prendre soin de vous** avec le dossier 'Santé' (Doctolib, Ameli, Mon Espace Santé).\n- **Gérer votre vie quotidienne** avec 'Mes Papiers & Services' (Impots.gouv, EDF).\n- **Travailler et créer** avec 'Bureautique', qui vous permet d'ouvrir, modifier et créer des fichiers Word, Excel et PDF.\n- **Vous divertir** avec le dossier 'Divertissement', qui donne accès à 99 chaînes TV via Molotov TV, des centaines de radios et une bibliothèque de livres numériques.\n- **Vous amuser** avec le dossier 'Jeux' (Sudoku, Mahjong, Solitaire, etc.).\n- **Rester connecté** avec le dossier 'Communication' (WhatsApp) et 'Réseaux Sociaux' (Facebook, TikTok).\n\nEt surtout, l'intelligence artificielle est là comme votre **compagnon et assistant 24h/24** pour discuter, vous divertir avec des jeux vocaux, ou vous aider avec vos questions ! De plus, la tablette bénéficie d'une **garantie de 2 ans du constructeur**.",
+            "ce qui est installé": "Tout est déjà installé sur la tablette ! Les applications sont rangées dans des dossiers clairs : 'Santé' (Doctolib, Ameli), 'Bureautique' (Word, Excel, PDF), 'Divertissement' (TV, Radio, Livres), 'Jeux' et bien d'autres. L'intelligence artificielle est aussi préconfigurée pour vous assister dès l'allumage.",
+            "application installe": "Tout est déjà installé sur la tablette ! Les applications sont rangées dans des dossiers clairs : 'Santé' (Doctolib, Ameli), 'Bureautique' (Word, Excel, PDF), 'Divertissement' (TV, Radio, Livres), 'Jeux' et bien d'autres. L'intelligence artificielle est aussi préconfigurée pour vous assister dès l'allumage.",
+            "delai": "Actuellement, vous pouvez précommander la tablette. Une fois la commande passée, vous recevrez la tablette entre 5 et 15 jours.",
+            "recois ma tablette": "Actuellement, vous pouvez précommander la tablette. Une fois la commande passée, vous recevrez la tablette entre 5 et 15 jours.",
+            "delai pour recoir": "Actuellement, vous pouvez précommander la tablette. Une fois la commande passée, vous recevrez la tablette entre 5 et 15 jours.",
+            "statut": "Le statut de la société est en cours de création, c'est pourquoi les tablettes sont actuellement en précommande.",
+            "statut societe": "Le statut de la société est en cours de création, c'est pourquoi les tablettes sont actuellement en précommande.",
+            "statut de la societe": "Le statut de la société est en cours de création, c'est pourquoi les tablettes sont actuellement en précommande.",
+            "patron": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse.",
+            "pdg": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse.",
+            "anthony r": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse.",
+            "societe basee": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse.",
+            "ou est la societe": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse.",
+            "societe france": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse.",
+            "ou est basee la societe": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse.",
+            "basee": "Le patron de la société est Anthony R. La société est basée en France et est en cours d'implantation en Suisse."
+        };
+
+        // Ajoute un message à l'interface
+        function addMessage(text, isUser) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = text;
+            messageElement.className = isUser ? userMessageStyle : botMessageStyle;
+            chatBody.appendChild(messageElement);
+            chatBody.scrollTop = chatBody.scrollHeight; // Fait défiler jusqu'au dernier message
+        }
+
+        // Récupère la réponse du bot en fonction du message de l'utilisateur
+        function getBotResponse(userMessage) {
+            const lowerCaseMessage = userMessage.toLowerCase();
+            for (const keyword in knowledgeBase) {
+                if (lowerCaseMessage.includes(keyword)) {
+                    return knowledgeBase[keyword];
+                }
+            }
+            return "Je suis désolé, je n'ai pas d'information sur ce sujet. Vous pouvez me poser une question sur les caractéristiques, les fonctionnalités, les dossiers ou l'assistance.";
+        }
+
+        // Envoie le message et affiche la réponse
+        function sendMessage() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage === "") return;
+
+            addMessage(userMessage, true);
+            chatInput.value = "";
+            
+            // Simule un temps de réponse pour plus de réalisme
+            setTimeout(() => {
+                const botResponse = getBotResponse(userMessage);
+                addMessage(botResponse, false);
+            }, 700);
+        }
+
+        // Événements pour la fenêtre de chat
+        gemybotButton.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+            if (!chatWindow.classList.contains('hidden') && chatBody.children.length === 0) {
+                addMessage("Bonjour ! Je suis GemyBot, l'assistant virtuel de Gemy. Comment puis-je vous aider ? Je peux vous renseigner sur la tablette, ses fonctionnalités, ses tarifs ou son assistance.", false);
+            }
+        });
+
+        closeChatButton.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+        });
+
+        // Ferme la fenêtre si l'utilisateur clique en dehors
+        document.addEventListener('click', (event) => {
+            if (!gemybotContainer.contains(event.target) && !chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.add('hidden');
+            }
+        });
+
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    });
+</script>
+<!-- Fin du code pour le chatbot GemyBot avec sa base de connaissances complète -->
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
