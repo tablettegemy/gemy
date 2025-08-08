@@ -920,192 +920,182 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
 </style>
     <a href="#section-precommande-gemy" id="precommander-flottant" onclick="document.getElementById('section-precommande-gemy').scrollIntoView({behavior:'smooth'})">Précommander</a>
 
-<!-- Début du code pour le chatbot GemyBot avec sa base de connaissances complète -->
+<style> 
+     .gemybot-container { 
+         position: fixed; 
+         bottom: 85px; /* MODIFICATION : Position plus haute pour être au-dessus du bouton de précommande */ 
+         right: 16px; 
+         z-index: 1001; 
+         display: flex; 
+         flex-direction: column; 
+         align-items: flex-end; 
+     } 
+     
+     .gemybot-button { 
+         background-color: #1e40af; /* Bleu foncé */ 
+         color: white; 
+         font-weight: bold; 
+         padding: 12px 24px; 
+         border-radius: 9999px; /* Forme de bulle */ 
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+         cursor: pointer; 
+         transition: all 0.3s ease; 
+         border: none; 
+         outline: none; 
+         text-decoration: none; 
+     } 
+     
+     .gemybot-button:hover { 
+         background-color: #1d4ed8; /* Bleu un peu plus clair au survol */ 
+         transform: scale(1.05); 
+     } 
+     
+     .chat-window { 
+         width: 320px; 
+         height: 450px; 
+         background-color: white; 
+         border-radius: 12px; 
+         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); 
+         display: flex; 
+         flex-direction: column; 
+         overflow: hidden; 
+         margin-top: 16px; 
+     } 
 
-<!-- Styles intégrés pour garantir l'affichage correct du bouton et de la fenêtre de chat -->
-<style>
-    .gemybot-container {
-        position: fixed;
-        bottom: 85px; /* MODIFICATION : Position plus haute pour être au-dessus du bouton de précommande */
-        right: 16px;
-        z-index: 1001;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-    
-    .gemybot-button {
-        background-color: #1e40af; /* Bleu foncé */
-        color: white;
-        font-weight: bold;
-        padding: 12px 24px;
-        border-radius: 9999px; /* Forme de bulle */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: none;
-        outline: none;
-        text-decoration: none;
-    }
-    
-    .gemybot-button:hover {
-        background-color: #1d4ed8; /* Bleu un peu plus clair au survol */
-        transform: scale(1.05);
-    }
-    
-    .chat-window {
-        width: 320px;
-        height: 450px;
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        margin-top: 16px;
-    }
+     .chat-window.hidden { 
+         display: none; 
+     } 
+     
+     .chat-header { 
+         background-color: #1e40af; 
+         color: white; 
+         padding: 16px; 
+         display: flex; 
+         justify-content: space-between; 
+         align-items: center; 
+     } 
 
-    .chat-window.hidden {
-        display: none;
-    }
-    
-    .chat-header {
-        background-color: #1e40af;
-        color: white;
-        padding: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+     .chat-header .close-button { 
+         background: transparent; 
+         border: none; 
+         color: white; 
+         cursor: pointer; 
+         padding: 4px; 
+         border-radius: 9999px; 
+         transition: all 0.2s ease; 
+     } 
+     .chat-header .close-button:hover { 
+         background-color: rgba(255, 255, 255, 0.2); 
+     } 
+     
+     .chat-body { 
+         flex-grow: 1; 
+         padding: 16px; 
+         overflow-y: auto; 
+         display: flex; 
+         flex-direction: column; 
+         gap: 8px; 
+         background-color: #f9fafb; 
+     } 
+     
+     .chat-input-container { 
+         padding: 16px; 
+         border-top: 1px solid #e5e7eb; 
+         display: flex; 
+         align-items: center; 
+         background-color: white; 
+     } 
+     
+     .chat-input { 
+         flex-grow: 1; 
+         padding: 12px; 
+         border: 1px solid #d1d5db; 
+         border-radius: 9999px; 
+         outline: none; 
+         transition: box-shadow 0.2s ease; 
+     } 
+     .chat-input:focus { 
+         box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Anneau bleu */ 
+     } 
 
-    .chat-header .close-button {
-        background: transparent;
-        border: none;
-        color: white;
-        cursor: pointer;
-        padding: 4px;
-        border-radius: 9999px;
-        transition: all 0.2s ease;
-    }
-    .chat-header .close-button:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .chat-body {
-        flex-grow: 1;
-        padding: 16px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        background-color: #f9fafb;
-    }
-    
-    .chat-input-container {
-        padding: 16px;
-        border-top: 1px solid #e5e7eb;
-        display: flex;
-        align-items: center;
-        background-color: white;
-    }
-    
-    .chat-input {
-        flex-grow: 1;
-        padding: 12px;
-        border: 1px solid #d1d5db;
-        border-radius: 9999px;
-        outline: none;
-        transition: box-shadow 0.2s ease;
-    }
-    .chat-input:focus {
-        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Anneau bleu */
-    }
+     .send-button { 
+         margin-left: 8px; 
+         padding: 12px; 
+         border-radius: 9999px; 
+         color: white; 
+         background-color: #1e40af; 
+         border: none; 
+         cursor: pointer; 
+         transition: background-color 0.2s ease; 
+     } 
+     .send-button:hover { 
+         background-color: #1d4ed8; 
+     } 
 
-    .send-button {
-        margin-left: 8px;
-        padding: 12px;
-        border-radius: 9999px;
-        color: white;
-        background-color: #1e40af;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-    }
-    .send-button:hover {
-        background-color: #1d4ed8;
-    }
+     .message { 
+         padding: 12px; 
+         border-radius: 12px; 
+         max-width: 80%; 
+     } 
+     
+     .message.bot { 
+         background-color: #e5e7eb; 
+         color: #1f2937; 
+         align-self: flex-start; 
+         border-bottom-left-radius: 4px; 
+     } 
+     
+     .message.user { 
+         background-color: #1e40af; 
+         color: white; 
+         align-self: flex-end; 
+         border-bottom-right-radius: 4px; 
+     } 
+ </style> 
 
-    .message {
-        padding: 12px;
-        border-radius: 12px;
-        max-width: 80%;
-    }
-    
-    .message.bot {
-        background-color: #e5e7eb;
-        color: #1f2937;
-        align-self: flex-start;
-        border-bottom-left-radius: 4px;
-    }
-    
-    .message.user {
-        background-color: #1e40af;
-        color: white;
-        align-self: flex-end;
-        border-bottom-right-radius: 4px;
-    }
-</style>
+ <div id="gemybot-container" class="gemybot-container"> 
+     
+     <button id="gemybot-button" class="gemybot-button"> 
+         Discuter avec GemyBot 
+     </button> 
+     
+     <div id="chat-window" class="chat-window hidden"> 
+         
+         <div id="chat-header" class="chat-header"> 
+             <span class="font-semibold text-lg">GemyBot Assistant</span> 
+             <button id="close-chat-button" class="close-button"> 
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> 
+             </button> 
+         </div> 
+         
+         <div id="chat-body" class="chat-body"> 
+             </div> 
+         
+         <div id="chat-input-container" class="chat-input-container"> 
+             <input type="text" id="chat-input" placeholder="Posez une question..." class="chat-input"> 
+             <button id="send-button" class="send-button"> 
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 18-4-6-6-4 18-7z"/><path d="M22 2 11 13"/></svg> 
+             </button> 
+         </div> 
+     </div> 
+ </div> 
 
-<!-- Conteneur principal pour le chatbot -->
-<div id="gemybot-container" class="gemybot-container">
-    
-    <!-- Bouton flottant pour ouvrir le chat, avec le texte demandé -->
-    <button id="gemybot-button" class="gemybot-button">
-        Discuter avec GemyBot
-    </button>
-    
-    <!-- Fenêtre de chat -->
-    <div id="chat-window" class="chat-window hidden">
-        
-        <!-- En-tête de la fenêtre de chat -->
-        <div id="chat-header" class="chat-header">
-            <span class="font-semibold text-lg">GemyBot Assistant</span>
-            <button id="close-chat-button" class="close-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </button>
-        </div>
-        
-        <!-- Corps de la fenêtre de chat, où les messages sont affichés -->
-        <div id="chat-body" class="chat-body">
-            <!-- Les messages s'affichent ici -->
-        </div>
-        
-        <!-- Pied de la fenêtre de chat avec la zone de saisie -->
-        <div id="chat-input-container" class="chat-input-container">
-            <input type="text" id="chat-input" placeholder="Posez une question..." class="chat-input">
-            <button id="send-button" class="send-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 18-4-6-6-4 18-7z"/><path d="M22 2 11 13"/></svg>
-            </button>
-        </div>
-    </div>
-</div>
+ <script> 
+     document.addEventListener('DOMContentLoaded', () => { 
+         const gemybotContainer = document.getElementById('gemybot-container'); 
+         const gemybotButton = document.getElementById('gemybot-button'); 
+         const chatWindow = document.getElementById('chat-window'); 
+         const closeChatButton = document.getElementById('close-chat-button'); 
+         const chatBody = document.getElementById('chat-body'); 
+         const chatInput = document.getElementById('chat-input'); 
+         const sendButton = document.getElementById('send-button'); 
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const gemybotContainer = document.getElementById('gemybot-container');
-        const gemybotButton = document.getElementById('gemybot-button');
-        const chatWindow = document.getElementById('chat-window');
-        const closeChatButton = document.getElementById('close-chat-button');
-        const chatBody = document.getElementById('chat-body');
-        const chatInput = document.getElementById('chat-input');
-        const sendButton = document.getElementById('send-button');
+         // Styles pour les messages 
+         const botMessageStyle = "message bot"; 
+         const userMessageStyle = "message user"; 
 
-        // Styles pour les messages
-        const botMessageStyle = "message bot";
-        const userMessageStyle = "message user";
-
-        // Base de connaissances du chatbot, basée sur les informations fournies
-        const knowledgeBase = {
+         // Base de connaissances du chatbot, basée sur les informations fournies 
+         const knowledgeBase = {
             "bonjour": "Bonjour ! Je suis GemyBot, l'assistant virtuel de Gemy. Je peux vous renseigner sur la tablette, ses fonctionnalités, ses tarifs ou son assistance.",
             "salut": "Bonjour ! Je suis GemyBot, l'assistant virtuel de Gemy. Je peux vous renseigner sur la tablette, ses fonctionnalités, ses tarifs ou son assistance.",
             "aide": "Je suis là pour vous aider ! La tablette Gemy est un véritable compagnon. Je peux répondre à des questions sur les fonctionnalités, le prix, l'assistance ou les applications préinstallées.",
@@ -1116,15 +1106,16 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             "technique": "La tablette Gemy a un écran 11\" FHD+ à 90 Hz, un processeur Snapdragon 680, 8 Go de RAM, 256 Go de stockage (extensible à 1 To) et une batterie de 8000 mAh. Elle est aussi équipée de quatre haut-parleurs Dolby Atmos.",
             "configuration": "La tablette Gemy a un écran 11\" FHD+ à 90 Hz, un processeur Snapdragon 680, 8 Go de RAM, 256 Go de stockage (extensible à 1 To) et une batterie de 8000 mAh. Elle est aussi équipée de quatre haut-parleurs Dolby Atmos.",
             "configuration de la tablette": "La tablette Gemy a un écran 11\" FHD+ à 90 Hz, un processeur Snapdragon 680, 8 Go de RAM, 256 Go de stockage (extensible à 1 To) et une batterie de 8000 mAh. Elle est aussi équipée de quatre haut-parleurs Dolby Atmos.",
-            "prix": "La tablette coûte 399€. Avec le clavier AZERTY, elle est à 449€.",
-            "tarif": "Le prix de la tablette est de 399€. Avec le clavier AZERTY, elle coûte 449€. Pour l'assistance à distance, c'est 9,99€ par mois ou 30€ l'intervention.",
-            "cout": "Le prix de la tablette est de 399€. Avec le clavier AZERTY, elle coûte 449€. Pour l'assistance à distance, c'est 9,99€ par mois ou 30€ l'intervention.",
-            "clavier": "L'option avec le clavier AZERTY coûte 50€ de plus, portant le total à 449€.",
+            "prix": "La tablette Gemy est proposée à 399€. Avec le clavier AZERTY, le pack est à 449€.",
+            "tarif": "Le prix de la tablette Gemy est de 399€. Avec le clavier AZERTY, elle coûte 449€. Pour l'assistance à distance, c'est 9,99€ par mois ou 30€ l'intervention.",
+            "cout": "Le prix de la tablette Gemy est de 399€. Avec le clavier AZERTY, elle coûte 449€. Pour l'assistance à distance, c'est 9,99€ par mois ou 30€ l'intervention.",
+            "combien coute": "La tablette Gemy est à 399€. L'option avec clavier AZERTY est à 449€.",
+            "clavier": "L'option avec le clavier AZERTY coûte 50€ de plus, portant le total à 449€. Elle est vendue avec l'étui de protection.",
             "assistance": "Nous proposons une assistance à distance via AnyDesk. Vous pouvez choisir un abonnement mensuel à 9,99€, ou une intervention unique à 30€. Un dossier 'Assistance Gemy' est préconfiguré sur la tablette.",
             "anydesk": "AnyDesk est un logiciel d'assistance à distance sécurisé que nous utilisons pour vous aider à distance en cas de besoin. Un dossier 'Assistance Gemy' sur la tablette vous permet d'y accéder facilement.",
-            "garantie": "La tablette Gemy est couverte par une garantie de 2 ans du constructeur. Nous nous occupons du service après-vente pour vous !",
+            "garantie": "La tablette Gemy est couverte par une garantie constructeur de 2 ans. Nous nous occupons du service après-vente pour vous !",
             "dossiers": "La tablette Gemy a des dossiers préconfigurés : Santé, Mes Papiers & Services, Bureautique, Assistance Gemy, Divertissement, Jeux, Outils, Communication, Le coin des enfants et Réseaux Sociaux.",
-            "sante": "Le dossier 'Santé' gère votre bien-être en toute simplicité. Il offre un accès direct aux services vitaux avec des applications comme Doctolib pour vos rendez-vous, Ameli pour vos remboursements, et Mon Espace Santé pour un suivi complet de votre dossier médical.",
+            "sante": "Le dossier 'Santé' gère votre bien-être en toute simplicité. Il offre un accès direct aux services vitaux avec des applications comme Doctolib, Ameli et Mon Espace Santé.",
             "papiers": "Le dossier 'Mes Papiers & Services' facilite vos démarches administratives et la gestion de vos services essentiels avec des applications préinstallées comme Impots.gouv et EDF.",
             "bureautique": "Le dossier 'Bureautique' rassemble les outils essentiels pour la modification et la création de documents Word et Excel, ainsi que la lecture de PDF. Vous pouvez tout faire directement sur la tablette.",
             "divertissement": "Le dossier 'Divertissement' regroupe vos chaînes TV favorites via Molotov TV (99 chaînes), vos stations de radio préférées (des centaines de radios), et des milliers de livres via une bibliothèque numérique.",
@@ -1158,81 +1149,207 @@ Je recommande vivement cette tablette qui m'est devenue indispensable."</p>
             "frais": "Non, il n'y a pas de frais cachés ou d'abonnement obligatoire. Le prix de la tablette inclut tout ce dont vous avez besoin. L'assistance à distance est un service optionnel, payable par abonnement ou à l'intervention.",
             "payer": "Vous n'avez rien à payer en plus pour utiliser la tablette. Tout est inclus. L'abonnement mensuel de 9,99€ ou l'intervention à 30€ sont uniquement pour l'assistance à distance si vous en avez besoin.",
             "mauvaise surprise": "Non, il n'y a pas de mauvaise surprise ! Le prix de la tablette inclut toutes les fonctionnalités. L'abonnement pour l'assistance à distance est complètement optionnel et sans engagement.",
-            "ou l acheter": "En la precommandant directement sur notre site dans la rubrique precommande.",
-            "pourquoi la precommander": "Pour être le premier à l'avoir et pour anticiper les besoins! l entreprise est en cours de création en attente de statut sociale.",
-            "ou l acheter": "En la precommandant directement sur notre site dans la rubrique precommande.",
-            "pourquoi cette tablette et pas une autre": "Parce que tout est configurer, pensé et inclus, il n'y a plus qu'à la connecter au wifi, pas d'installation, d'abonnement  ou de recherche de logiciel tout est inclus .",
+            "ou l acheter": "En la précommandant directement sur notre site dans la rubrique précommande.",
+            "pourquoi la precommander": "Pour être le premier à l'avoir et pour anticiper les besoins ! L'entreprise est en cours de création, en attente de son statut social.",
+            "pourquoi cette tablette et pas une autre": "Parce que tout est configuré, pensé et inclus. Il n'y a plus qu'à la connecter au Wi-Fi. Pas d'installation, d'abonnement ou de recherche de logiciel, tout est inclus. C'est un produit 'clé en main'.",
             "avis": "Plusieurs tablettes ont été mises en test chez des personnes différentes afin d'avoir une tablette fonctionnelle et sans problèmes, résultat que des retours positifs.",
             "gemy": "C'est le fruit de plusieurs mois de recherche pour avoir un produit fiable clé en main, avec l'IA comme assistant et compagnon.",
-            "commande": "Pour être le premier à l'avoir et pour anticiper les besoins! Vous pouvez des maintenant précommander votre tablette dans la rubrique précommande.",
-            "commander": "Pour être le premier à l'avoir et pour anticiper les besoins! Vous pouvez des maintenant précommander votre tablette dans la rubrique précommande.",
-            "installation": "Il vous suffit de la connecter au Wi-Fi et tout est déjà installé et configuré. Vous n'avez qu'à profiter ! Aucune installation ou configuration complexe n'est nécessaire."
-    
-        };
+            "commande": "Pour être le premier à l'avoir et pour anticiper les besoins ! Vous pouvez dès maintenant précommander votre tablette dans la rubrique précommande.",
+            "commander": "Pour être le premier à l'avoir et pour anticiper les besoins ! Vous pouvez dès maintenant précommander votre tablette dans la rubrique précommande.",
+            "installation": "Il vous suffit de la connecter au Wi-Fi et tout est déjà installé et configuré. Vous n'avez qu'à profiter ! Aucune installation ou configuration complexe n'est nécessaire.",
+            "dépannage": "Nous proposons une assistance à distance via AnyDesk. Vous pouvez choisir un abonnement mensuel à 9,99€, ou une intervention unique à 30€. Un dossier 'Assistance Gemy' est préconfiguré sur la tablette.",
+            "Ce formulaire n'est pas sécurisé": "Ceci est une protection standard de votre navigateur. Ne vous inquiétez pas, cela n'aura aucune conséquence pour vous : vos informations sont traitées avec la plus grande confidentialité par Gemy Solution.",
+            "xiaomi": "La tablette Gemy est une tablette Android simplifiée basée sur le modèle **Xiaomi Pad SE** pour garantir sa fiabilité et ses performances.",
+            "xiaomi pad se": "La tablette Gemy est une tablette Android simplifiée basée sur le modèle **Xiaomi Pad SE** pour garantir sa fiabilité et ses performances.",
+            "marque": "La tablette Gemy est basée sur un modèle **Xiaomi** (le Pad SE) pour offrir des performances fiables, mais elle a été entièrement simplifiée et préconfigurée par Gemy Solution.",
+            "produit similaire": "La force de la tablette Gemy n'est pas le matériel, mais la solution logicielle complète qu'elle propose. Elle est **clé en main**, préconfigurée, avec l'IA comme compagnon, sans abonnement et avec une assistance dédiée.",
+            "paiement": "Vous pouvez régler votre précommande par carte bancaire de manière sécurisée sur notre site. Le paiement se fait lors de la précommande.",
+            "securise": "Le paiement est 100% sécurisé par notre partenaire bancaire. Les données de votre carte ne sont pas stockées sur notre site.",
+            "annulation": "Si vous souhaitez annuler votre précommande, contactez-nous directement par e-mail ou via le formulaire de contact sur le site.",
+            "contact": "Vous pouvez nous contacter directement en remplissant le formulaire de contact disponible sur notre site. Nous nous efforçons de répondre dans les plus brefs délais.",
+            "contactez nous": "Vous pouvez nous contacter directement en remplissant le formulaire de contact disponible sur notre site. Nous nous efforçons de répondre dans les plus brefs délais.",
+            "mail": "Pour toute question, vous pouvez utiliser le formulaire de contact sur notre site. Nous vous répondrons par e-mail dans les plus brefs délais.",
+            "facture": "Votre facture vous sera envoyée par e-mail une fois votre commande validée et le paiement reçu.",
+            "garantie fonctionne": "En cas de problème technique couvert par la garantie de 2 ans du constructeur, nous nous occupons du service après-vente pour vous. Vous pouvez nous contacter via l'assistance à distance ou le formulaire de contact.",
+            "retour": "Si vous n'êtes pas satisfait, vous disposez d'un droit de rétractation de 14 jours après réception de la tablette. Pour en savoir plus, contactez-nous via le formulaire de contact."
+         };
 
-        // Ajoute un message à l'interface
-        function addMessage(text, isUser) {
-            const messageElement = document.createElement('div');
-            messageElement.textContent = text;
-            messageElement.className = isUser ? userMessageStyle : botMessageStyle;
-            chatBody.appendChild(messageElement);
-            chatBody.scrollTop = chatBody.scrollHeight; // Fait défiler jusqu'au dernier message
-        }
+         // Ajoute un message à l'interface 
+         function addMessage(text, isUser) { 
+             const messageElement = document.createElement('div'); 
+             messageElement.textContent = text; 
+             messageElement.className = isUser ? userMessageStyle : botMessageStyle; 
+             chatBody.appendChild(messageElement); 
+             chatBody.scrollTop = chatBody.scrollHeight; // Fait défiler jusqu'au dernier message 
+         } 
 
-        // Récupère la réponse du bot en fonction du message de l'utilisateur
-        function getBotResponse(userMessage) {
-            const lowerCaseMessage = userMessage.toLowerCase();
-            for (const keyword in knowledgeBase) {
-                if (lowerCaseMessage.includes(keyword)) {
-                    return knowledgeBase[keyword];
-                }
-            }
-            return "Je suis désolé, je n'ai pas d'information sur ce sujet. Vous pouvez me poser une question sur les caractéristiques, les fonctionnalités, les dossiers ou l'assistance.";
-        }
+         // Fonction pour calculer la distance de Levenshtein (mesure de la différence entre deux chaînes) 
+         function levenshteinDistance(a, b) { 
+             const an = a.length; 
+             const bn = b.length; 
+             const costs = new Array(bn + 1); 
 
-        // Envoie le message et affiche la réponse
-        function sendMessage() {
-            const userMessage = chatInput.value.trim();
-            if (userMessage === "") return;
+             for (let i = 0; i <= an; ++i) { 
+                 let lastValue = i; 
+                 for (let j = 0; j <= bn; ++j) { 
+                     if (i === 0) { 
+                         costs[j] = j; 
+                     } else if (j > 0) { 
+                         let newValue = costs[j - 1]; 
+                         if (a.charAt(i - 1) !== b.charAt(j - 1)) { 
+                             newValue = Math.min(newValue, lastValue, costs[j]) + 1; 
+                         } 
+                         costs[j - 1] = lastValue; 
+                         lastValue = newValue; 
+                     } 
+                 } 
+                 if (i > 0) { 
+                     costs[bn] = lastValue; 
+                 } 
+             } 
+             return costs[bn]; 
+         } 
+         
+         // Récupère la réponse du bot en fonction du message de l'utilisateur avec une tolérance pour les fautes 
+         function getBotResponse(userMessage) { 
+             const lowerCaseMessage = userMessage.toLowerCase().trim(); 
+             
+             // Gère les messages de salutation plus complexes 
+             if (lowerCaseMessage.includes("bonjour") || lowerCaseMessage.includes("salut") || lowerCaseMessage.includes("hey")) { 
+                 return knowledgeBase["bonjour"]; 
+             } 
+             
+             // Gère les questions sur les fonctionnalités 
+             if (lowerCaseMessage.includes("fonctionnalité") || lowerCaseMessage.includes("fonctionne") || lowerCaseMessage.includes("c'est quoi") || lowerCaseMessage.includes("fait quoi") || lowerCaseMessage.includes("a quoi ca sert")) { 
+                 return knowledgeBase["que peut faire la tablette"]; 
+             } 
 
-            addMessage(userMessage, true);
-            chatInput.value = "";
-            
-            // Simule un temps de réponse pour plus de réalisme
-            setTimeout(() => {
-                const botResponse = getBotResponse(userMessage);
-                addMessage(botResponse, false);
-            }, 700);
-        }
+             // Gère les questions sur le prix 
+             if (lowerCaseMessage.includes("prix") || lowerCaseMessage.includes("combien") || lowerCaseMessage.includes("tarif") || lowerCaseMessage.includes("coûte") || lowerCaseMessage.includes("payer")) { 
+                 return knowledgeBase["tarif"]; 
+             } 
+             
+             // Gère les questions sur le clavier 
+             if (lowerCaseMessage.includes("clavier") || lowerCaseMessage.includes("azerty")) { 
+                 return knowledgeBase["clavier"]; 
+             } 
+             
+             // Gère les questions sur la garantie 
+             if (lowerCaseMessage.includes("garantie") || lowerCaseMessage.includes("garanti") || lowerCaseMessage.includes("sav") || lowerCaseMessage.includes("après vente") || lowerCaseMessage.includes("retour") ) { 
+                 return knowledgeBase["garantie"]; 
+             } 
+             
+             // Gère les questions sur l'assistance 
+             if (lowerCaseMessage.includes("assistance") || lowerCaseMessage.includes("aide") || lowerCaseMessage.includes("dépannage") || lowerCaseMessage.includes("support")) { 
+                 return knowledgeBase["assistance"]; 
+             } 
+             
+             // Gère les questions sur l'installation 
+             if (lowerCaseMessage.includes("installation") || lowerCaseMessage.includes("installer") || lowerCaseMessage.includes("configurer") || lowerCaseMessage.includes("configuration")) { 
+                 return knowledgeBase["installation"]; 
+             } 
+             
+             // Gère les questions sur la livraison 
+             if (lowerCaseMessage.includes("délai") || lowerCaseMessage.includes("livraison") || lowerCaseMessage.includes("reçois") || lowerCaseMessage.includes("quand")) { 
+                 return knowledgeBase["delai"]; 
+             } 
+             
+             // Gère les questions sur les dossiers ou applications 
+             if (lowerCaseMessage.includes("dossier") || lowerCaseMessage.includes("application") || lowerCaseMessage.includes("apps") || lowerCaseMessage.includes("logiciel") || lowerCaseMessage.includes("installé")) { 
+                 return knowledgeBase["ce qui est installé"]; 
+             } 
+             
+             // Gère les questions sur l'IA 
+             if (lowerCaseMessage.includes("intelligence artificielle") || lowerCaseMessage.includes("ia") || lowerCaseMessage.includes("assistant")) { 
+                 return knowledgeBase["assistant"]; 
+             } 
 
-        // Événements pour la fenêtre de chat
-        gemybotButton.addEventListener('click', () => {
-            chatWindow.classList.toggle('hidden');
-            if (!chatWindow.classList.contains('hidden') && chatBody.children.length === 0) {
-                addMessage("Bonjour ! Je suis GemyBot, l'assistant virtuel de Gemy. Comment puis-je vous aider ? Je peux vous renseigner sur la tablette, ses fonctionnalités, ses tarifs ou son assistance.", false);
-            }
-        });
+             // Gère les questions sur le statut de la société ou le patron 
+             if (lowerCaseMessage.includes("société") || lowerCaseMessage.includes("statut") || lowerCaseMessage.includes("patron") || lowerCaseMessage.includes("anthony")) { 
+                 return knowledgeBase["statut"]; 
+             } 
+             
+             // Gère les questions sur la précommande 
+             if (lowerCaseMessage.includes("précommande") || lowerCaseMessage.includes("commander") || lowerCaseMessage.includes("acheter")) { 
+                 return knowledgeBase["commande"]; 
+             } 
+             
+             // Gère les questions sur la marque ou le modèle de la tablette 
+             if (lowerCaseMessage.includes("xiaomi") || lowerCaseMessage.includes("marque") || lowerCaseMessage.includes("modèle")) { 
+                 return knowledgeBase["marque"]; 
+             } 
 
-        closeChatButton.addEventListener('click', () => {
-            chatWindow.classList.add('hidden');
-        });
+             // Gère les questions sur le contact
+             if (lowerCaseMessage.includes("contact") || lowerCaseMessage.includes("contactez") || lowerCaseMessage.includes("mail")) {
+                 return knowledgeBase["contact"];
+             }
 
-        // Ferme la fenêtre si l'utilisateur clique en dehors
-        document.addEventListener('click', (event) => {
-            if (!gemybotContainer.contains(event.target) && !chatWindow.classList.contains('hidden')) {
-                chatWindow.classList.add('hidden');
-            }
-        });
+             // Gère les questions sur le paiement
+             if (lowerCaseMessage.includes("paiement") || lowerCaseMessage.includes("sécurisé") || lowerCaseMessage.includes("facture") ) {
+                 return knowledgeBase["paiement"];
+             }
+             
+             // Logique de recherche par mot-clé avec une tolérance pour les fautes
+             let bestMatch = null; 
+             let minDistance = 3; // Tolérance pour les fautes 
 
-        sendButton.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-    });
-</script>
-<!-- Fin du code pour le chatbot GemyBot avec sa base de connaissances complète -->
+             for (const keyword in knowledgeBase) { 
+                 const distance = levenshteinDistance(lowerCaseMessage, keyword); 
+                 if (distance < minDistance) { 
+                     minDistance = distance; 
+                     bestMatch = keyword; 
+                 } 
+             } 
+
+             if (bestMatch) { 
+                 return knowledgeBase[bestMatch]; 
+             } 
+             
+             return "Je suis désolé, je n'ai pas d'information sur ce sujet. Vous pouvez me poser une question sur les caractéristiques, les fonctionnalités, les dossiers ou l'assistance."; 
+         } 
+
+         // Envoie le message et affiche la réponse 
+         function sendMessage() { 
+             const userMessage = chatInput.value.trim(); 
+             if (userMessage === "") return; 
+
+             addMessage(userMessage, true); 
+             chatInput.value = ""; 
+             
+             // Simule un temps de réponse pour plus de réalisme 
+             setTimeout(() => { 
+                 const botResponse = getBotResponse(userMessage); 
+                 addMessage(botResponse, false); 
+             }, 700); 
+         } 
+
+         // Événements pour la fenêtre de chat 
+         gemybotButton.addEventListener('click', () => { 
+             chatWindow.classList.toggle('hidden'); 
+             if (!chatWindow.classList.contains('hidden') && chatBody.children.length === 0) { 
+                 addMessage("Bonjour ! Je suis GemyBot, l'assistant virtuel de Gemy. Comment puis-je vous aider ? Je peux vous renseigner sur la tablette, ses fonctionnalités, ses tarifs ou son assistance.", false); 
+             } 
+         }); 
+
+         closeChatButton.addEventListener('click', () => { 
+             chatWindow.classList.add('hidden'); 
+         }); 
+
+         // Ferme la fenêtre si l'utilisateur clique en dehors 
+         document.addEventListener('click', (event) => { 
+             if (!gemybotContainer.contains(event.target) && !chatWindow.classList.contains('hidden')) { 
+                 chatWindow.classList.add('hidden'); 
+             } 
+         }); 
+
+         sendButton.addEventListener('click', sendMessage); 
+         chatInput.addEventListener('keypress', (e) => { 
+             if (e.key === 'Enter') { 
+                 sendMessage(); 
+             } 
+         }); 
+     }); 
+ </script>
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
